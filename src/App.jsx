@@ -9,6 +9,7 @@ import Test from "./pages/Test";
 
 import Auth from "./pages/Auth/Auth";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import Products from "./pages/Products/Products";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +35,7 @@ function App() {
           >
             <Route index element={<Navigate replace to="profile" />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="products" element={<Products/>}/>
             <Route path="test" element={<Test />} />
           </Route>
 

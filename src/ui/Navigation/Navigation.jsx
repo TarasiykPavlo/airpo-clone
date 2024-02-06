@@ -14,7 +14,8 @@ function Navigation() {
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 640px)").matches
   );
-const [checkOpenDropmenuNavigation,setCheckOpenDropmenuNavigation] = useState(false)
+  const [checkOpenDropmenuNavigation, setCheckOpenDropmenuNavigation] =
+    useState(false);
   useEffect(() => {
     window
       .matchMedia("(max-width: 640px)")
@@ -27,7 +28,11 @@ const [checkOpenDropmenuNavigation,setCheckOpenDropmenuNavigation] = useState(fa
       </Menu.Item>
       <div className="user-info">
         <div className="user-photo">
-          <img width={170} src={picture} />
+          {picture ? (
+            <Avatar src={picture} className="user-photo__avatar" />
+          ) : (
+            <Avatar className="user-photo__avatar" icon={<UserOutlined />} />
+          )}
         </div>
         <div className="user-info-main">
           <div className="user-info__name">{name}</div>
@@ -38,13 +43,21 @@ const [checkOpenDropmenuNavigation,setCheckOpenDropmenuNavigation] = useState(fa
       <Menu.Item key="2">My account</Menu.Item>
       {matches ? (
         <>
-          <Menu.Item key="3">All applications</Menu.Item>
-          <Menu.Item key="4">My applications</Menu.Item>
+          <Menu.Item key="3">
+            <Link to={"/products"}>All applications</Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Link>My applications</Link>
+          </Menu.Item>
         </>
       ) : (
         <SubMenu key="3" title="Application">
-          <Menu.Item key="3-3">All applications</Menu.Item>
-          <Menu.Item key="3-4">My applications</Menu.Item>
+          <Menu.Item key="3-3">
+            <Link to={"/products"}>All applications</Link>
+          </Menu.Item>
+          <Menu.Item key="3-4">
+            <Link>My applications</Link>
+          </Menu.Item>
         </SubMenu>
       )}
       <Menu.Item onClick={logout} key="5">
@@ -52,11 +65,11 @@ const [checkOpenDropmenuNavigation,setCheckOpenDropmenuNavigation] = useState(fa
       </Menu.Item>
     </Menu>
   );
- if(checkOpenDropmenuNavigation) {
-  document.body.style.overflow = 'hidden';
- } else {
-  document.body.style.overflow = 'auto';
- }
+  if (checkOpenDropmenuNavigation) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
   return (
     <ConfigProvider
       theme={{
@@ -69,7 +82,7 @@ const [checkOpenDropmenuNavigation,setCheckOpenDropmenuNavigation] = useState(fa
         </Link>
         <div className="user">
           <Select
-            defaultValue="Ua"
+            defaultValue="En"
             className="change-lang"
             options={[
               {
@@ -95,11 +108,11 @@ const [checkOpenDropmenuNavigation,setCheckOpenDropmenuNavigation] = useState(fa
                 <div className="burger-item"></div>
                 <div className="burger-item"></div>
               </div>
-            ) :  (picture ? (
-              <Avatar className="avatar" src={picture}/>
-            ): (
-              <Avatar className="avatar" icon={<UserOutlined/>}/>
-            ))}
+            ) : picture ? (
+              <Avatar className="avatar" src={picture} />
+            ) : (
+              <Avatar className="avatar" icon={<UserOutlined />} />
+            )}
           </Dropdown>
         </div>
       </nav>
