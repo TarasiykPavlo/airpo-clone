@@ -3,6 +3,9 @@
     align-items: center;
     font-family: 'Montserrat', sans-serif;
     flex-direction: column;
+    .products__wrap {
+        margin-top: 40px;
+    }
     .products__header {
         margin-top: 100px;
         display: flex;
