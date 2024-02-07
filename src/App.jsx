@@ -36,7 +36,6 @@ function App() {
             <Route index element={<Navigate replace to="profile" />} />
             <Route path="profile" element={<Profile />} />
             <Route path="products" element={<Products/>}/>
-            <Route path="test" element={<Test />} />
           </Route>
 
           <Route path="login" element={<Auth />} />
