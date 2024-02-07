@@ -40,7 +40,7 @@ function Navigation() {
         </div>
       </div>
       <Menu.Item key="1">AiPro</Menu.Item>
-      <Menu.Item key="2">My account</Menu.Item>
+      <Menu.Item key="2"><Link to={'/profile'}>My account</Link></Menu.Item>
       {matches ? (
         <>
           <Menu.Item key="3">

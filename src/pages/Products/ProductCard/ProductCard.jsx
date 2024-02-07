@@ -1,12 +1,12 @@
 import React from "react";
 import { InstagramOutlined } from "@ant-design/icons";
-import { Select } from "antd";
+import { Button, Select } from "antd";
 
 import './ProductCard.scss'
 function ProductCard(props) {
   return (
     <div className="product-card">
-      <div className="product-card__action"></div>
+      <div className="product-card__action">-18%</div>
       <div className="product-card__wrap">
         <div className="product-card__head">
           <div className="product-card__title">
@@ -20,11 +20,12 @@ function ProductCard(props) {
           </div>
         </div>
         <div className="product-card__info-price">
-          <div className="product-card__price"></div>
-          <div className="product-card__price-action"></div>
+          <div className="product-card__price"><span><sup>$</sup>55</span> /mon*</div>
+          <div className="product-card__price-action"><s>$60</s> <span>$165</span> in 3 months</div>
           <div className="product-card__persons">
             <Select
               defaultValue="1-2"
+              className="product-card__change-person"
               options={[
                 {
                   value: "1-2",
@@ -43,15 +44,15 @@ function ProductCard(props) {
             Persons
           </div>
         </div>
-        <div className="product-card__btn-check-product">
-          <div className="line"></div>
+        <Button type="primary" className="product-card__btn-check-product" block>Purchased</Button>
+        <Button type="primary" className="product-card__btn-check-back-card">More</Button>
+        <div className="line"></div>
           <div className="product-card__subtext-info">
             Send your distribution to Gmail in just two clicks! Forget about
             hassles with settings - with us it’s simple, fast and effective.
             Your message will reach your customers instantly, making your
             communication as effective as possible.
           </div>
-        </div>
       </div>
     </div>
   );
