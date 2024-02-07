@@ -9,7 +9,7 @@ function Products(props) {
         algorithm: theme.darkAlgorithm,
       }}
     >
-      <div className="products">
+     <div className="products">
         <div className="products__header">
           <div className="title">Our products</div>
           <div className="products__moonths-change">
@@ -40,6 +40,9 @@ function Products(props) {
           </div>
         </div>
         <div className="products__wrap">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
           <ProductCard />
         </div>
       </div>

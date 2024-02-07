@@ -5,6 +5,9 @@
     flex-direction: column;
     .products__wrap {
         margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
     }
     .products__header {
         margin-top: 100px;
