@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useUser } from '../../features/authentication/useUser';
 import ButtonForIcon from "../../ui/ButtonForIcon";
 import {InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
 function ProfileCard() {
     const [activeButton, setActiveButton] = useState("personalBtn");
     const { user } = useUser();
     const { name, email } = user.user_metadata;
+    const [messageShow, messageContext] = message.useMessage();
     const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 1140px)").matches
   );
@@ -20,6 +21,7 @@ function ProfileCard() {
 
     return (
         <div className="cards-wrap">
+          {messageContext}
             <div
               className={
                 activeButton === "personalBtn" ? "card active" : "card"
@@ -66,7 +68,7 @@ function ProfileCard() {
                         }}
                         onClick={() => {
                           navigator.clipboard.writeText(
-                            user || "http://fgfyjbkjguyfif66//hxb"
+                            "http://fgfyjbkjguyfif66//hxb"
                           );
                           infoMessage("Copy link!");
                         }}
@@ -160,7 +162,7 @@ function ProfileCard() {
                         }}
                         onClick={() => {
                           navigator.clipboard.writeText(
-                            user || "http://fgfyjbkjguyfif66//hxb"
+                            "http://fgfyjbkjguyfif66//hxb"
                           );
                           infoMessage("Copy link!");
                         }}
@@ -212,6 +214,10 @@ function ProfileCard() {
             </div>
           </div>
     );
+
+    function infoMessage(message) {
+      messageShow.info(message);
+    }
 };
 
 export default ProfileCard;
