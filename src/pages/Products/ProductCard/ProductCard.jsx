@@ -22,7 +22,6 @@ function ProductCard() {
                   Distributions in Telegram: simple, fast, effective!
                 </div>
               </div>
-              per{" "}
               <div className="product-card__info-price">
                 <div className="product-card__price">
                   <span>
