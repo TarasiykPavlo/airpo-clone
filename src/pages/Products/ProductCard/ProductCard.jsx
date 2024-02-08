@@ -4,8 +4,7 @@ import { Button, Select } from "antd";
 import check from "./../../../assets/check.svg";
 
 import "./ProductCard.scss";
-function ProductCard({ infoState, checkValuta }) {
-  const [changeCardSide, setChangeCardSide] = useState(false);
+function ProductCard({ infoState, checkValuta, changeCardSide, setChangeCardSide }) {
   const [peopleCount, setPeopleCount] = useState("1-2");
   const valutaCheckIcon = checkValuta === "USD" ? "$" : checkValuta === "EUR"? "€": checkValuta === "UAH"? "₴": "";
   return (
