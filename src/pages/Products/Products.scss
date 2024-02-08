@@ -50,8 +50,10 @@
             margin-right: 20px;
             margin-bottom: 0px;
             background: #1D3039;   
-            li {
-                cursor: pointer;
+            label {
+                border-radius: 25px;
+                li {
+                    cursor: pointer;
                 background: #1D3039;
                 border-radius: 25px;
                 list-style: none;
@@ -61,6 +63,22 @@
                     transition: .5s;
                     background: #66A8C8;
                 }
+                }
+                input[type="radio"] {
+                    display: none;
+                    &:checked {
+                      + li {
+                        background: #66A8C8;
+                        span {
+                          transform: translateY(70px);
+                          &:before {
+                            transform: translateY(0px);
+                            opacity: 1;
+                          }
+                        }
+                      }
+                    }
+                  }
             }
         }
     }
@@ -76,17 +94,15 @@
     }
 }
 @media screen and (max-width: 490px) {
+    .products {
+        .products__header {
+            .product__list-moonths-change label li {
+                padding: 10px;
+            }
+        }
+    }
     .products__wrap {
         padding: 0px 20px;
         width: 100%;
-    }
-}
-@media screen and (max-width: 400px) {
-    .products {
-        .products__header {
-            .product__list-moonths-change li {
-                padding: 15px;
-            }
-        }
     }
 }
