@@ -8,8 +8,6 @@ import { useUser } from "../../features/authentication/useUser";
 import { useAuthClient } from "../../features/authentication/useAuthClient";
 import ProfileCard from "./ProfileCard";
 
-import { getClientData } from "../../services/apiAuthClient";
-
 function Profile() {
   const [messageShow, messageContext] = message.useMessage();
   const { user } = useUser();
