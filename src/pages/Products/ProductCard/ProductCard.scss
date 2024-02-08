@@ -1,7 +1,25 @@
-.product-card {
-    width: 533px;
+
+.product-card-wrapper {
     position: relative;
+   width: 533px;
+   height: 879px;
+    transition: transform .8s;
     margin: 20px;
+    transform-style: preserve-3d;
+  .back {
+    transform: rotateY(180deg);
+    .product-card__wrap  {
+        transform: rotateY(0deg);
+    }
+  }
+}
+.product-card-wrapper.is-flipped {
+    transform: rotateY(180deg);
+}
+.product-card {
+   width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
     cursor: pointer;
     border: 2px solid #238FC380;
     background: linear-gradient(261.31deg, #1C1E1E 39.3%, #1E4558 108.39%),
@@ -104,7 +122,6 @@ border-radius: 20px;
         border-radius: 16px;
         font-weight: 500;
         font-size: 20px;
-        background: #F98B25;
         margin-bottom: 25px;
     }
     .product-card__btn-check-back-card {
@@ -124,5 +141,54 @@ border-radius: 20px;
         font-weight: 400;
         font-size: 13px;
         line-height: 15px;
+    }
+    .back {
+        margin-top: 50px;
+        .product-card__head {
+            margin-bottom: 15px;
+        }
+        .product-card__subtitle {
+            margin-top: 25px;
+            width: 100%;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 17px;
+        }
+        .list-advantages {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-direction: column;
+            .head {
+                border-bottom: 1px solid #fff;
+                font-weight: 600;
+                font-size: 16px;
+                color: #fff;
+                line-height: 30px;
+                span {
+                   border-radius: 20px 20px 0px 0px;
+                    background: #3B43616B;
+                    font-size: 14px;
+                }
+            }
+           li {
+                display: flex;
+                border-bottom: 1px solid #444A62;
+                font-weight: 400;
+                font-size: 16px;
+                color: #BCC4D2;
+                line-height: 30px;
+                justify-content: space-between;
+                span {
+                    background: #3B43616B;       
+                    width: 120px;
+                    img {
+                        width: 20px;
+                    }
+                }
+           }
+        }
     }
 }
