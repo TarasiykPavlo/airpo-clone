@@ -2,7 +2,7 @@ import React from "react";
 import "./Products.scss";
 import { ConfigProvider, Select, theme } from "antd";
 import ProductCard from "./ProductCard/ProductCard";
-function Products(props) {
+function Products() {
   return (
     <ConfigProvider
       theme={{
@@ -44,6 +44,9 @@ function Products(props) {
           <ProductCard />
           <ProductCard />
           <ProductCard />
+          <ProductCard />
+          <ProductCard />
+
         </div>
       </div>
     </ConfigProvider>

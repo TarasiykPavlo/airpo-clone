@@ -3,11 +3,12 @@ import { useUser } from "../../features/authentication/useUser";
 import { useAuthClient } from "../../features/authentication/useAuthClient";
 import ButtonForIcon from "../../ui/ButtonForIcon";
 import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import ProfilePaymentsHistoryItem from "./ProfilePaymentsHistoryItem";
 
 function ProfileCard() {
   const [activeButton, setActiveButton] = useState("personalBtn");
+  const [messageShow, messageContext] = message.useMessage();
   const { user } = useUser();
   const { name, email } = user.user_metadata;
   const { id, aicoin } = useAuthClient(user.id);
@@ -32,6 +33,7 @@ function ProfileCard() {
 
   return (
     <div className="cards-wrap">
+       {messageContext}
       <div
         className={activeButton === "personalBtn" ? "card active" : "card"}
         id="personal"
@@ -214,6 +216,9 @@ function ProfileCard() {
       </div>
     </div>
   );
+  function infoMessage(message) {
+    messageShow.info(message);
+  }
 }
 
 export default ProfileCard;

@@ -4,7 +4,7 @@ import supabase from "./supabase";
 export async function getClientData(userId) {
     const { data: rowData, error } = await supabase.from('Clients').select('id, aicoin').eq('authId', userId);
     if (error) throw new Error(error.message);
-    const [data] = rowData; 
+    let [data] = rowData; 
     if (data === undefined){
         await supabase.from('Clients').insert({'authId': userId})
         data = await supabase.from('Clients').select('id, aicoin').eq('authId', userId);
