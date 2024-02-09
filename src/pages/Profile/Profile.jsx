@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.scss";
+
 import { Avatar, ConfigProvider, theme } from "antd";
+
 import iconPencil from "./../../assets/pencil.svg";
-import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 import ButtonForIcon from "../../ui/ButtonForIcon";
+import { Avatar, ConfigProvider, message, theme } from "antd";
+import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 import { useUser } from "../../features/authentication/useUser";
 import { useAuthClient } from "../../features/authentication/useAuthClient";
+import { useAuthClientData } from "../../features/authentication/useAuthClientData";
 import ProfileCard from "./ProfileCard";
 
 function Profile() {
   const { user } = useUser();
-  const { picture, name } = user.user_metadata;
+  const { picture, name, email } = user.user_metadata;
   const { data: client } = useAuthClient(user.id);
+  const { data: clientAicoinHistory } = useAuthClientData(user.id);
   return (
     <ConfigProvider
       theme={{
@@ -49,7 +54,13 @@ function Profile() {
               </div>
             </div>
           </div>
-          <ProfileCard />
+          <ProfileCard
+            userId={user?.id}
+            aicoin={client?.aicoin}
+            name={name}
+            email={email}
+            clientAicoinHistory={clientAicoinHistory}
+          />
         </div>
       </div>
     </ConfigProvider>
