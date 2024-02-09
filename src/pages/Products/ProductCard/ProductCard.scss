@@ -1,0 +1,274 @@
+
+.product-card-wrapper {
+    position: relative;
+   width: 533px;
+   height: 879px;
+    transition: transform .8s;
+    margin: 20px;
+    transform-style: preserve-3d;
+  .back {
+    transform: rotateY(180deg);
+    .product-card__wrap  {
+        transform: rotateY(0deg);
+    }
+  }
+}
+.product-card-wrapper.is-flipped {
+    transform: rotateY(180deg);
+}
+.product-card {
+   width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    cursor: pointer;
+    border: 2px solid #238FC380;
+    background: linear-gradient(261.31deg, #1C1E1E 39.3%, #1E4558 108.39%),
+linear-gradient(0deg, rgba(29, 48, 57, 0.3), rgba(29, 48, 57, 0.3)),
+linear-gradient(0deg, rgba(35, 143, 195, 0.5), rgba(35, 143, 195, 0.5));
+border-radius: 20px;
+    .product-card__wrap {
+        margin: 20px 20px;
+        margin-top: 55px;
+       display: flex;
+       align-items: center;
+       flex-direction: column;
+        text-align: center;
+        
+    }
+    .product-card__action {
+        display: flex;
+        position: absolute;
+      right: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      background: #F98B25;
+      top: 10px;
+      border-radius: 15px;
+      padding: 8px 12px;
+    }
+    .product-card__title {
+        display: flex;
+        font-size: 35px;
+        font-weight: 600;
+        justify-content: center;
+        margin-bottom: 10px;
+        .icon {
+            margin-right: 15px;
+        }
+    }
+    .product-card__subtitle {
+        font-weight: 400;
+        font-size: 20px;
+        width: 270px;
+        line-height: 25px;
+    }
+    .product-card__head {
+        margin-bottom: 80px;
+    }
+    .product-card__price {
+        span {
+         sup {
+            font-size: 45px;
+            font-weight: 600;
+         }
+            font-weight: 600;
+            font-size: 77px;
+        }
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+    .product-card__price-action {
+        font-size: 30px;
+        font-weight: 400;
+        s {
+            color: #F98B25;
+            margin-right: 10px;
+        }
+        span {
+            margin-right: 10px;
+            font-weight: 600;
+        }
+    }
+    .product-card__persons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 35px;
+        font-weight: 400;
+        font-size: 24px;
+        margin-bottom: 125px;
+    }
+    .product-card__change-person {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+         .ant-select-selection-item {
+             font-weight: 500;
+         }
+             .ant-select-arrow {
+                 color: #fff;
+             }
+         .ant-select-selector {
+            text-align: start;
+             width: 135px;
+             height: 50px;
+             border: 1.5px solid #FFFFFF;
+             border-radius: 30px;
+             font-size: 21px;
+             font-weight: 400;
+             background: none;
+         }
+    }
+    .product-card__btn-check-product {
+       height: 60px;
+        border-radius: 16px;
+        font-weight: 500;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+    .product-card__btn-check-back-card {
+        height: 60px;
+        border-radius: 16px;
+        font-weight: 500;
+        width: 50%;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+    .line {
+        width: 100%;
+        border: 2px solid #24A1E080;
+        margin-bottom: 20px;
+    }
+    .product-card__subtext-info {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;
+    }
+    .back {
+        margin-top: 50px;
+        .product-card__head {
+            margin-bottom: 15px;
+        }
+        .product-card__subtitle {
+            margin-top: 25px;
+            width: 100%;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 17px;
+        }
+        .list-advantages {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-direction: column;
+            .head {
+                border-bottom: 1px solid #fff;
+                font-weight: 600;
+                font-size: 16px;
+                color: #fff;
+                line-height: 30px;
+                span {
+                   border-radius: 20px 20px 0px 0px;
+                    background: #3B43616B;
+                    font-size: 14px;
+                }
+            }
+           li {
+                display: flex;
+                border-bottom: 1px solid #444A62;
+                font-weight: 400;
+                font-size: 16px;
+                color: #BCC4D2;
+                line-height: 30px;
+                justify-content: space-between;
+                span {
+                    background: #3B43616B;       
+                    width: 120px;
+                    img {
+                        width: 20px;
+                    }
+                }
+           }
+        }
+    }
+}
+
+@media screen and (max-width: 588px) {
+    .product-card-wrapper {
+        margin: 5px;
+        width: 453px;
+    }
+}
+@media screen and (max-width: 490px) {
+    .product-card-wrapper {
+        margin: 5px 0px;
+        width: 100%;
+        height: 768px;
+        .product-card {
+            .product-card__head {
+                margin-bottom: 25px;
+            }
+            .product-card__persons {
+                margin-bottom: 40px;
+            }
+        }
+
+        .back {
+            .list-advantages {
+                margin-bottom: 10px;
+                li {
+                    font-size: 14px;
+                    line-height: 20px;
+                    span {
+                       img {
+                        width: 13px;
+                       }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 435px) {
+   .product-card {
+    .product-card__wrap {
+        margin-top: 55px;
+    }
+    .product-card__price-action, .product-card__persons {
+        font-size: 20px;
+    }
+    .product-card__subtitle {
+        font-size: 16px;
+    }
+    .product-card__price {
+        font-size: 22px;
+        span {
+            font-size: 65px;
+        }
+    }
+    .back {
+        .list-advantages {
+            .head {
+                font-size: 14px;
+                span {
+                    font-size: 12px;
+                }
+            }
+            li {
+                font-size: 12px;
+                span {
+                    width: 85px;
+                }
+            }
+        }
+        .product-card__head {
+            margin-bottom: 5px;
+        }
+        .product-card__subtitle {
+            font-size: 13px;
+        }
+    }
+   }
+}
