@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.scss";
-
-import { Avatar, ConfigProvider, theme } from "antd";
-
 import iconPencil from "./../../assets/pencil.svg";
 import ButtonForIcon from "../../ui/ButtonForIcon";
 import { Avatar, ConfigProvider, message, theme } from "antd";
@@ -13,6 +10,7 @@ import { useAuthClientData } from "../../features/authentication/useAuthClientDa
 import ProfileCard from "./ProfileCard";
 
 function Profile() {
+  const [messageShow, messageContext] = message.useMessage();
   const { user } = useUser();
   const { picture, name, email } = user.user_metadata;
   const { data: client } = useAuthClient(user.id);
@@ -23,6 +21,7 @@ function Profile() {
         algorithm: theme.darkAlgorithm,
       }}
     >
+      {messageContext}
       <div className="wrapper">
         <div className="profile">
           <div className="profile__head">
@@ -68,6 +67,9 @@ function Profile() {
 
   function changeButtonActive(id) {
     setActiveButton(id);
+  }
+  function infoMessage(message) {
+    messageShow.info(message);
   }
 }
 
