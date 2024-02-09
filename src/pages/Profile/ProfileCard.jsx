@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import ProfilePaymentsHistoryItem from "./ProfilePaymentsHistoryItem";
 import ButtonForIcon from "../../ui/ButtonForIcon";
 import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
 
 function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
   const [activeButton, setActiveButton] = useState("personalBtn");
+  const [messageShow, messageContext] = message.useMessage();
 
   const values = clientAicoinHistory?.aicoin || [0];
   const dates = clientAicoinHistory?.created_at || [];
@@ -24,6 +25,7 @@ function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
 
   return (
     <div className="cards-wrap">
+      {messageContext}
       <div
         className={activeButton === "personalBtn" ? "card active" : "card"}
         id="personal"
@@ -205,6 +207,9 @@ function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
       </div>
     </div>
   );
+  function infoMessage(message) {
+    messageShow.info(message);
+  }
 }
 
 export default ProfileCard;

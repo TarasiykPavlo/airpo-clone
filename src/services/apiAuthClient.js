@@ -2,7 +2,7 @@ import supabase from "./supabase";
 
 export async function getClientData(userId) {
 
-  const { data } = await supabase
+  var { data } = await supabase
     .from("Clients")
     .select("id, aicoin")
     .eq("authId", userId);
@@ -12,7 +12,7 @@ export async function getClientData(userId) {
       .from("Clients")
       .select("id, aicoin")
       .eq("authId", userId);
-    const { data: rowData, error } = await supabase.from('Clients').select('id, aicoin').eq('authId', userId);
+      var { data: rowData, error } = await supabase.from('Clients').select('id, aicoin').eq('authId', userId);
     if (error) throw new Error(error.message);
     let [data] = rowData; 
     if (data === undefined){
@@ -26,7 +26,7 @@ export async function getClientData(userId) {
 }
 
 export async function getClientAicoinHistory(userId) {
-  const { data: ClientsAicoinLogsData } = await supabase
+  var { data: ClientsAicoinLogsData } = await supabase
     .from("ClientsAicoinLogs")
     .select("created_at, aicoin")
     .eq("authId", userId);
@@ -37,8 +37,8 @@ export async function getClientAicoinHistory(userId) {
       .select("created_at, aicoin")
       .eq("authId", authId);
   }
-  const created_at = getListfromDictionary(ClientsAicoinLogsData, "created_at");
-  const aicoin = getListfromDictionary(ClientsAicoinLogsData, "aicoin");
+  var created_at = getListfromDictionary(ClientsAicoinLogsData, "created_at");
+  var aicoin = getListfromDictionary(ClientsAicoinLogsData, "aicoin");
   return { created_at, aicoin };
 }
 function getListfromDictionary(list, keyDictionary) {
