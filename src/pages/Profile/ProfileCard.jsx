@@ -1,40 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "antd";
-import { useUser } from "../../features/authentication/useUser";
-import { useAuthClient } from "../../features/authentication/useAuthClient";
-import ButtonForIcon from "../../ui/ButtonForIcon";
-import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
-import { Button, message } from "antd";
-
 import ProfilePaymentsHistoryItem from "./ProfilePaymentsHistoryItem";
 import ButtonForIcon from "../../ui/ButtonForIcon";
 import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
 
 function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
   const [activeButton, setActiveButton] = useState("personalBtn");
-  const [messageShow, messageContext] = message.useMessage();
-  const { user } = useUser();
-  const { name, email } = user.user_metadata;
-  const { id, aicoin } = useAuthClient(user.id);
-
-  const values = [415, -154, 54, -48, 587];
-  const dates = [
-    "02 / 12 / 24",
-    "04 / 12 / 24",
-    "07 / 12 / 24",
-    "15 / 12 / 24",
-  ];
 
   const values = clientAicoinHistory?.aicoin || [0];
   const dates = clientAicoinHistory?.created_at || [];
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 1140px)").matches
   );
-  function getDateAicoinHistory(date) {
+  function getDateAicoinHistory(date){
     const d = new Date(date);
-    return (
-      d.getDate() + "d-" + (d.getMonth() + 1) + "m-" + d.getFullYear() + "y"
-    );
+    return d.getDate() + 'd-' + (d.getMonth()+1) + 'm-' + d.getFullYear() +"y"
   }
   useEffect(() => {
     window
@@ -44,7 +24,6 @@ function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
 
   return (
     <div className="cards-wrap">
-       {messageContext}
       <div
         className={activeButton === "personalBtn" ? "card active" : "card"}
         id="personal"
@@ -118,9 +97,7 @@ function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
                 <ProfilePaymentsHistoryItem
                   key={Math.random()}
                   value={value}
-                  date={
-                    dates[index] ? getDateAicoinHistory(dates[index]) : "..."
-                  }
+                  date={dates[index]? getDateAicoinHistory(dates[index]) : "..."}
                 />
               ))}
               <Button type="primary" block>
@@ -228,9 +205,6 @@ function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
       </div>
     </div>
   );
-  function infoMessage(message) {
-    messageShow.info(message);
-  }
 }
 
 export default ProfileCard;
