@@ -41,6 +41,24 @@ export async function getClientAicoinHistory(userId) {
   var aicoin = getListfromDictionary(ClientsAicoinLogsData, "aicoin");
   return { created_at, aicoin };
 }
+
+export async function getClientReferralHistory(userId) {
+  var { data: ClientsAicoinLogsData } = await supabase
+    .from("ClientsAicoinLogs")
+    .select("created_at, aicoin")
+    .eq("authId", userId);
+  if (ClientsAicoinLogsData[0] === undefined) {
+    await supabase.from("ClientsAicoinLogs").insert({ authId: userId });
+    data: ClientsAicoinLogsData = await supabase
+      .from("ClientsAicoinLogs")
+      .select("created_at, aicoin")
+      .eq("authId", authId);
+  }
+  var created_at = getListfromDictionary(ClientsAicoinLogsData, "created_at");
+  var aicoin = getListfromDictionary(ClientsAicoinLogsData, "aicoin");
+  return { created_at, aicoin };
+}
+
 function getListfromDictionary(list, keyDictionary) {
   const a = [];
   for (let i = 0; i < list.length; i++) {

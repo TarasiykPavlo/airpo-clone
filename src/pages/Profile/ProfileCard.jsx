@@ -3,20 +3,22 @@ import { Button, message } from "antd";
 import ProfilePaymentsHistoryItem from "./ProfilePaymentsHistoryItem";
 import ButtonForIcon from "../../ui/ButtonForIcon";
 import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
+import ProfileReferralHistoryItem from "./ProfileReferralHistoryItem";
 
 function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
   const [activeButton, setActiveButton] = useState("personalBtn");
   const [messageShow, messageContext] = message.useMessage();
 
-  const values = clientAicoinHistory?.aicoin || [0];
-  const dates = clientAicoinHistory?.created_at || [];
-  const [matches, setMatches] = useState(
-    window.matchMedia("(max-width: 1140px)").matches
-  );
+  var values = clientAicoinHistory?.aicoin || [0];
+  var dates = clientAicoinHistory?.created_at || [];
+
   function getDateAicoinHistory(date){
     const d = new Date(date);
     return d.getDate() + 'd-' + (d.getMonth()+1) + 'm-' + d.getFullYear() +"y"
   }
+  const [matches, setMatches] = useState(
+    window.matchMedia("(max-width: 1140px)").matches
+  );
   useEffect(() => {
     window
       .matchMedia("(max-width: 1140px)")
@@ -179,6 +181,13 @@ function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
                 </tr>
               </thead>
               <tbody>
+                {values.map((value, index) => (
+                  <ProfileReferralHistoryItem
+                    key={Math.random()}
+                    value={value}
+                    RefId={userId}
+                  />
+                ))}
                 <tr>
                   <td></td>
                   <td></td>
