@@ -21,10 +21,6 @@ function Profile() {
 	const { data: client } = useAuthClient(user.id);
 	const { data: clientAicoinHistory } = useAuthClientData(user.id);
 
-	function test(image) {
-		updateUser(image);
-	}
-
 	return (
 		<ConfigProvider
 			theme={{
@@ -51,7 +47,6 @@ function Profile() {
 										accept="image/*"
 										disabled={isUpdating}
 										onChange={(e) => {
-											// test(e.target.files[0]);
 											updateUser(e.target.files[0]);
 										}}
 									/>
