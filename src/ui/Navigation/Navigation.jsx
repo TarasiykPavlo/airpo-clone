@@ -7,7 +7,7 @@ import logo from "./../../assets/logo-icon.svg";
 import "./Navigation.scss";
 import { useEffect, useState } from "react";
 import SubMenu from "antd/es/menu/SubMenu";
-function Navigation() {
+function Navigation({ logoItem }) {
   const { logout } = useLogout();
   const { user } = useUser();
   const { picture, name } = user.user_metadata;
@@ -40,7 +40,9 @@ function Navigation() {
         </div>
       </div>
       <Menu.Item key="1">AiPro</Menu.Item>
-      <Menu.Item key="2"><Link to={'/profile'}>My account</Link></Menu.Item>
+      <Menu.Item key="2">
+        <Link to={"/profile"}>My account</Link>
+      </Menu.Item>
       {matches ? (
         <>
           <Menu.Item key="3">
@@ -77,9 +79,11 @@ function Navigation() {
       }}
     >
       <nav className="nav">
-        <Link className="logo">
-          AiPro <img src={logo} alt="Logo AiPro" />
-        </Link>
+        {logoItem && (
+          <Link className="logo">
+            AiPro <img src={logo} alt="Logo AiPro" />
+          </Link>
+        )}
         <div className="user">
           <Select
             defaultValue="En"
