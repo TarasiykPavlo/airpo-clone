@@ -7,5 +7,6 @@ export function useAuthClientData(userId) {
     queryKey: ["clientData"],
     queryFn: () => getClientAicoinHistory(userId),
   });
+  
   return { data, isLoading };
 }
