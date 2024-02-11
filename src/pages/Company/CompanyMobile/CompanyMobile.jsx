@@ -2,8 +2,8 @@ import React from 'react';
 
 function CompanyMobile(props) {
     return (
-        <div>
-            
+        <div className='company-list'>
+                
         </div>
     );
 }

@@ -94,8 +94,7 @@ function ProfileCard({ userId, aicoin, name, email, clientAicoinHistory }) {
 						</div>
 
 						<ul className="card__history">
-							{clientAicoinHistory?.aicoin ||
-								[0].map((value, index) => (
+							{values.map((value, index) => (
 									<ProfilePaymentsHistoryItem
 										key={Math.random()}
 										value={value}
