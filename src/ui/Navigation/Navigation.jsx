@@ -10,7 +10,7 @@ import SubMenu from "antd/es/menu/SubMenu";
 function Navigation() {
   const { logout } = useLogout();
   const { user } = useUser();
-  const { picture, name } = user.user_metadata;
+  const { avatar, avatar_url, name } = user.user_metadata;
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 640px)").matches
   );
@@ -28,10 +28,12 @@ function Navigation() {
       </Menu.Item>
       <div className="user-info">
         <div className="user-photo">
-          {picture ? (
-            <Avatar src={picture} className="user-photo__avatar" />
+          {avatar ? (
+            <Avatar src={avatar} />
+          ) : avatar_url ? (
+            <Avatar src={avatar_url} />
           ) : (
-            <Avatar className="user-photo__avatar" icon={<UserOutlined />} />
+            <Avatar icon={<UserOutlined />} />
           )}
         </div>
         <div className="user-info-main">
@@ -78,10 +80,10 @@ function Navigation() {
         algorithm: theme.darkAlgorithm,
       }}
     >
-      <nav className="nav">   
-          <Link className="logo">
-            AiPro <img src={logo} alt="Logo AiPro" />
-          </Link>
+      <nav className="nav">
+        <Link className="logo">
+          AiPro <img src={logo} alt="Logo AiPro" />
+        </Link>
         <div className="user">
           <Select
             defaultValue="En"
@@ -110,10 +112,12 @@ function Navigation() {
                 <div className="burger-item"></div>
                 <div className="burger-item"></div>
               </div>
-            ) : picture ? (
-              <Avatar className="avatar" src={picture} />
+            ) : avatar ? (
+              <Avatar src={avatar} />
+            ) : avatar_url ? (
+              <Avatar src={avatar_url} />
             ) : (
-              <Avatar className="avatar" icon={<UserOutlined />} />
+              <Avatar icon={<UserOutlined />} />
             )}
           </Dropdown>
         </div>
