@@ -7,7 +7,7 @@ import logo from "./../../assets/logo-icon.svg";
 import "./Navigation.scss";
 import { useEffect, useState } from "react";
 import SubMenu from "antd/es/menu/SubMenu";
-function Navigation({ logoItem }) {
+function Navigation() {
   const { logout } = useLogout();
   const { user } = useUser();
   const { picture, name } = user.user_metadata;
@@ -78,12 +78,10 @@ function Navigation({ logoItem }) {
         algorithm: theme.darkAlgorithm,
       }}
     >
-      <nav className="nav">
-        {logoItem && (
+      <nav className="nav">   
           <Link className="logo">
             AiPro <img src={logo} alt="Logo AiPro" />
           </Link>
-        )}
         <div className="user">
           <Select
             defaultValue="En"
