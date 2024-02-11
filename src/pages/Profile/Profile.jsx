@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Profile.scss";
 import iconPencil from "./../../assets/pencil.svg";
 import ButtonForIcon from "../../ui/ButtonForIcon";
