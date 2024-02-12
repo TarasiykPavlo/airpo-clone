@@ -1,0 +1,103 @@
+.application {
+	height: 100vh;
+	display: grid;
+	// h1(3rem) + mb(3rem) + select(5rem) = 11rem
+	// 11rem + pt(10rem) + gap(3rem) = 24rem
+	grid-template-rows: 11rem calc(100vh - 24rem);
+	grid-template-columns: 100%;
+	row-gap: 3rem;
+	padding: 10rem 2rem 0 2rem;
+	font-family: "Montserrat", sans-serif;
+
+	&__crudCompany {
+		display: grid;
+		grid-template-rows: 1fr auto;
+		row-gap: 3rem;
+		padding: 3rem 0;
+		border-top: 1px solid #355766;
+	}
+
+	&__title {
+		margin-bottom: 3rem;
+		font-size: 3rem;
+		font-weight: 500;
+		line-height: 1;
+		text-align: center;
+	}
+
+	&__select {
+		width: 100%;
+
+		&-popup {
+			border: 1px solid #fff;
+			background-color: #1c1c1c;
+		}
+	}
+
+	&__companies {
+		overflow-y: auto;
+
+		&__list {
+			display: flex;
+			flex-direction: column;
+			row-gap: 2rem;
+			margin-bottom: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+
+		&__item {
+			display: flex;
+			// display: none;
+			justify-content: space-between;
+			align-items: center;
+			padding: 2rem;
+			border-radius: 10px;
+			background-color: #000;
+		}
+
+		&__left-side {
+			display: flex;
+			align-items: center;
+			column-gap: 10px;
+		}
+
+		&__right-side {
+			display: flex;
+			gap: 10px;
+		}
+
+		&__name {
+			font-size: 16px;
+		}
+
+		&__error-icon {
+			color: #fac335;
+			font-size: 24px;
+			cursor: pointer;
+		}
+
+		&__launch-icon {
+			color: #86cc56;
+			font-size: 24px;
+			cursor: pointer;
+		}
+
+		&__pause-icon {
+			color: #24a1e0;
+			font-size: 24px;
+			cursor: pointer;
+		}
+
+		&__stop-icon {
+			color: #c82121;
+			font-size: 24px;
+			cursor: pointer;
+		}
+
+		&__more-icon {
+			font-size: 24px;
+			cursor: pointer;
+		}
+	}
+}

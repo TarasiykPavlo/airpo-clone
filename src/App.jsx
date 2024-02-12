@@ -9,6 +9,7 @@ import Profile from "./pages/Profile/Profile";
 import Auth from "./pages/Auth/Auth";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Products from "./pages/Products/Products";
+import Applications from "./pages/Applications/Applications";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,30 +21,31 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+		<QueryClientProvider client={queryClient}>
+			<ReactQueryDevtools initialIsOpen={false} />
 
-      <BrowserRouter>
-        <Routes>
-          <Route
-            element={
-              <ProtectedRoute>
-                <AppLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Navigate replace to="profile" />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="products" element={<Products/>}/>
-          </Route>
+			<BrowserRouter>
+				<Routes>
+					<Route
+						element={
+							<ProtectedRoute>
+								<AppLayout />
+							</ProtectedRoute>
+						}
+					>
+						<Route index element={<Navigate replace to="profile" />} />
+						<Route path="profile" element={<Profile />} />
+						<Route path="products" element={<Products />} />
+						<Route path="applications" element={<Applications />} />
+					</Route>
 
-          <Route path="login" element={<Auth />} />
-          <Route path="signup" element={<Auth />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </QueryClientProvider>
-  );
+					<Route path="login" element={<Auth />} />
+					<Route path="signup" element={<Auth />} />
+					<Route path="*" element={<PageNotFound />} />
+				</Routes>
+			</BrowserRouter>
+		</QueryClientProvider>
+	);
 }
 
 export default App;
