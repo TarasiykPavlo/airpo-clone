@@ -16,6 +16,7 @@ import "./Profile.scss";
 function Profile() {
 	const { user } = useUser();
 	const { updateUser, isUpdating } = useUpdateUser();
+	
 	const { avatar, avatar_url, name, email } = user.user_metadata;
 	const { data: client } = useAuthClient(user.id);
 	const { data: clientAicoinHistory } = useAuthClientData(user.id);

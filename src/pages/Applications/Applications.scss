@@ -1,6 +1,8 @@
 .application {
 	height: 100vh;
+	// width: 60%;
 	display: grid;
+	margin: 0 auto;
 	// h1(3rem) + mb(3rem) + select(5rem) = 11rem
 	// 11rem + pt(10rem) + gap(3rem) = 24rem
 	grid-template-rows: 11rem calc(100vh - 24rem);
@@ -31,6 +33,21 @@
 		&-popup {
 			border: 1px solid #fff;
 			background-color: #1c1c1c;
+		}
+	}
+
+	&__input {
+		border: 1px solid #000;
+		border-radius: 10px;
+		background-color: #000;
+		color: #fff;
+
+		&:focus {
+			border: 1px solid #fff;
+		}
+
+		&::placeholder {
+			color: #ffffff95;
 		}
 	}
 

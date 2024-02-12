@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, ConfigProvider, Select } from "antd";
 import {
 	CloseCircleFilled,
@@ -13,13 +14,18 @@ import {
 import "./Applications.scss";
 
 const Applications = () => {
-	const [isDropdownActive, setIsDropdownActive] = useState(false);
+	const navigate = useNavigate();
+
 	const [service, setService] = useState(null);
+	const [isDropdownActive, setIsDropdownActive] = useState(false);
 
 	// value: 'telegram', 'viber', 'gmail'
 	function handleSelect(value) {
-		console.log(value);
 		setService(value);
+	}
+
+	function handleCreateCompany() {
+		navigate("/applications/new");
 	}
 
 	return (
@@ -109,7 +115,12 @@ const Applications = () => {
 							</ul>
 						</section>
 
-						<Button block type="primary" size="large">
+						<Button
+							block
+							type="primary"
+							size="large"
+							onClick={handleCreateCompany}
+						>
 							Create company
 						</Button>
 					</div>

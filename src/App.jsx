@@ -10,17 +10,18 @@ import Auth from "./pages/Auth/Auth";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Products from "./pages/Products/Products";
 import Applications from "./pages/Applications/Applications";
+import NewApplication from "./pages/NewApplication/NewApplication";
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 0,
-    },
-  },
+	defaultOptions: {
+		queries: {
+			staleTime: 0,
+		},
+	},
 });
 
 function App() {
-  return (
+	return (
 		<QueryClientProvider client={queryClient}>
 			<ReactQueryDevtools initialIsOpen={false} />
 
@@ -37,6 +38,7 @@ function App() {
 						<Route path="profile" element={<Profile />} />
 						<Route path="products" element={<Products />} />
 						<Route path="applications" element={<Applications />} />
+						<Route path="applications/new" element={<NewApplication />} />
 					</Route>
 
 					<Route path="login" element={<Auth />} />
