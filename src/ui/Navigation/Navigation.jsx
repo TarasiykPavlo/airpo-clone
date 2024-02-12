@@ -31,16 +31,16 @@ function Navigation() {
 	const menu = (
 		<Menu>
 			<Menu.Item key="0" className="close-menu">
-				<LeftOutlined /> Personal Area
+				<LeftOutlined /> Back
 			</Menu.Item>
 			<div className="user-info">
 				<div className="user-photo">
 					{avatar ? (
-						<Avatar src={avatar} />
+						<Avatar className='menu-avatar' src={avatar} />
 					) : avatar_url ? (
-						<Avatar src={avatar_url} />
+						<Avatar className='menu-avatar'  src={avatar_url} />
 					) : (
-						<Avatar icon={<UserOutlined />} />
+						<Avatar className='menu-avatar'  icon={<UserOutlined />} />
 					)}
 				</div>
 				<div className="user-info-main">
@@ -117,11 +117,11 @@ function Navigation() {
 								<div className="burger-item"></div>
 							</div>
 						) : avatar ? (
-							<Avatar src={avatar} />
+							<Avatar className='avatar'  src={avatar} />
 						) : avatar_url ? (
-							<Avatar src={avatar_url} />
+							<Avatar className='avatar'  src={avatar_url} />
 						) : (
-							<Avatar icon={<UserOutlined />} />
+							<Avatar className='avatar'  icon={<UserOutlined />} />
 						)}
 					</Dropdown>
 				</div>

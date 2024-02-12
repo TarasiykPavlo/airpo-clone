@@ -74,6 +74,11 @@
 
         .user-info {
             display: none;
+            .menu-avatar {
+                width: 70px;
+                height: 70px;
+                margin-right: 10px;
+            }
         }
 
         li {
@@ -175,7 +180,7 @@
                 }
 
                 .user-photo {
-                    .user-photo__avatar {
+                    .menu-avatar {
                         display: flex;
                         align-items: center;
                         justify-content: center;
