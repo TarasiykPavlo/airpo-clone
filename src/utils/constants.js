@@ -255,3 +255,48 @@ export const productCard = {
 		},
 	},
 };
+
+export const selectService = [
+	{
+		value: "telegram",
+		label: "Telegram",
+	},
+	{
+		value: "viber",
+		label: "Viber",
+	},
+	{
+		value: "gmail",
+		label: "Gmail",
+	},
+];
+
+export const selectRegion = [
+	{
+		value: "eu",
+		label: "EU",
+	},
+	{
+		value: "na",
+		label: "NA",
+	},
+	{
+		value: "sa",
+		label: "SA",
+	},
+];
+
+export const selectCategory = [
+	{
+		value: "it",
+		label: "IT",
+	},
+	{
+		value: "automation",
+		label: "Automation",
+	},
+	{
+		value: "network",
+		label: "Network",
+	},
+];

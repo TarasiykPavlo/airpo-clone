@@ -1,0 +1,14 @@
+.input {
+	border: 1px solid #000;
+	border-radius: 10px;
+	background-color: #000;
+	color: #fff;
+
+	&:focus {
+		border: 1px solid #fff;
+	}
+
+	&::placeholder {
+		color: #ffffff95;
+	}
+}

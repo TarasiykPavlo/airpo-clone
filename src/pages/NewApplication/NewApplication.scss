@@ -2,6 +2,18 @@
 	padding: 10rem 2rem 0 2rem;
 	font-family: "Montserrat", sans-serif;
 
+	&__selects-wrapper {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		align-items: center;
+		row-gap: 2rem;
+		margin: 3rem 0;
+	}
+
+	&__select-title {
+		font-size: 2rem;
+	}
+
 	&__footer {
 	}
 }
