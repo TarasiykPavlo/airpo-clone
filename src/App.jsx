@@ -11,6 +11,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Products from "./pages/Products/Products";
 import Applications from "./pages/Applications/Applications";
 import NewApplication from "./pages/NewApplication/NewApplication";
+import PhoneValidation from "./pages/PhoneValidation/PhoneValidation";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -39,6 +40,10 @@ function App() {
 						<Route path="products" element={<Products />} />
 						<Route path="applications" element={<Applications />} />
 						<Route path="applications/new" element={<NewApplication />} />
+						<Route
+							path="applications/new/phone-validation"
+							element={<PhoneValidation />}
+						/>
 					</Route>
 
 					<Route path="login" element={<Auth />} />

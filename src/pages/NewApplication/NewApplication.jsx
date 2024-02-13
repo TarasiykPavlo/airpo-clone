@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { PhoneInput } from "react-international-phone";
@@ -14,11 +15,13 @@ import "react-international-phone/style.css";
 import "./NewApplication.scss";
 
 const NewApplication = () => {
+	const navigate = useNavigate();
 	const moveBack = useMoveBack();
 
-	const [companyName, setCompanyName] = useState("");
-	const [region, setRegion] = useState("");
-	const [category, setCategory] = useState("");
+	const localData = JSON.parse(localStorage.getItem("newCompany"));
+	const [companyName, setCompanyName] = useState(localData?.name || "");
+	const [region, setRegion] = useState(localData?.region || "");
+	const [category, setCategory] = useState(localData?.category || "");
 	const [phone, setPhone] = useState("");
 	const isPhoneValid = validatePhone(phone);
 
@@ -37,6 +40,8 @@ const NewApplication = () => {
 		};
 
 		console.log(companyData);
+		localStorage.setItem("newCompany", JSON.stringify(companyData));
+		navigate("/applications/new/phone-validation");
 	}
 
 	return (
@@ -54,6 +59,7 @@ const NewApplication = () => {
 				<div className="new-application__selects-wrapper">
 					<span className="new-application__select-title">Region:</span>
 					<Select
+						defaultValue={region ? region : null}
 						placeholder="Select region..."
 						options={selectRegion}
 						isActive={isSelectRegionActive}
@@ -64,6 +70,7 @@ const NewApplication = () => {
 
 					<span className="new-application__select-title">Category:</span>
 					<Select
+						defaultValue={category ? category : null}
 						placeholder="Select category..."
 						options={selectCategory}
 						isActive={isSelectCategoryActive}
@@ -106,7 +113,6 @@ const NewApplication = () => {
 						placement="top"
 						title="Please enter valid phone"
 						color="#4CBDED"
-						// onOpenChange={(open) => console.log(open)}
 						open={isNextHovered && !isPhoneValid}
 					>
 						<Button

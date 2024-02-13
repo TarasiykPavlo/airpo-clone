@@ -36,11 +36,11 @@ function Navigation() {
 			<div className="user-info">
 				<div className="user-photo">
 					{avatar ? (
-						<Avatar className='menu-avatar' src={avatar} />
+						<Avatar className="menu-avatar" src={avatar} />
 					) : avatar_url ? (
-						<Avatar className='menu-avatar'  src={avatar_url} />
+						<Avatar className="menu-avatar" src={avatar_url} />
 					) : (
-						<Avatar className='menu-avatar'  icon={<UserOutlined />} />
+						<Avatar className="menu-avatar" icon={<UserOutlined />} />
 					)}
 				</div>
 				<div className="user-info-main">
@@ -84,7 +84,7 @@ function Navigation() {
 			}}
 		>
 			<nav className="nav">
-				<Link className="logo">
+				<Link to="/profile" className="logo">
 					AiPro <img src={logo} alt="Logo AiPro" />
 				</Link>
 
@@ -117,11 +117,11 @@ function Navigation() {
 								<div className="burger-item"></div>
 							</div>
 						) : avatar ? (
-							<Avatar className='avatar'  src={avatar} />
+							<Avatar className="avatar" src={avatar} />
 						) : avatar_url ? (
-							<Avatar className='avatar'  src={avatar_url} />
+							<Avatar className="avatar" src={avatar_url} />
 						) : (
-							<Avatar className='avatar'  icon={<UserOutlined />} />
+							<Avatar className="avatar" icon={<UserOutlined />} />
 						)}
 					</Dropdown>
 				</div>
