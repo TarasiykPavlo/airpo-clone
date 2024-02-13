@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { PhoneInput } from "react-international-phone";
-import { PhoneNumberUtil } from "google-libphonenumber";
 
 import Input from "../../ui/Input/Input";
 import Select from "../../ui/Select/Select";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
+import { validatePhone } from "../../utils/helpers";
 import { selectRegion, selectCategory } from "../../utils/constants";
 
 import "react-international-phone/style.css";
@@ -16,32 +16,40 @@ import "./NewApplication.scss";
 const NewApplication = () => {
 	const moveBack = useMoveBack();
 
+	const [companyName, setCompanyName] = useState("");
+	const [region, setRegion] = useState("");
+	const [category, setCategory] = useState("");
+	const [phone, setPhone] = useState("");
+	const isPhoneValid = validatePhone(phone);
+
 	const [isSelectRegionActive, setIsSelectRegionActive] = useState(false);
 	const [isSelectCategoryActive, setIsSelectCategoryActive] = useState(false);
+	const [isNextHovered, setIsNextHovered] = useState(false);
 
-	const [phone, setPhone] = useState("");
+	function handleNext() {
+		if (!isPhoneValid) return;
 
-	const phoneUtil = PhoneNumberUtil.getInstance();
-	const isValid = isPhoneValid(phone);
-	console.log(isValid);
+		const companyData = {
+			name: companyName,
+			region,
+			category,
+			phone,
+		};
 
-	function isPhoneValid(phone) {
-		try {
-			return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
-		} catch (error) {
-			return false;
-		}
-	}
-
-	function handleSelect(value) {
-		console.log(value);
+		console.log(companyData);
 	}
 
 	return (
 		<main className="new-application">
 			<div>
 				<h1 className="application__title">Create company</h1>
-				<Input placeholder="Enter name..." maxLength={20} type="string" />
+				<Input
+					placeholder="Enter name..."
+					maxLength={20}
+					type="string"
+					value={companyName}
+					onChange={(e) => setCompanyName(e.target.value)}
+				/>
 
 				<div className="new-application__selects-wrapper">
 					<span className="new-application__select-title">Region:</span>
@@ -50,7 +58,7 @@ const NewApplication = () => {
 						options={selectRegion}
 						isActive={isSelectRegionActive}
 						setIsActive={setIsSelectRegionActive}
-						onChange={handleSelect}
+						onChange={(value) => setRegion(value)}
 						size="medium"
 					/>
 
@@ -60,7 +68,7 @@ const NewApplication = () => {
 						options={selectCategory}
 						isActive={isSelectCategoryActive}
 						setIsActive={setIsSelectCategoryActive}
-						onChange={handleSelect}
+						onChange={(value) => setCategory(value)}
 						size="medium"
 					/>
 				</div>
@@ -94,9 +102,24 @@ const NewApplication = () => {
 				</p>
 
 				<div className="new-application__footer-button-wrapper">
-					<Button block type="primary" size="large">
-						Next
-					</Button>
+					<Tooltip
+						placement="top"
+						title="Please enter valid phone"
+						color="#4CBDED"
+						// onOpenChange={(open) => console.log(open)}
+						open={isNextHovered && !isPhoneValid}
+					>
+						<Button
+							block
+							type="primary"
+							size="large"
+							onClick={handleNext}
+							onMouseEnter={() => setIsNextHovered(true)}
+							onMouseLeave={() => setIsNextHovered(false)}
+						>
+							Next
+						</Button>
+					</Tooltip>
 
 					<Button block size="large" className="button_back" onClick={moveBack}>
 						Back
