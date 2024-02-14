@@ -16,16 +16,4 @@
 		font-size: 2rem;
 		margin-bottom: 1rem;
 	}
-
-	&__regenerate {
-		display: inline-block;
-		margin-bottom: 3rem;
-		color: #24a1e0;
-		font-size: 2rem;
-		cursor: pointer;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
 }

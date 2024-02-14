@@ -40,7 +40,7 @@ const BotSettings = () => {
 					</div>
 				</div>
 
-				<p className="bot-settings__regenerate">Regenerate API ID, API HASH</p>
+				<p className="application__link">Regenerate API ID, API HASH</p>
 
 				<div className="application__tip-wrapper">
 					<ExclamationCircleFilled className="application__tip-icon" />

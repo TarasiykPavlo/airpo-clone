@@ -40,20 +40,20 @@ const Settings = () => {
 					</Button>
 				</div>
 
-				<div className="settings__info-wrapper">
-					<div className="settings__info-item">
+				<div className="application__info-wrapper">
+					<div className="application__info-item">
 						Phone: <span>+380938052732</span>
 					</div>
 
-					<div className="settings__info-item">
+					<div className="application__info-item">
 						Status: <span>Active</span>
 					</div>
 
-					<div className="settings__info-item">
+					<div className="application__info-item">
 						API ID: <span>548866468488664684</span>
 					</div>
 
-					<div className="settings__info-item">
+					<div className="application__info-item">
 						API HASH: <span>5488dasd6646848866468adda</span>
 					</div>
 				</div>
@@ -86,8 +86,13 @@ const Settings = () => {
 					Bot settings
 				</Button>
 
-				<Button block type="primary" size="large">
-					Group settings
+				<Button
+					block
+					type="primary"
+					size="large"
+					onClick={() => navigate("/applications/groups-settings")}
+				>
+					Groups settings
 				</Button>
 
 				<Button block danger type="primary" size="large">

@@ -14,6 +14,7 @@ import NewApplication from "./pages/NewApplication/NewApplication";
 import PhoneValidation from "./pages/PhoneValidation/PhoneValidation";
 import Settings from "./pages/Settings/Settings";
 import BotSettings from "./pages/BotSettings/BotSettings";
+import GroupsSettings from "./pages/GroupsSettings/GroupsSettings";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -49,6 +50,7 @@ function App() {
 
 						<Route path="applications/settings" element={<Settings />} />
 						<Route path="applications/bot-settings" element={<BotSettings />} />
+						<Route path="applications/groups-settings" element={<GroupsSettings />} />
 					</Route>
 
 					<Route path="login" element={<Auth />} />

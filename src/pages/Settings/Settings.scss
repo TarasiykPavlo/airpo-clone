@@ -5,21 +5,6 @@
 	padding: 10rem 2rem 3rem 2rem;
 	font-family: "Montserrat", sans-serif;
 
-	&__info-wrapper {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		margin: 3rem 0;
-	}
-
-	&__info-item {
-		font-size: 2rem;
-
-		span {
-			font-weight: 500;
-		}
-	}
-
 	&__template-wrapper {
 		display: flex;
 		flex-direction: column;
