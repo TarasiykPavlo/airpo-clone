@@ -4,6 +4,7 @@ import { Button, Tooltip } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { PhoneInput } from "react-international-phone";
 
+import ApplicationLayout from "../../ui/ApplicationLayout";
 import Input from "../../ui/Input/Input";
 import Select from "../../ui/Select/Select";
 
@@ -42,101 +43,105 @@ const NewApplication = () => {
 		navigate("/applications/new/phone-validation");
 	}
 
-	return (
-		<main className="new-application">
-			<div>
-				<h1 className="application__title">Create company</h1>
+	const mainContent = (
+		<>
+			<Input
+				placeholder="Enter name..."
+				maxLength={20}
+				type="string"
+				value={companyName}
+				onChange={(e) => setCompanyName(e.target.value)}
+			/>
 
-				<Input
-					placeholder="Enter name..."
-					maxLength={20}
-					type="string"
-					value={companyName}
-					onChange={(e) => setCompanyName(e.target.value)}
+			<div className="new-application__selects-wrapper">
+				<span className="new-application__select-title">Region:</span>
+				<Select
+					defaultValue={region ? region : null}
+					placeholder="Select region..."
+					options={selectRegion}
+					isActive={isSelectRegionActive}
+					setIsActive={setIsSelectRegionActive}
+					onChange={(value) => setRegion(value)}
+					size="medium"
 				/>
 
-				<div className="new-application__selects-wrapper">
-					<span className="new-application__select-title">Region:</span>
-					<Select
-						defaultValue={region ? region : null}
-						placeholder="Select region..."
-						options={selectRegion}
-						isActive={isSelectRegionActive}
-						setIsActive={setIsSelectRegionActive}
-						onChange={(value) => setRegion(value)}
-						size="medium"
-					/>
-
-					<span className="new-application__select-title">Category:</span>
-					<Select
-						defaultValue={category ? category : null}
-						placeholder="Select category..."
-						options={selectCategory}
-						isActive={isSelectCategoryActive}
-						setIsActive={setIsSelectCategoryActive}
-						onChange={(value) => setCategory(value)}
-						size="medium"
-					/>
-				</div>
-
-				<div className="new-application__phone-wrapper">
-					<span className="new-application__phone-title">
-						Enter phone (Telegram):
-					</span>
-
-					<PhoneInput
-						defaultCountry="ua"
-						value={phone}
-						onChange={(phone) => setPhone(phone)}
-					/>
-
-					<div className="application__tip-wrapper">
-						<ExclamationCircleFilled className="application__tip-icon" />
-
-						<p className="application__tip-text">
-							Не використовуйте свій основний акаунт телеграм, оскільки завжди є
-							ризики бану акаунта!
-						</p>
-					</div>
-				</div>
+				<span className="new-application__select-title">Category:</span>
+				<Select
+					defaultValue={category ? category : null}
+					placeholder="Select category..."
+					options={selectCategory}
+					isActive={isSelectCategoryActive}
+					setIsActive={setIsSelectCategoryActive}
+					onChange={(value) => setCategory(value)}
+					size="medium"
+				/>
 			</div>
 
-			<footer className="new-application__footer">
-				<p className="new-application__footer-text">
-					Якщо у вас немає резервного акаунту телеграм - ви можете його{" "}
-					<span>купити на сайті</span>
-				</p>
+			<div className="new-application__phone-wrapper">
+				<span className="new-application__phone-title">
+					Enter phone (Telegram):
+				</span>
 
-				<div className="application__footer-buttons-wrapper">
-					<Tooltip
-						placement="top"
-						title="Please enter valid phone"
-						color="#4CBDED"
-						open={isNextHovered && !isPhoneValid}
-					>
-						<Button
-							block
-							type="primary"
-							size="large"
-							onClick={handleNext}
-							onMouseEnter={() => setIsNextHovered(true)}
-							onMouseLeave={() => setIsNextHovered(false)}
-						>
-							Next
-						</Button>
-					</Tooltip>
+				<PhoneInput
+					defaultCountry="ua"
+					value={phone}
+					onChange={(phone) => setPhone(phone)}
+				/>
 
-					<Button
-						block
-						size="large"
-						onClick={() => navigate("/applications")}
-						className="application__button--back"
-					>
-						Back
-					</Button>
+				<div className="application__tip-wrapper">
+					<ExclamationCircleFilled className="application__tip-icon" />
+
+					<p className="application__tip-text">
+						Не використовуйте свій основний акаунт телеграм, оскільки завжди є
+						ризики бану акаунта!
+					</p>
 				</div>
-			</footer>
-		</main>
+			</div>
+		</>
+	);
+
+	const footerContent = (
+		<>
+			<p className="new-application__footer-text">
+				Якщо у вас немає резервного акаунту телеграм - ви можете його{" "}
+				<span>купити на сайті</span>
+			</p>
+
+			<Tooltip
+				placement="top"
+				title="Please enter valid phone"
+				color="#4CBDED"
+				open={isNextHovered && !isPhoneValid}
+			>
+				<Button
+					block
+					type="primary"
+					size="large"
+					onClick={handleNext}
+					onMouseEnter={() => setIsNextHovered(true)}
+					onMouseLeave={() => setIsNextHovered(false)}
+				>
+					Next
+				</Button>
+			</Tooltip>
+
+			<Button
+				block
+				size="large"
+				onClick={() => navigate("/applications")}
+				className="application__button--back"
+			>
+				Back
+			</Button>
+		</>
+	);
+
+	return (
+		<ApplicationLayout
+			title="Create company"
+			mainContent={mainContent}
+			footerContent={footerContent}
+		/>
 	);
 };
 

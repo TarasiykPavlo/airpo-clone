@@ -1,0 +1,12 @@
+.templates {
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	padding: 10rem 2rem 3rem 2rem;
+	font-family: "Montserrat", sans-serif;
+
+	&__list {
+		height: calc(100vh - 33rem);
+		overflow-y: auto;
+	}
+}

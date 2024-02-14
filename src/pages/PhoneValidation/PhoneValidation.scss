@@ -28,14 +28,8 @@
 		}
 	}
 
-	&__footer {
-		display: flex;
-		flex-direction: column;
-		row-gap: 2rem;
-	}
-
 	&__footer-text {
 		text-align: center;
-		margin-bottom: 0;
+		margin-bottom: 1rem;
 	}
 }
