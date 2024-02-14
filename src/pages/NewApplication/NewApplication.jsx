@@ -7,7 +7,6 @@ import { PhoneInput } from "react-international-phone";
 import Input from "../../ui/Input/Input";
 import Select from "../../ui/Select/Select";
 
-import { useMoveBack } from "../../hooks/useMoveBack";
 import { validatePhone } from "../../utils/helpers";
 import { selectRegion, selectCategory } from "../../utils/constants";
 
@@ -16,7 +15,6 @@ import "./NewApplication.scss";
 
 const NewApplication = () => {
 	const navigate = useNavigate();
-	const moveBack = useMoveBack();
 
 	const localData = JSON.parse(localStorage.getItem("newCompany"));
 	const [companyName, setCompanyName] = useState(localData?.name || "");
@@ -108,7 +106,7 @@ const NewApplication = () => {
 					<span>купити на сайті</span>
 				</p>
 
-				<div className="new-application__footer-button-wrapper">
+				<div className="application__footer-buttons-wrapper">
 					<Tooltip
 						placement="top"
 						title="Please enter valid phone"
@@ -127,7 +125,12 @@ const NewApplication = () => {
 						</Button>
 					</Tooltip>
 
-					<Button block size="large" className="button_back" onClick={moveBack}>
+					<Button
+						block
+						size="large"
+						onClick={() => navigate("/applications")}
+						className="application__button--back"
+					>
 						Back
 					</Button>
 				</div>

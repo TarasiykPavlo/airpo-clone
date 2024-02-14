@@ -48,7 +48,7 @@ const PhoneValidation = () => {
 	}
 
 	function handleCompaniesButton() {
-		navigate("/applications", { replace: true });
+		navigate("/applications");
 	}
 
 	const disabledStyles = (isTImerOver || isCodeApprove) && {
@@ -66,7 +66,7 @@ const PhoneValidation = () => {
 						Verify code (Telegram):
 					</span>
 
-					<div className="phone-validation__input-wrapper">
+					<div className="application__input-wrapper">
 						<Input
 							placeholder="Enter code..."
 							maxLength={10}
@@ -122,7 +122,7 @@ const PhoneValidation = () => {
 						size="large"
 						onClick={() => {
 							if (isTImerOver) {
-								navigate("/applications/new/", { replace: true });
+								navigate("/applications/new/");
 								const companyData = JSON.parse(
 									localStorage.getItem("newCompany")
 								);

@@ -60,7 +60,10 @@ const Applications = () => {
 									<ExclamationCircleFilled className="application__companies__error-icon" />
 									<PlayCircleFilled className="application__companies__launch-icon" />
 									<PauseCircleFilled className="application__companies__pause-icon" />
-									<MoreOutlined className="application__companies__more-icon" />
+									<MoreOutlined
+										onClick={() => navigate("settings")}
+										className="application__companies__more-icon"
+									/>
 								</div>
 							</li>
 							<li className="application__companies__item">2</li>

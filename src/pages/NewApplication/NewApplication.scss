@@ -62,21 +62,4 @@
 			text-decoration: underline;
 		}
 	}
-
-	&__footer-button-wrapper {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-}
-
-.button_back {
-	border: 1px solid #1d6183;
-	background-color: #1d6183;
-	color: #fff;
-
-	&:hover {
-		background-color: #4cbded;
-		color: #fff !important;
-	}
 }

@@ -12,6 +12,7 @@ import Products from "./pages/Products/Products";
 import Applications from "./pages/Applications/Applications";
 import NewApplication from "./pages/NewApplication/NewApplication";
 import PhoneValidation from "./pages/PhoneValidation/PhoneValidation";
+import Settings from "./pages/Settings/Settings";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -44,6 +45,8 @@ function App() {
 							path="applications/new/phone-validation"
 							element={<PhoneValidation />}
 						/>
+
+						<Route path="applications/settings" element={<Settings />} />
 					</Route>
 
 					<Route path="login" element={<Auth />} />
