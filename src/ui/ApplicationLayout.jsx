@@ -1,6 +1,6 @@
 const ApplicationLayout = ({ title, mainContent, footerContent }) => {
 	return (
-		<main className="templates">
+		<main className="application">
 			<div>
 				<h1 className="application__title">{title}</h1>
 

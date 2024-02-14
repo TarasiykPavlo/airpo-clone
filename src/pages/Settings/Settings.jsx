@@ -71,7 +71,7 @@ const Settings = () => {
 				<Button
 					size="large"
 					onClick={() => navigate("/applications/templates")}
-					className="settings__choose-template"
+					className="application__button--black"
 				>
 					Choose template
 				</Button>

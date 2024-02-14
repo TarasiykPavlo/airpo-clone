@@ -1,11 +1,7 @@
 .application {
 	height: 100vh;
 	display: grid;
-	// h1(3rem) + mb(3rem) + select(5rem) = 11rem
-	// 11rem + pt(10rem) + gap(3rem) = 24rem
 	grid-template-rows: 1fr auto;
-	// grid-template-rows: 11rem calc(100vh - 24rem);
-	grid-template-columns: 100%;
 	padding: 10rem 2rem 3rem 2rem;
 	font-family: "Montserrat", sans-serif;
 
@@ -88,6 +84,17 @@
 		&:hover {
 			background-color: #4cbded;
 			color: #fff !important;
+		}
+	}
+
+	&__button--black {
+		border: 1px solid #000;
+		background-color: #000;
+		color: #fff;
+
+		&:hover {
+			color: #fff !important;
+			border: 1px solid #fff !important;
 		}
 	}
 

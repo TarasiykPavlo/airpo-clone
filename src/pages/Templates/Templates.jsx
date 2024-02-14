@@ -1,4 +1,5 @@
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import { MoreOutlined } from "@ant-design/icons";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
@@ -7,6 +8,7 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import "./Templates.scss";
 
 const Templates = () => {
+	const navigate = useNavigate();
 	const moveBack = useMoveBack();
 
 	const mainContent = (
@@ -19,7 +21,7 @@ const Templates = () => {
 
 					<div className="application__item-right">
 						<MoreOutlined
-							// onClick={() => navigate("settings")}
+							onClick={() => navigate("info")}
 							className="application__more-icon"
 						/>
 					</div>

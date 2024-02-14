@@ -1,0 +1,24 @@
+.ant-upload {
+	width: 100%;
+}
+
+.ranges-container {
+	margin: 3rem 0;
+}
+
+.single-thumb {
+	height: 2px;
+	background-color: #1e3e4d; // 181818
+
+	.range-slider__thumb[data-lower] {
+		display: none;
+	}
+
+	.range-slider__thumb[data-upper] {
+		background-color: red;
+	}
+
+	.range-slider__range {
+		background-color: #1e3e4d;
+	}
+}

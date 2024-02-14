@@ -8,6 +8,8 @@ const Input = ({ ...props }) => {
 			theme={{
 				token: {
 					fontFamily: "Montserrat",
+					colorTextPlaceholder: "#ffffff95",
+					lineWidth: 0.5,
 				},
 				components: {
 					Input: {

@@ -1,10 +1,4 @@
 .bot-settings {
-	height: 100vh;
-	display: grid;
-	grid-template-rows: 1fr auto;
-	padding: 10rem 2rem 3rem 2rem;
-	font-family: "Montserrat", sans-serif;
-
 	&__inputs-wrapper {
 		display: flex;
 		flex-direction: column;
