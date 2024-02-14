@@ -46,6 +46,7 @@ const NewApplication = () => {
 		<main className="new-application">
 			<div>
 				<h1 className="application__title">Create company</h1>
+
 				<Input
 					placeholder="Enter name..."
 					maxLength={20}
@@ -89,10 +90,10 @@ const NewApplication = () => {
 						onChange={(phone) => setPhone(phone)}
 					/>
 
-					<div className="new-application__tip-wrapper">
-						<ExclamationCircleFilled className="new-application__tip-icon" />
+					<div className="application__tip-wrapper">
+						<ExclamationCircleFilled className="application__tip-icon" />
 
-						<p className="new-application__tip-text">
+						<p className="application__tip-text">
 							Не використовуйте свій основний акаунт телеграм, оскільки завжди є
 							ризики бану акаунта!
 						</p>

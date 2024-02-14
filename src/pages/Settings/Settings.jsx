@@ -23,7 +23,6 @@ const Settings = () => {
 
 				<div className="application__input-wrapper">
 					<Input
-						defaultValue={companyName}
 						maxLength={10}
 						type="string"
 						value={companyName}
@@ -78,7 +77,12 @@ const Settings = () => {
 			</div>
 
 			<footer className="application__footer-buttons-wrapper">
-				<Button block type="primary" size="large">
+				<Button
+					block
+					type="primary"
+					size="large"
+					onClick={() => navigate("/applications/bot-settings")}
+				>
 					Bot settings
 				</Button>
 

@@ -1,0 +1,31 @@
+.bot-settings {
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	padding: 10rem 2rem 3rem 2rem;
+	font-family: "Montserrat", sans-serif;
+
+	&__inputs-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+
+	&__input-label {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+
+	&__regenerate {
+		display: inline-block;
+		margin-bottom: 3rem;
+		color: #24a1e0;
+		font-size: 2rem;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

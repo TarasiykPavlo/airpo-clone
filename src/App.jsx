@@ -13,6 +13,7 @@ import Applications from "./pages/Applications/Applications";
 import NewApplication from "./pages/NewApplication/NewApplication";
 import PhoneValidation from "./pages/PhoneValidation/PhoneValidation";
 import Settings from "./pages/Settings/Settings";
+import BotSettings from "./pages/BotSettings/BotSettings";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -47,6 +48,7 @@ function App() {
 						/>
 
 						<Route path="applications/settings" element={<Settings />} />
+						<Route path="applications/bot-settings" element={<BotSettings />} />
 					</Route>
 
 					<Route path="login" element={<Auth />} />
