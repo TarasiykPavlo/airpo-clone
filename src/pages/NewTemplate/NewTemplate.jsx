@@ -7,6 +7,7 @@ import TextArea from "../../ui/TextArea";
 import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./NewTemplate.scss";
+import InputRange from "../../ui/InputRange/InputRange";
 
 const NewTemplate = () => {
 	const moveBack = useMoveBack();
@@ -45,10 +46,13 @@ const NewTemplate = () => {
 					value={messageInterval}
 					onChange={setMessageInterval}
 					tooltip={{
-            open: true,
-            placement: 'bottom'
+						open: true,
+						placement: "top",
 					}}
+					style={{ marginBottom: "3rem" }}
 				/>
+
+				<InputRange />
 			</div>
 		</>
 	);
