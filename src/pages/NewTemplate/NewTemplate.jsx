@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Slider, Upload } from "antd";
+import { Button, Upload } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import Input from "../../ui/Input/Input";
@@ -14,7 +14,7 @@ const NewTemplate = () => {
 
 	const [templateName, setTemplateName] = useState("");
 
-	const [messageInterval, setMessageInterval] = useState(20);
+	const [value, setValue] = useState(20);
 
 	const mainContent = (
 		<>
@@ -24,12 +24,12 @@ const NewTemplate = () => {
 				type="string"
 				value={templateName}
 				onChange={(e) => setTemplateName(e.target.value)}
-				style={{ marginBottom: "3rem" }}
+				style={{ marginBottom: "1rem" }}
 			/>
 
 			<TextArea
 				style={{
-					height: "15.1rem",
+					height: "10rem",
 					resize: "none",
 					marginBottom: "1rem",
 				}}
@@ -42,17 +42,20 @@ const NewTemplate = () => {
 			</Upload>
 
 			<div className="ranges-container">
-				<Slider
-					value={messageInterval}
-					onChange={setMessageInterval}
-					tooltip={{
-						open: true,
-						placement: "top",
-					}}
-					style={{ marginBottom: "3rem" }}
-				/>
+				<div className="ranges-container__row">
+					<p>Message sending interval</p>
+					<InputRange value={value} setValue={setValue} />
+				</div>
 
-				<InputRange />
+				<div className="ranges-container__row">
+					<p>Delay between mailings</p>
+					<InputRange value={value} setValue={setValue} />
+				</div>
+
+				<div className="ranges-container__row">
+					<p>Start before mailing</p>
+					<InputRange value={value} setValue={setValue} />
+				</div>
 			</div>
 		</>
 	);
@@ -60,7 +63,7 @@ const NewTemplate = () => {
 	const footerContent = (
 		<>
 			<Button block type="primary" size="large">
-				Create template
+				Save
 			</Button>
 
 			<Button

@@ -1,13 +1,7 @@
-import { useState } from "react";
-
 import "./InputRange.scss";
 import { formatTimer } from "../../utils/helpers";
 
-const InputRange = () => {
-	const [value, setValue] = useState(90);
-
-	const translateX = `translateX(calc(-${value}%)`;
-
+const InputRange = ({ value, setValue }) => {
 	return (
 		<div className="input__wrapper">
 			<input
@@ -24,7 +18,7 @@ const InputRange = () => {
 				className="input--range-value"
 				style={{
 					left: `${value}%`,
-					transform: translateX,
+					transform: `translateX(-${value}%)`,
 				}}
 			>
 				{formatTimer(value)} sec

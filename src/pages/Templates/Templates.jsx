@@ -28,13 +28,28 @@ const Templates = () => {
 				</li>
 				<li className="application__item">2</li>
 				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
+				<li className="application__item">2</li>
 			</ul>
 		</section>
 	);
 
 	const footerContent = (
 		<>
-			<Button block type="primary" size="large">
+			<Button
+				block
+				type="primary"
+				size="large"
+				onClick={() => navigate("info")}
+			>
 				Create template
 			</Button>
 

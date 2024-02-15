@@ -53,6 +53,16 @@ const Applications = () => {
 					</li>
 					<li className="application__item">2</li>
 					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
+					<li className="application__item">2</li>
 				</ul>
 			</section>
 		</>

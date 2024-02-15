@@ -32,11 +32,16 @@ const GroupsSettings = () => {
 
 			<div className="application__divider mb-3" />
 
-			<Button block size="large" className="settings__choose-template">
+			<Button block size="large" className="application__button--black">
 				Add new group
 			</Button>
 
 			<div className="group-settings__groups-wrapper">
+				<GroupItem />
+				<GroupItem />
+				<GroupItem />
+				<GroupItem />
+				<GroupItem />
 				<GroupItem />
 				<GroupItem />
 			</div>
