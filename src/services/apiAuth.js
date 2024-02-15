@@ -24,6 +24,7 @@ export async function signup({ fullName, email, password }) {
 		options: {
 			data: {
 				fullName,
+				aicoin: 0,
 				avatar: "",
 			},
 		},
@@ -51,7 +52,7 @@ export async function logout() {
 	if (error) throw new Error(error.message);
 }
 
-export async function updateCurrentUser(props) {
+export async function updateCurrentUserAvatar(props) {
 	const fileName = `avatar-${Math.random()}`;
 
 	const { error: storageError } = await supabase.storage
