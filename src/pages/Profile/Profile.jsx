@@ -2,8 +2,8 @@ import { Avatar, ConfigProvider, theme } from "antd";
 import { InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 
 import { useUser } from "../../features/authentication/useUser";
-import { useUpdateUser } from "../../features/authentication/useUpdateUser";
-import { useAuthClient } from "../../features/authentication/useAuthClient";
+import { useUpdateUserAvatar } from "../../features/authentication/useUpdateUserAvatar";
+import { useUpdateUserAicoin } from "../../features/authentication/useUpdateUserAicoin";
 
 import ProfileCard from "./ProfileCard";
 
@@ -11,12 +11,18 @@ import iconPencil from "./../../assets/pencil.svg";
 import ButtonForIcon from "../../ui/ButtonForIcon";
 
 import "./Profile.scss";
+import { useEffect } from "react";
 
 function Profile() {
 	const { user } = useUser();
-	const { avatar, avatar_url, fullName } = user.user_metadata;
-	const { data: client } = useAuthClient(user.id);
-	const { updateUser, isUpdating } = useUpdateUser();
+	const { aicoin, avatar, avatar_url, fullName } = user.user_metadata;
+	const { updateUserAicoin } = useUpdateUserAicoin();
+	const { updateUserAvatar, isUpdating } = useUpdateUserAvatar();
+	
+	
+	useEffect(() => {
+		if(typeof(aicoin) != Number) {updateUserAicoin(user?.id)};
+	}, [aicoin]);
 
 	return (
 		<ConfigProvider
@@ -44,7 +50,7 @@ function Profile() {
 										accept="image/*"
 										disabled={isUpdating}
 										onChange={(e) => {
-											updateUser(e.target.files[0]);
+											updateUserAvatar(e.target.files[0]);
 										}}
 									/>
 									<label htmlFor="sendPhoto">
@@ -54,7 +60,7 @@ function Profile() {
 							</div>
 							<div className="user-info__name">{fullName}</div>
 							<div className="user-info__balance">
-								Вalance: {client?.aicoin} AiCoin
+								Вalance: {aicoin} AiCoin
 								<ButtonForIcon
 									icon={<InfoCircleOutlined style={{ color: "#24A1E0" }} />}
 								/>

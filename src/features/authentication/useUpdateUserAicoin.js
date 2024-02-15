@@ -1,17 +1,17 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 
-import { updateCurrentUser } from "../../services/apiAuth";
+import { updateCurrentUserAicoin } from "../../services/apiAuthClient";
 
-export function useUpdateUser() {
+export function useUpdateUserAicoin() {
 	const queryClient = useQueryClient();
 
-	const { mutate: updateUser, isLoading: isUpdating } = useMutation({
-		mutationFn: updateCurrentUser,
+	const { mutate: updateUserAicoin } = useMutation({
+		mutationFn: updateCurrentUserAicoin,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["user"] });
 		},
 		onError: (err) => console.log(err.message),
 	});
 
-	return { updateUser, isUpdating };
+	return { updateUserAicoin };
 }

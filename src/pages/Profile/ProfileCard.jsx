@@ -3,8 +3,7 @@ import { Button, message } from "antd";
 import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
 
 import { useUser } from "../../features/authentication/useUser";
-import { useAuthClient } from "../../features/authentication/useAuthClient";
-import { useAuthClientData } from "../../features/authentication/useAuthClientData";
+import { useAuthClient } from "../../features/authentication/useClientDataForProfile";
 
 import ButtonForIcon from "../../ui/ButtonForIcon";
 import ProfilePaymentsHistoryItem from "./ProfilePaymentsHistoryItem";
@@ -13,9 +12,8 @@ import { formatDate } from "../../utils/helpers";
 
 function ProfileCard() {
 	const { user } = useUser();
-	const { data: client } = useAuthClient(user.id);
-	const { data: clientData } = useAuthClientData(user.id);
-
+	const { aicoin, full_name: fullName } = user.user_metadata;
+	const { data: clientData} = useAuthClient(user.id);
 	const [activeButton, setActiveButton] = useState("personalBtn");
 	const [messageShow, messageContext] = message.useMessage();
 
@@ -48,7 +46,7 @@ function ProfileCard() {
 						<div className="card__user-info">
 							<div className="title">Рersonal information</div>
 							<div id="name" className="card__text">
-								Name: {user?.user_metadata.fullName}
+								Name: {fullName}
 							</div>
 							<div id="email" className="card__text">
 								Email: {user?.email}
@@ -95,11 +93,12 @@ function ProfileCard() {
 					<div className="card__pay">
 						<div className="title">
 							Payments
-							<div className="card__balance">Balance: {client?.aicoin} AIC</div>
+							<div className="card__balance">Balance: {aicoin} AIC</div>
 						</div>
 
 						<ul className="card__history">
-							{clientData?.map((item) => (
+							{
+							clientData?.ClientAicoinLogsData?.map((item) => (
 								<ProfilePaymentsHistoryItem
 									key={Math.random()}
 									date={formatDate(item.created_at)}
@@ -138,7 +137,7 @@ function ProfileCard() {
 				<div className="card__info">
 					<div className="card__main-info">
 						<div className="card__total-earnings">
-							Total earnings: <span>{client?.aicoin} AiCoin</span>
+							Total earnings: <span>{aicoin} AiCoin</span>
 							<ButtonForIcon
 								icon={
 									<InfoCircleOutlined
@@ -180,11 +179,11 @@ function ProfileCard() {
 							</thead>
 							<tbody>
 								{/* change RefId to AuthIdRegistered from  ClientsReferralLogs table */}
-								{clientData?.map((item) => (
+								{clientData?.ClientReferralLogs?.map((item) => (
 									<ProfileReferalsHistoryItem
 										key={Math.random()}
-										value={item?.aicoin}
-										RefId={user?.id}
+										value={item?.remuneration}
+										RefId={item?.authIdRegistered}
 									/>
 								))}
 							</tbody>
