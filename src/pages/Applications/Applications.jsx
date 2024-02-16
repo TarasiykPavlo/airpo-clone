@@ -15,6 +15,8 @@ import { selectService } from "../../utils/constants";
 
 import "./Applications.scss";
 
+import CompanyItem from "./CompanyItem";
+
 const Applications = () => {
 	const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ const Applications = () => {
 					<li className="application__item">
 						<div className="application__item-left">
 							<CloseCircleFilled className="application__stop-icon" />
-							<span className="application__name">Company 1</span>
+							<span className="application__name">TEST!!!!</span>
 						</div>
 
 						<div className="application__item-right">
@@ -51,6 +53,7 @@ const Applications = () => {
 							/>
 						</div>
 					</li>
+					<CompanyItem/>
 					<li className="application__item">2</li>
 					<li className="application__item">2</li>
 					<li className="application__item">2</li>
