@@ -8,7 +8,7 @@ export async function getClientInfoForProfile(userId) {
 		await supabase.from("ClientsAicoinLogs").insert({ authId: userId });
 		ClientAicoinLogsData = await getData(userId, "ClientsAicoinLogs", "created_at, aicoin");
 	}
-	console.log(ClientReferralLogs);
+	
 	let data = {
 		ClientAicoinLogsData: ClientAicoinLogsData,
 		ClientReferralLogs: ClientReferralLogs,

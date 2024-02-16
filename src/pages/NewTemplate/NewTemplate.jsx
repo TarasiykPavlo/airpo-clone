@@ -14,7 +14,9 @@ const NewTemplate = () => {
 
 	const [templateName, setTemplateName] = useState("");
 
-	const [value, setValue] = useState(20);
+	const [messageInterval, setMessageInterval] = useState(20);
+	const [mailingDelay, setMailingDelay] = useState(20);
+	const [mailingStart, setMailingStart] = useState(20);
 
 	const mainContent = (
 		<>
@@ -44,17 +46,17 @@ const NewTemplate = () => {
 			<div className="ranges-container">
 				<div className="ranges-container__row">
 					<p>Message sending interval</p>
-					<InputRange value={value} setValue={setValue} />
+					<InputRange value={messageInterval} setValue={setMessageInterval} />
 				</div>
 
 				<div className="ranges-container__row">
 					<p>Delay between mailings</p>
-					<InputRange value={value} setValue={setValue} />
+					<InputRange value={mailingDelay} setValue={setMailingDelay} />
 				</div>
 
 				<div className="ranges-container__row">
 					<p>Start before mailing</p>
-					<InputRange value={value} setValue={setValue} />
+					<InputRange value={mailingStart} setValue={setMailingStart} />
 				</div>
 			</div>
 		</>
