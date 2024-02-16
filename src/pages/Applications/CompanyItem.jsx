@@ -1,9 +1,9 @@
-function ProfilePaymentsHistoryItem({ value, date }) {
+function CompanyItem({ companyName, date }) {
   return (
     <li className="application__item">
       <div className="application__item-left">
         <CloseCircleFilled className="application__stop-icon" />
-        <span className="application__name">Company 1</span>
+        <span className="application__name">{companyName}</span>
       </div>
 
       <div className="application__item-right">
