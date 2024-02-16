@@ -1,15 +1,19 @@
-function CompanyItem({ companyName, date }) {
+function CompanyItem({ companyName, active, isRunning }) {
   return (
     <li className="application__item">
       <div className="application__item-left">
-        <CloseCircleFilled className="application__stop-icon" />
+        {active ? <CloseCircleFilled className="application__stop-icon" /> : ""}
         <span className="application__name">{companyName}</span>
       </div>
 
       <div className="application__item-right">
         <ExclamationCircleFilled className="application__error-icon" />
-        <PlayCircleFilled className="application__launch-icon" />
-        <PauseCircleFilled className="application__pause-icon" />
+        {isRunning ? (
+          <PauseCircleFilled className="application__pause-icon" />
+        ) : (
+          <PlayCircleFilled className="application__launch-icon" />
+        )}
+
         <MoreOutlined
           onClick={() => navigate("settings")}
           className="application__more-icon"
@@ -18,4 +22,4 @@ function CompanyItem({ companyName, date }) {
     </li>
   );
 }
-export default ProfilePaymentsHistoryItem;
+export default CompanyItem;

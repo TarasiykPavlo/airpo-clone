@@ -53,19 +53,13 @@ const Applications = () => {
 							/>
 						</div>
 					</li>
-					<CompanyItem/>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
-					<li className="application__item">2</li>
+					{/*clientData?.ClientAicoinLogsData?.map((item) => (
+								<CompanyItem
+									key={Math.random()}
+									date={formatDate(item.created_at)}
+									value={item.aicoin}
+								/>
+							))*/}
 				</ul>
 			</section>
 		</>
