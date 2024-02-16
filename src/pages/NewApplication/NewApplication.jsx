@@ -27,8 +27,24 @@ const NewApplication = () => {
 	const [isSelectRegionActive, setIsSelectRegionActive] = useState(false);
 	const [isSelectCategoryActive, setIsSelectCategoryActive] = useState(false);
 	const [isNextHovered, setIsNextHovered] = useState(false);
+	
+	//const state
 
-	function handleNext() {
+	async function postCompany(data) {
+		try {
+			const response = await fetch("http://46.175.151.65:8000/api/start_api", {
+				method: "POST",
+				body: JSON.stringify(data)
+			})
+			if (response.ok){ console.log("OK") }
+		} catch (error) {
+			console.log(error);
+		} finally {
+			console.log("FINALLY!")
+		}
+	}
+
+	async function handleNext() {
 		if (!isPhoneValid) return;
 
 		const companyData = {
@@ -37,8 +53,9 @@ const NewApplication = () => {
 			category,
 			phone,
 		};
-
+		
 		console.log(companyData);
+		await postCompany(companyData);
 		localStorage.setItem("newCompany", JSON.stringify(companyData));
 		navigate("/applications/new/phone-validation");
 	}
