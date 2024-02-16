@@ -7,71 +7,71 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import "./GroupsSettings.scss";
 
 const GroupsSettings = () => {
-	const moveBack = useMoveBack();
+  const moveBack = useMoveBack();
 
-	const mainContent = (
-		<>
-			<div
-				className="application__info-wrapper"
-				style={{ marginBottom: "1.5rem" }}
-			>
-				<div className="application__info-item">
-					Region: <span>UA</span>
-				</div>
+  const mainContent = (
+    <>
+      <div
+        className="application__info-wrapper"
+        style={{ marginBottom: "1.5rem" }}
+      >
+        <div className="application__info-item">
+          Region: <span>UA</span>
+        </div>
 
-				<div className="application__info-item">
-					Category: <span>IT</span>
-				</div>
+        <div className="application__info-item">
+          Category: <span>IT</span>
+        </div>
 
-				<div className="application__info-item">
-					Total groups: <span>100</span>
-				</div>
-			</div>
+        <div className="application__info-item">
+          Total groups: <span>100</span>
+        </div>
+      </div>
 
-			<p className="application__link">Change region / category</p>
+      <p className="application__link">Change region / category</p>
 
-			<div className="application__divider mb-3" />
+      <div className="application__divider mb-3" />
 
-			<Button block size="large" className="application__button--black">
-				Add new group
-			</Button>
+      <Button block size="large" className="application__button--black">
+        Add new group
+      </Button>
 
-			<div className="group-settings__groups-wrapper">
-				<GroupItem />
-				<GroupItem />
-				<GroupItem />
-				<GroupItem />
-				<GroupItem />
-				<GroupItem />
-				<GroupItem />
-			</div>
-		</>
-	);
+      <div className="group-settings__groups-wrapper">
+        <GroupItem />
+        <GroupItem />
+        <GroupItem />
+        <GroupItem />
+        <GroupItem />
+        <GroupItem />
+        <GroupItem />
+      </div>
+    </>
+  );
 
-	const footerContent = (
-		<>
-			<Button block type="primary" size="large">
-				Save
-			</Button>
+  const footerContent = (
+    <>
+      <Button block type="primary" size="large">
+        Save
+      </Button>
 
-			<Button
-				block
-				size="large"
-				onClick={moveBack}
-				className="application__button--back"
-			>
-				Back
-			</Button>
-		</>
-	);
+      <Button
+        block
+        size="large"
+        onClick={moveBack}
+        className="application__button--back"
+      >
+        Back
+      </Button>
+    </>
+  );
 
-	return (
-		<ApplicationLayout
-			title="Groups settings"
-			mainContent={mainContent}
-			footerContent={footerContent}
-		/>
-	);
+  return (
+    <ApplicationLayout
+      title="Groups settings"
+      mainContent={mainContent}
+      footerContent={footerContent}
+    />
+  );
 };
 
 export default GroupsSettings;
