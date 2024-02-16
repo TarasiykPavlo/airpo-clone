@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "antd";
 import { CloseCircleFilled } from "@ant-design/icons";
 
@@ -10,6 +10,9 @@ import "./Settings.scss";
 
 const Settings = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
+	console.log(location);
+	console.log(location.state.companyId);
 
 	const [companyName, setCompanyName] = useState("Company name");
 

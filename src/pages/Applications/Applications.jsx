@@ -9,6 +9,7 @@ import {
 	PlayCircleFilled,
 } from "@ant-design/icons";
 
+import { useUser } from "../../features/authentication/useUser";
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import Select from "../../ui/Select/Select";
 import { selectService } from "../../utils/constants";
@@ -19,6 +20,7 @@ import CompanyItem from "./CompanyItem";
 
 const Applications = () => {
 	const navigate = useNavigate();
+	const user = useUser();
 
 	const [isSelectActive, setIsSelectActive] = useState(false);
 
@@ -48,7 +50,9 @@ const Applications = () => {
 							<PlayCircleFilled className="application__launch-icon" />
 							<PauseCircleFilled className="application__pause-icon" />
 							<MoreOutlined
-								onClick={() => navigate("settings")}
+								onClick={() =>
+									navigate("settings", { state: { companyId: user?.user.id } })
+								}
 								className="application__more-icon"
 							/>
 						</div>
