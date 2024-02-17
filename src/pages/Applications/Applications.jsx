@@ -42,24 +42,6 @@ const Applications = () => {
 
       <section className="application__companies">
         <ul className="application__list">
-          {/* <li className="application__item">
-            <div className="application__item-left">
-              <CloseCircleFilled className="application__stop-icon" />
-              <span className="application__name">TEST!!!!</span>
-            </div>
-
-            <div className="application__item-right">
-              <ExclamationCircleFilled className="application__error-icon" />
-              <PlayCircleFilled className="application__launch-icon" />
-              <PauseCircleFilled className="application__pause-icon" />
-              <MoreOutlined
-                onClick={() =>
-                  navigate("settings", { state: { companyId: user?.user.id } })
-                }
-                className="application__more-icon"
-              />
-            </div>
-          </li> */}
           {userCompany?.map((item) => (
 								<CompanyItem
 									key={Math.random()}
