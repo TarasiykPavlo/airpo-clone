@@ -75,6 +75,15 @@ export async function getCompanyDataForSettings(companyId) {
   return data;
 }
 
+export async function getCompanyGroups(companyId) {
+  let {data: ClientsCompanyGroupsBase} = await supabase
+      .from("ClientsCompanyGroupsBase")
+      .select("*")
+      .eq("companyId", companyId);
+
+  return ClientsCompanyGroupsBase
+}
+
 export async function updateCurrentUserAicoin(aicoin) {
   if (typeof aicoin != Number) {
     const { data: updatedUser } = await supabase.auth.updateUser({

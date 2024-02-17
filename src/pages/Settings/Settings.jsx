@@ -71,7 +71,7 @@ const Settings = () => {
           <span>
             {!!company?.ClientCompanyBot.apiHash
               ? company?.ClientCompanyBot?.apiHash
-              : ("NOT SELECTED")}
+              : "NOT SELECTED"}
           </span>
         </div>
       </div>
@@ -119,7 +119,15 @@ const Settings = () => {
         block
         type="primary"
         size="large"
-        onClick={() => navigate("/applications/groups-settings")}
+        onClick={() =>
+          navigate("/applications/groups-settings", {
+            state: {
+              companyId: location?.state?.companyId,
+              region: company?.ClientCompanysData.region,
+              сategories: company?.ClientCompanysData.сategories,
+            },
+          })
+        }
       >
         Groups settings
       </Button>

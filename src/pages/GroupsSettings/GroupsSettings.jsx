@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
@@ -5,9 +6,13 @@ import GroupItem from "../../ui/GroupItem";
 import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./GroupsSettings.scss";
+import { useCompanyGroupsData } from "../../features/authentication/useCompanyGrupeData";
 
 const GroupsSettings = () => {
   const moveBack = useMoveBack();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { data: groups } = useCompanyGroupsData(location?.state?.companyId);
 
   const mainContent = (
     <>
@@ -16,15 +21,15 @@ const GroupsSettings = () => {
         style={{ marginBottom: "1.5rem" }}
       >
         <div className="application__info-item">
-          Region: <span>UA</span>
+          Region: <span>{location?.state?.region}</span>
         </div>
 
         <div className="application__info-item">
-          Category: <span>IT</span>
+          Category: <span>{location?.state?.сategories}</span>
         </div>
 
         <div className="application__info-item">
-          Total groups: <span>100</span>
+          Total groups: <span>{groups?.length}</span>
         </div>
       </div>
 
@@ -37,13 +42,14 @@ const GroupsSettings = () => {
       </Button>
 
       <div className="group-settings__groups-wrapper">
-        <GroupItem />
-        <GroupItem />
-        <GroupItem />
-        <GroupItem />
-        <GroupItem />
-        <GroupItem />
-        <GroupItem />
+        {/* {groups?.map((item) => (
+          <GroupItem
+            key={Math.random()}
+            groupName={"аіфа"}
+            tag={"nulфвіавіфl"}
+            priority={45}
+          />
+        ))} */}
       </div>
     </>
   );

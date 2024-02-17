@@ -1,14 +1,14 @@
 import Input from "./Input/Input";
 
-const GroupItem = () => {
+export function GroupItem(groupName, tag, priority) {
 	return (
 		<div className="group-settings__groups-item">
-			<span>Group name / tag</span>
+			<span>{groupName || tag}</span>
 
 			<div className="group-settings__select-wrapper">
 				<span>Priority:</span>
 				<Input
-					defaultValue={10}
+					defaultValue={priority}
 					type="number"
 					style={{ width: "7rem", border: "1px solid #fff" }}
 				/>
