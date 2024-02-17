@@ -26,7 +26,7 @@ function Profile() {
 
   useEffect(() => {
     if (typeof aicoin != Number) {
-      updateUserAicoin(user?.id);
+      updateUserAicoin(aicoin);
     }
   }, [aicoin]);
 
