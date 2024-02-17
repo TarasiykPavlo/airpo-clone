@@ -20,7 +20,7 @@ function CompanyItem({ companyName, active, isRunning, companyId }) {
 
         <MoreOutlined
           onClick={() =>
-            navigate("settings", { state: { companyId: companyId } })
+            navigate("settings", { state: { companyId: companyId, companyName: companyName } })
           }
           className="application__more-icon"
         />

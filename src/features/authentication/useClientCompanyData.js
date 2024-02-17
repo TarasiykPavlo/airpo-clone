@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCompanyData } from "../../services/apiAuthClient";
+import { getCompanies } from "../../services/apiAuthClient";
 
 export function getUserCompany(userId) {
   const { data } = useQuery({
-    queryKey: ["company"],
-    queryFn: () => getCompanyData(userId)
+    queryKey: ["userCompanies"],
+    queryFn: () => getCompanies(userId)
   });
  
   return { data };
