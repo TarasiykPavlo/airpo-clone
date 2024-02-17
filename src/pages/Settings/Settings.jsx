@@ -7,13 +7,14 @@ import ApplicationLayout from "../../ui/ApplicationLayout";
 import Input from "../../ui/Input/Input";
 
 import "./Settings.scss";
+import { getCompanyData } from "../../features/authentication/useCompanyData";
 
 const Settings = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const companyId = location?.state?.companyId;
+  const { data: company } = getCompanyData(location?.state?.companyId);
 
-  const [companyName, setCompanyName] = useState("Company name");
+  const [companyName, setCompanyName] = useState(location?.state?.companyName);
 
   useEffect(() => {
     if (!location?.state) navigate("/applications");
@@ -40,25 +41,38 @@ const Settings = () => {
           onClick={handleOk}
           style={{ width: "5rem", padding: 0 }}
         >
-          OK
+          SAVE
         </Button>
       </div>
 
       <div className="application__info-wrapper">
         <div className="application__info-item">
-          Phone: <span>+380938052732</span>
+          Phone: <span>{company?.ClientCompanysData.phone}</span>
         </div>
 
         <div className="application__info-item">
-          Status: <span>Active</span>
+          Status:{" "}
+          <span>
+            {company?.ClientCompanysData.active ? "Active" : "Disabled"}
+          </span>
         </div>
 
         <div className="application__info-item">
-          API ID: <span>548866468488664684</span>
+          API ID:{" "}
+          <span>
+            {!!company?.ClientCompanyBot.apiId
+              ? company?.ClientCompanyBot?.apiId
+              : "NOT SELECTED"}
+          </span>
         </div>
 
         <div className="application__info-item">
-          API HASH: <span>5488dasd6646848866468adda</span>
+          API HASH:{" "}
+          <span>
+            {!!company?.ClientCompanyBot.apiHash
+              ? company?.ClientCompanyBot?.apiHash
+              : ("NOT SELECTED")}
+          </span>
         </div>
       </div>
 
@@ -71,7 +85,12 @@ const Settings = () => {
               marginRight: "0.5rem",
             }}
           />
-          Template: <span>not selected</span>
+          Template:{" "}
+          <span>
+            {!!company?.ClientMessageTemplates.name
+              ? company?.ClientMessageTemplates.name
+              : "NOT SELECTED"}
+          </span>
         </div>
 
         <Button
