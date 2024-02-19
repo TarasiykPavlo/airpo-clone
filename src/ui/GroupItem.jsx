@@ -1,6 +1,6 @@
 import Input from "./Input/Input";
 
-export function GroupItem(groupName, tag, priority) {
+export function GroupItem({groupName, tag, priority}) {
 	return (
 		<div className="group-settings__groups-item">
 			<span>{groupName || tag}</span>

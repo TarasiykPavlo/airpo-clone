@@ -258,15 +258,15 @@ export const productCard = {
 
 export const selectService = [
 	{
-		value: "telegram",
+		value: "Telegram",
 		label: "Telegram",
 	},
 	{
-		value: "viber",
+		value: "Viber",
 		label: "Viber",
 	},
 	{
-		value: "gmail",
+		value: "Gmail",
 		label: "Gmail",
 	},
 ];

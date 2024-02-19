@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Button } from "antd";
-import { CloseCircleFilled } from "@ant-design/icons";
+import { Button, Spin } from "antd";
+import { CloseCircleFilled, ExclamationCircleFilled } from "@ant-design/icons";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import Input from "../../ui/Input/Input";
@@ -47,49 +47,100 @@ const Settings = () => {
 
       <div className="application__info-wrapper">
         <div className="application__info-item">
-          Phone: <span>{company?.ClientCompanysData.phone}</span>
+          Phone: <span>{company?.ClientCompanysData.phone || <Spin />}</span>
         </div>
 
         <div className="application__info-item">
+          {!company?.ClientCompanysData.active &&
+            company?.ClientCompanysData !== undefined && (
+              <CloseCircleFilled
+                style={{
+                  color: "#c82121",
+                  fontSize: "24px",
+                  marginRight: "0.5rem",
+                }}
+              />
+            )}
           Status:{" "}
           <span>
-            {company?.ClientCompanysData.active ? "Active" : "Disabled"}
+            {company?.ClientCompanysData.active === undefined ? (
+              <Spin />
+            ) : company?.ClientCompanysData.active ? (
+              "Active"
+            ) : (
+              "Disabled"
+            )}
           </span>
         </div>
 
         <div className="application__info-item">
+          {company?.ClientCompanyBot.apiId === undefined &&
+            company?.ClientCompanyBot !== undefined && (
+              <CloseCircleFilled
+                style={{
+                  color: "#c82121",
+                  fontSize: "24px",
+                  marginRight: "0.5rem",
+                }}
+              />
+            )}
           API ID:{" "}
           <span>
-            {!!company?.ClientCompanyBot.apiId
-              ? company?.ClientCompanyBot?.apiId
-              : "NOT SELECTED"}
+            {!!company?.ClientCompanyBot.apiId ? (
+              company?.ClientCompanyBot?.apiId
+            ) : company?.ClientCompanysData === undefined ? (
+              <Spin />
+            ) : (
+              "NOT SELECTED"
+            )}
           </span>
         </div>
 
         <div className="application__info-item">
+          {company?.ClientCompanyBot.apiHash === undefined &&
+            company?.ClientCompanyBot !== undefined && (
+              <ExclamationCircleFilled
+                style={{
+                  color: "#c82121",
+                  fontSize: "24px",
+                  marginRight: "0.5rem",
+                }}
+              />
+            )}
           API HASH:{" "}
           <span>
-            {!!company?.ClientCompanyBot.apiHash
-              ? company?.ClientCompanyBot?.apiHash
-              : "NOT SELECTED"}
+            {!!company?.ClientCompanyBot.apiHash ? (
+              company?.ClientCompanyBot?.apiHash
+            ) : company?.ClientCompanysData === undefined ? (
+              <Spin />
+            ) : (
+              "NOT SELECTED"
+            )}
           </span>
         </div>
       </div>
 
       <div className="settings__template-wrapper">
         <div className="settings__template-text">
-          <CloseCircleFilled
-            style={{
-              color: "#c82121",
-              fontSize: "24px",
-              marginRight: "0.5rem",
-            }}
-          />
+          {company?.ClientMessageTemplates.name === undefined &&
+            company !== undefined && (
+              <CloseCircleFilled
+                style={{
+                  color: "#c82121",
+                  fontSize: "24px",
+                  marginRight: "0.5rem",
+                }}
+              />
+            )}
           Template:{" "}
           <span>
-            {!!company?.ClientMessageTemplates.name
-              ? company?.ClientMessageTemplates.name
-              : "NOT SELECTED"}
+            {!!company?.ClientMessageTemplates.name ? (
+              company?.ClientMessageTemplates.name
+            ) : company?.ClientMessageTemplates === undefined ? (
+              <Spin />
+            ) : (
+              "NOT SELECTED"
+            )}
           </span>
         </div>
 
@@ -110,7 +161,15 @@ const Settings = () => {
         block
         type="primary"
         size="large"
-        onClick={() => navigate("/applications/bot-settings")}
+        onClick={() =>
+          navigate("/applications/bot-settings", {
+            state: {
+              companyId: location?.state?.companyId,
+              apiId: company?.ClientCompanyBot?.apiId,
+              apiHash: company?.ClientCompanyBot?.apiHash,
+            },
+          })
+        }
       >
         Bot settings
       </Button>
