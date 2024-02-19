@@ -29,12 +29,11 @@ export async function getClientInfoForProfile(userId) {
   return data;
 }
 
-export async function getCompanies(userId) {
-  let ClientCompanysData = await getData(
-    userId,
-    "ClientsCompanyBase",
-    "progType, name, active, isRunning, id"
-  );
+export async function getCompanies(userId, progType) {
+  let {data: ClientCompanysData} = await supabase
+    .from("ClientsCompanyBase")
+    .select("name, active, isRunning, id")
+    .match({ 'authId': userId, 'progType': progType });
   return ClientCompanysData;
 }
 
@@ -50,16 +49,15 @@ export async function getCompanyDataForSettings(companyId) {
   let ClientMessageTemplates = {};
 
   if (!!ClientCompanysData.botId) {
-  let {data: ClientsCompanyBot} = await supabase
+    let { data: ClientsCompanyBot } = await supabase
       .from("OurBotData")
       .select("apiId, apiHash")
       .eq("id", ClientCompanysData.botId);
-    ClientCompanyBot = ClientsCompanyBot[0] 
+    ClientCompanyBot = ClientsCompanyBot[0];
   }
-  
 
   if (!!ClientCompanysData.selectTemplateId) {
-    let {data: ClientsMessageTemplates} = await supabase
+    let { data: ClientsMessageTemplates } = await supabase
       .from("ClientsMessageTemplates")
       .select("name")
       .eq("id", ClientCompanysData.selectTemplateId);
@@ -76,12 +74,12 @@ export async function getCompanyDataForSettings(companyId) {
 }
 
 export async function getCompanyGroups(companyId) {
-  let {data: ClientsCompanyGroupsBase} = await supabase
-      .from("ClientsCompanyGroupsBase")
-      .select("*")
-      .eq("companyId", companyId);
+  let { data: ClientsCompanyGroupsBase } = await supabase
+    .from("ClientsCompanyGroupsBase")
+    .select("*")
+    .eq("companyId", companyId);
 
-  return ClientsCompanyGroupsBase
+  return ClientsCompanyGroupsBase;
 }
 
 export async function updateCurrentUserAicoin(aicoin) {

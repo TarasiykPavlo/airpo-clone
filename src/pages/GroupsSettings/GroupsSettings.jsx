@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import GroupItem from "../../ui/GroupItem";
@@ -29,7 +29,7 @@ const GroupsSettings = () => {
         </div>
 
         <div className="application__info-item">
-          Total groups: <span>{groups?.length}</span>
+          Total groups: <span>{groups?.length? groups?.length : <Spin />}</span>
         </div>
       </div>
 
@@ -42,14 +42,14 @@ const GroupsSettings = () => {
       </Button>
 
       <div className="group-settings__groups-wrapper">
-        {/* {groups?.map((item) => (
+        {groups?.map((item) => (
           <GroupItem
             key={Math.random()}
-            groupName={"аіфа"}
-            tag={"nulфвіавіфl"}
-            priority={45}
+            groupName={item.name}
+            tag={item.tag}
+            priority={item.priority}
           />
-        ))} */}
+        ))}
       </div>
     </>
   );

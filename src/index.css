@@ -56,3 +56,5 @@ input::-webkit-inner-spin-button {
 		font-size: 50%;
 	}
 }
+.ant-spin {transform: translate(5px, -1px) !important;}
+.ant-spin-dot-item { background-color: #ffffff !important;}

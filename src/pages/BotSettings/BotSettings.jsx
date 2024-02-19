@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
@@ -10,9 +11,11 @@ import "./BotSettings.scss";
 
 const BotSettings = () => {
   const moveBack = useMoveBack();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const [apiId, setApiId] = useState("548866468488664684");
-  const [apiHash, setApiHash] = useState("5488dasd6646848866468adda");
+  const [apiId, setApiId] = useState(location.state?.apiId);
+  const [apiHash, setApiHash] = useState(location.state?.apiHash);
 
   const mainContent = (
     <>
