@@ -153,6 +153,7 @@ const Settings = () => {
           size="large"
           onClick={() => navigate("/applications/templates", {
             state: {
+              companyId: location?.state?.companyId,
               selectTemplateId: company?.ClientCompanysData?.selectTemplateId,
             },
           })}

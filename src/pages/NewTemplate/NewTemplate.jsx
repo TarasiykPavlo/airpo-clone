@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Upload } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
@@ -12,6 +12,7 @@ import InputRange from "../../ui/InputRange/InputRange";
 
 const NewTemplate = () => {
   const moveBack = useMoveBack();
+  const navigate = useNavigate();
   const location = useLocation();
   const [templateName, setTemplateName] = useState(location?.state?.name);
   
@@ -27,6 +28,10 @@ const NewTemplate = () => {
   const [templateText, setTemplateText] = useState(
     location?.state?.text
   );
+
+  useEffect(() => {
+    if (!location?.state?.companyId) navigate("/applications");
+  }, []);
 
   const mainContent = (
     <>

@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 function TemplateItem({
+  companyId,
   id,
   templateName,
   text,
@@ -41,6 +42,7 @@ function TemplateItem({
           onClick={() =>
             navigate("info", {
               state: {
+                companyId: companyId,
                 name: templateName,
                 text: text,
                 files: files,

@@ -9,6 +9,7 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import TemplateItem from "./TemplateItem";
 import "./Templates.scss";
 import { useClientTemlates } from "../../features/authentication/useClientTemlatatesData";
+import { useEffect } from "react";
 
 const Templates = () => {
   const { user } = useUser();
@@ -17,12 +18,17 @@ const Templates = () => {
   const location = useLocation();
   const moveBack = useMoveBack();
 
+  useEffect(() => {
+    if (!location?.state?.companyId) navigate("/applications");
+  }, []);
+
   const mainContent = (
     <section className="templates__list">
       <ul className="application__list">
         {temlates?.map((item) => (
           <TemplateItem
             key={item.id}
+            companyId={location?.state?.companyId}
             id={item.id}
             templateName={item.name}
             text={item.text}
