@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "antd";
 
 import { useUser } from "../../features/authentication/useUser";
-import { getUserCompany } from "../../features/authentication/useClientCompanyData";
-import { UpdateUserCompanes } from "../../features/authentication/useUpdateClientCompanyData";
+import { useUserCompany } from "../../features/authentication/useClientCompanyData";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import Select from "../../ui/Select/Select";
@@ -18,13 +17,14 @@ const Applications = () => {
   const navigate = useNavigate();
 
   const [isSelectActive, setIsSelectActive] = useState(false);
-  const {updateCompanies} = UpdateUserCompanes();
 
   const { user } = useUser();
-  var { data: userCompany } = getUserCompany(user.id, "Telegram");
+  const { data: userCompany } = useUserCompany(user.id);
+  const [progType, setProgType] = useState("Telegram");
+  console.log();
 
   function handleService(value) {
-    updateCompanies({userId: user?.id, progType: value});
+    setProgType(value);
   }
 
   const mainContent = (
@@ -43,15 +43,17 @@ const Applications = () => {
 
       <section className="application__companies">
         <ul className="application__list">
-          {userCompany?.map((item) => (
-            <CompanyItem
-              key={Math.random()}
-              companyName={item.name}
-              active={item.active}
-              isRunning={item.isRunning}
-              companyId={item.id}
-            />
-          ))}
+          {userCompany
+            ?.filter((company) => company.progType === progType)
+            ?.map((item) => (
+              <CompanyItem
+                key={Math.random()}
+                companyName={item.name}
+                active={item.active}
+                isRunning={item.isRunning}
+                companyId={item.id}
+              />
+            ))}
         </ul>
       </section>
     </>

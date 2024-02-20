@@ -56,7 +56,7 @@ const Settings = () => {
               <CloseCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
@@ -79,7 +79,7 @@ const Settings = () => {
               <CloseCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
@@ -102,7 +102,7 @@ const Settings = () => {
               <ExclamationCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
@@ -127,7 +127,7 @@ const Settings = () => {
               <CloseCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
