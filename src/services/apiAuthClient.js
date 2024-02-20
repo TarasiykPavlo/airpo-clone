@@ -32,7 +32,7 @@ export async function getClientInfoForProfile(userId) {
 export async function getCompanies(userId) {
   let {data: ClientCompanysData} = await supabase
     .from("ClientsCompanyBase")
-    .select("name, active, isRunning, id, progType")
+    .select("name, active, isRunning, id, progType, botId, selectTemplateId")
     .match({ 'authId': userId });
   return ClientCompanysData;
 }
@@ -80,6 +80,13 @@ export async function getCompanyGroups(companyId) {
     .eq("companyId", companyId);
 
   return ClientsCompanyGroupsBase;
+}
+
+export async function DelClientCompany(companyId) {
+  await supabase
+    .from("ClientsCompanyBase")
+    .delete()
+    .eq("id", companyId);
 }
 
 export async function updateCurrentUserAicoin(aicoin) {

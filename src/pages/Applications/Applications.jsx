@@ -21,7 +21,6 @@ const Applications = () => {
   const { user } = useUser();
   const { data: userCompany } = useUserCompany(user.id);
   const [progType, setProgType] = useState("Telegram");
-  console.log();
 
   function handleService(value) {
     setProgType(value);
@@ -52,6 +51,8 @@ const Applications = () => {
                 active={item.active}
                 isRunning={item.isRunning}
                 companyId={item.id}
+                botId={item.botId}
+                selectTemplateId ={item.selectTemplateId}
               />
             ))}
         </ul>

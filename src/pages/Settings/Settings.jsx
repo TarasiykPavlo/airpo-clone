@@ -8,6 +8,7 @@ import Input from "../../ui/Input/Input";
 
 import "./Settings.scss";
 import { getCompanyData } from "../../features/authentication/useCompanyData";
+import { DelClientCompany } from "../../services/apiAuthClient";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const Settings = () => {
 
   const [companyName, setCompanyName] = useState(location?.state?.companyName);
 
+  async function DelCompany(){
+    await DelClientCompany(company.ClientCompanysData.id);
+    navigate("/applications")
+  }
   useEffect(() => {
     if (!location?.state) navigate("/applications");
   }, []);
@@ -191,7 +196,13 @@ const Settings = () => {
         Groups settings
       </Button>
 
-      <Button block danger type="primary" size="large">
+      <Button
+        block
+        danger
+        type="primary"
+        size="large"
+        onClick={DelCompany}
+      >
         Delete company
       </Button>
 
