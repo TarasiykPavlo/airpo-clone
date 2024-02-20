@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Upload } from "antd";
 
@@ -11,12 +12,21 @@ import InputRange from "../../ui/InputRange/InputRange";
 
 const NewTemplate = () => {
   const moveBack = useMoveBack();
-
-  const [templateName, setTemplateName] = useState("");
-
-  const [messageInterval, setMessageInterval] = useState(20);
-  const [mailingDelay, setMailingDelay] = useState(20);
-  const [mailingStart, setMailingStart] = useState(20);
+  const location = useLocation();
+  const [templateName, setTemplateName] = useState(location?.state?.name);
+  
+  const [messageInterval, setMessageInterval] = useState(
+    location?.state?.initialDelay
+  );
+  const [mailingDelay, setMailingDelay] = useState(
+    location?.state?.messageDelay
+  );
+  const [mailingStart, setMailingStart] = useState(
+    location?.state?.mailingInterval
+  );
+  const [templateText, setTemplateText] = useState(
+    location?.state?.text
+  );
 
   const mainContent = (
     <>
@@ -30,6 +40,7 @@ const NewTemplate = () => {
       />
 
       <TextArea
+        value={templateText}
         style={{
           height: "10rem",
           resize: "none",
@@ -45,18 +56,36 @@ const NewTemplate = () => {
 
       <div className="ranges-container">
         <div className="ranges-container__row">
-          <p>Message sending interval</p>
-          <InputRange value={messageInterval} setValue={setMessageInterval} />
+          <p>Message sending interval - {messageInterval} sec</p>
+          <InputRange
+            value={messageInterval}
+            setValue={setMessageInterval}
+            min={0}
+            max={100}
+            step={1}
+          />
         </div>
 
         <div className="ranges-container__row">
-          <p>Delay between mailings</p>
-          <InputRange value={mailingDelay} setValue={setMailingDelay} />
+          <p>Delay between mailings - {mailingDelay} sec</p>
+          <InputRange
+            value={mailingDelay}
+            setValue={setMailingDelay}
+            min={0}
+            max={100}
+            step={1}
+          />
         </div>
 
         <div className="ranges-container__row">
-          <p>Start before mailing</p>
-          <InputRange value={mailingStart} setValue={setMailingStart} />
+          <p>Start before mailing - {mailingStart} sec</p>
+          <InputRange
+            value={mailingStart}
+            setValue={setMailingStart}
+            min={0}
+            max={500}
+            step={5}
+          />
         </div>
       </div>
     </>

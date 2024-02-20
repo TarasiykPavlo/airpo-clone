@@ -1,20 +1,20 @@
 import "./InputRange.scss";
 import { formatTimer } from "../../utils/helpers";
 
-const InputRange = ({ value, setValue }) => {
+const InputRange = ({ value, setValue, min, max, step }) => {
 	return (
 		<div className="input__wrapper">
 			<input
 				type="range"
-				min={1}
-				max={99}
-				step={1}
+				min={min}
+				max={max}
+				step={step}
 				value={value}
 				onChange={(e) => setValue(e.target.value)}
 				className="input--range"
 			/>
 
-			<div
+			{/* <div
 				className="input--range-value"
 				style={{
 					left: `${value}%`,
@@ -22,7 +22,7 @@ const InputRange = ({ value, setValue }) => {
 				}}
 			>
 				{formatTimer(value)} sec
-			</div>
+			</div> */}
 		</div>
 	);
 };

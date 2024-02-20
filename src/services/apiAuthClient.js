@@ -82,6 +82,10 @@ export async function getCompanyGroups(companyId) {
   return ClientsCompanyGroupsBase;
 }
 
+export async function getClientTemlates(userId) {
+  return getData(userId, "ClientsMessageTemplates", "*")
+}
+
 export async function DelClientCompany(companyId) {
   await supabase
     .from("ClientsCompanyBase")

@@ -151,7 +151,11 @@ const Settings = () => {
 
         <Button
           size="large"
-          onClick={() => navigate("/applications/templates")}
+          onClick={() => navigate("/applications/templates", {
+            state: {
+              selectTemplateId: company?.ClientCompanysData?.selectTemplateId,
+            },
+          })}
           className="application__button--black"
         >
           Choose template

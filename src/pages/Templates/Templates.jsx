@@ -1,43 +1,39 @@
 import { Button } from "antd";
-import { useNavigate } from "react-router-dom";
-import { MoreOutlined } from "@ant-design/icons";
+import { useLocation, useNavigate } from "react-router-dom";
+import { MoreOutlined, PlayCircleFilled } from "@ant-design/icons";
+
+import { useUser } from "../../features/authentication/useUser";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import { useMoveBack } from "../../hooks/useMoveBack";
-
+import TemplateItem from "./TemplateItem";
 import "./Templates.scss";
+import { useClientTemlates } from "../../features/authentication/useClientTemlatatesData";
 
 const Templates = () => {
+  const { user } = useUser();
+  const { data: temlates } = useClientTemlates(user?.id);
   const navigate = useNavigate();
+  const location = useLocation();
   const moveBack = useMoveBack();
 
   const mainContent = (
     <section className="templates__list">
       <ul className="application__list">
-        <li className="application__item">
-          <div className="application__item-left">
-            <span className="application__name">Template 1</span>
-          </div>
-
-          <div className="application__item-right">
-            <MoreOutlined
-              onClick={() => navigate("info")}
-              className="application__more-icon"
-            />
-          </div>
-        </li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
-        <li className="application__item">2</li>
+        {temlates?.map((item) => (
+          <TemplateItem
+            key={item.id}
+            id={item.id}
+            templateName={item.name}
+            text={item.text}
+            files={item.files}
+            initialDelay={item.initialDelay}
+            messageDelay={item.messageDelay}
+            mailingInterval={item.mailingInterval}
+            sendingAfterJoining={item.sendingAfterJoining}
+            selectTemplateId={location?.state?.selectTemplateId}
+          />
+        ))}
       </ul>
     </section>
   );
