@@ -1,6 +1,6 @@
 import { ConfigProvider, Input } from "antd";
 
-const TextArea = ({ ...others }) => {
+const TextArea = ({ value, ...others }) => {
 	return (
 		<ConfigProvider
 			theme={{
@@ -15,7 +15,7 @@ const TextArea = ({ ...others }) => {
 			}}
 		>
 			<Input.TextArea
-				placeholder="Enter message..."
+				placeholder={value || "Enter message..."}
 				maxLength={500}
 				rows={4}
 				allowClear

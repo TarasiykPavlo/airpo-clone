@@ -8,6 +8,7 @@ import Input from "../../ui/Input/Input";
 
 import "./Settings.scss";
 import { getCompanyData } from "../../features/authentication/useCompanyData";
+import { DelClientCompany } from "../../services/apiAuthClient";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const Settings = () => {
 
   const [companyName, setCompanyName] = useState(location?.state?.companyName);
 
+  async function DelCompany(){
+    await DelClientCompany(company.ClientCompanysData.id);
+    navigate("/applications")
+  }
   useEffect(() => {
     if (!location?.state) navigate("/applications");
   }, []);
@@ -56,7 +61,7 @@ const Settings = () => {
               <CloseCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
@@ -79,7 +84,7 @@ const Settings = () => {
               <CloseCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
@@ -102,7 +107,7 @@ const Settings = () => {
               <ExclamationCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
@@ -127,7 +132,7 @@ const Settings = () => {
               <CloseCircleFilled
                 style={{
                   color: "#c82121",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   marginRight: "0.5rem",
                 }}
               />
@@ -146,7 +151,12 @@ const Settings = () => {
 
         <Button
           size="large"
-          onClick={() => navigate("/applications/templates")}
+          onClick={() => navigate("/applications/templates", {
+            state: {
+              companyId: location?.state?.companyId,
+              selectTemplateId: company?.ClientCompanysData?.selectTemplateId,
+            },
+          })}
           className="application__button--black"
         >
           Choose template
@@ -191,7 +201,13 @@ const Settings = () => {
         Groups settings
       </Button>
 
-      <Button block danger type="primary" size="large">
+      <Button
+        block
+        danger
+        type="primary"
+        size="large"
+        onClick={DelCompany}
+      >
         Delete company
       </Button>
 
