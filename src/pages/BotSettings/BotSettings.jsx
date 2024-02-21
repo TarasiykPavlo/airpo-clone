@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 
@@ -17,6 +17,24 @@ const BotSettings = () => {
   const [apiId, setApiId] = useState(location.state?.apiId);
   const [apiHash, setApiHash] = useState(location.state?.apiHash);
 
+  function setNewApiIdAndApiHash() {
+    setApiId();
+    setApiHash();
+  }
+
+  function saveNewApiIdAndApiHash() {
+    navigate("/applications/settings", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+      },
+    });
+  }
+
+  useEffect(() => {
+    if (!location?.state?.companyId) navigate("/applications");
+  }, []);
+
   const mainContent = (
     <>
       <div className="bot-settings__inputs-wrapper">
@@ -26,6 +44,7 @@ const BotSettings = () => {
             maxLength={18}
             type="string"
             value={apiId}
+            placeholder="Empty  :("
             onChange={(e) => setApiId(e.target.value)}
           />
         </div>
@@ -36,12 +55,15 @@ const BotSettings = () => {
             maxLength={25}
             type="string"
             value={apiHash}
+            placeholder="Empty  :("
             onChange={(e) => setApiHash(e.target.value)}
           />
         </div>
       </div>
 
-      <p className="application__link">Regenerate API ID, API HASH</p>
+      <p className="application__link" onClick={setNewApiIdAndApiHash}>
+        Regenerate API ID, API HASH
+      </p>
 
       <div className="application__tip-wrapper">
         <ExclamationCircleFilled className="application__tip-icon" />
@@ -57,7 +79,12 @@ const BotSettings = () => {
 
   const footerContent = (
     <>
-      <Button block type="primary" size="large">
+      <Button
+        block
+        type="primary"
+        size="large"
+        onClick={saveNewApiIdAndApiHash}
+      >
         Save
       </Button>
 

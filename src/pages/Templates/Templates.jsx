@@ -1,6 +1,5 @@
 import { Button } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import { MoreOutlined, PlayCircleFilled } from "@ant-design/icons";
 
 import { useUser } from "../../features/authentication/useUser";
 
@@ -22,6 +21,19 @@ const Templates = () => {
     if (!location?.state?.companyId) navigate("/applications");
   }, []);
 
+  function createTemplateButton() {
+    temlates === undefined
+      ? alert("imposible")
+      : temlates.length >= 5
+      ? alert("limit")
+      : navigate("info", {
+          state: {
+            companyId: location?.state?.companyId,
+            companyName: location?.state?.companyName,
+            templateId: null,
+          },
+        });
+  }
   const mainContent = (
     <section className="templates__list">
       <ul className="application__list">
@@ -46,13 +58,8 @@ const Templates = () => {
 
   const footerContent = (
     <>
-      <Button
-        block
-        type="primary"
-        size="large"
-        onClick={() => navigate("info")}
-      >
-        Create template
+      <Button block type="primary" size="large" onClick={createTemplateButton}>
+        Create template ({temlates?.length}/5)
       </Button>
 
       <Button

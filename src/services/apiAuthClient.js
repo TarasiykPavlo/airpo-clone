@@ -30,10 +30,10 @@ export async function getClientInfoForProfile(userId) {
 }
 
 export async function getCompanies(userId) {
-  let {data: ClientCompanysData} = await supabase
+  let { data: ClientCompanysData } = await supabase
     .from("ClientsCompanyBase")
     .select("name, active, isRunning, id, progType, botId, selectTemplateId")
-    .match({ 'authId': userId });
+    .match({ authId: userId });
   return ClientCompanysData;
 }
 
@@ -41,20 +41,11 @@ export async function getCompanyDataForSettings(companyId) {
   let { data: ClientsCompanysData } = await supabase
     .from("ClientsCompanyBase")
     .select(
-      "progType, name, phone, active, isRunning, botId, region, сategories, id, selectTemplateId"
+      "progType, name, phone, active, isRunning, botId, region, сategories, id, selectTemplateId, apiId, apiHash"
     )
     .eq("id", companyId);
   const ClientCompanysData = ClientsCompanysData[0];
-  let ClientCompanyBot = {};
   let ClientMessageTemplates = {};
-
-  if (!!ClientCompanysData.botId) {
-    let { data: ClientsCompanyBot } = await supabase
-      .from("OurBotData")
-      .select("apiId, apiHash")
-      .eq("id", ClientCompanysData.botId);
-    ClientCompanyBot = ClientsCompanyBot[0];
-  }
 
   if (!!ClientCompanysData.selectTemplateId) {
     let { data: ClientsMessageTemplates } = await supabase
@@ -66,7 +57,6 @@ export async function getCompanyDataForSettings(companyId) {
 
   let data = {
     ClientCompanysData: ClientCompanysData,
-    ClientCompanyBot: ClientCompanyBot,
     ClientMessageTemplates: ClientMessageTemplates,
   };
 
@@ -83,13 +73,72 @@ export async function getCompanyGroups(companyId) {
 }
 
 export async function getClientTemlates(userId) {
-  return getData(userId, "ClientsMessageTemplates", "*")
+  return getData(userId, "ClientsMessageTemplates", "*");
 }
 
-export async function DelClientCompany(companyId) {
+export async function createClientTemplate(
+  userId,
+  text,
+  files,
+  initialDelay,
+  messageDelay,
+  mailingInterval,
+  templateName
+) {
+  await supabase
+    .from("ClientsMessageTemplates")
+    .insert({
+      authId: userId,
+      text: text,
+      files: files,
+      initialDelay: initialDelay,
+      messageDelay: messageDelay,
+      mailingInterval: mailingInterval,
+      name: templateName,
+    });
+}
+
+export async function delClientTemplate(templateId){
+  await supabase.from("ClientsMessageTemplates").delete().eq("id", templateId);
+}
+
+export async function updateClientTemplate(
+  templateId,
+  text,
+  files,
+  initialDelay,
+  messageDelay,
+  mailingInterval,
+  templateName
+) {
+  await supabase
+    .from("ClientsMessageTemplates")
+    .update({
+      text: text,
+      files: files,
+      initialDelay: initialDelay,
+      messageDelay: messageDelay,
+      mailingInterval: mailingInterval,
+      name: templateName,
+    })
+    .eq("id", templateId);
+}
+
+export async function updateCompanyTemplate(companyId, templateId) {
   await supabase
     .from("ClientsCompanyBase")
-    .delete()
+    .update({ selectTemplateId: templateId })
+    .eq("id", companyId);
+}
+
+export async function delClientCompany(companyId) {
+  await supabase.from("ClientsCompanyBase").delete().eq("id", companyId);
+}
+
+export async function saveNameCompany(companyId, nameValue) {
+  await supabase
+    .from("ClientsCompanyBase")
+    .update({ name: nameValue })
     .eq("id", companyId);
 }
 

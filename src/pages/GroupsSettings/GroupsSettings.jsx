@@ -12,7 +12,17 @@ const GroupsSettings = () => {
   const moveBack = useMoveBack();
   const navigate = useNavigate();
   const location = useLocation();
+
   const { data: groups } = useCompanyGroupsData(location?.state?.companyId);
+
+  function saveGroupsChange() {
+    navigate("/applications/settings", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+      },
+    });
+  }
 
   const mainContent = (
     <>
@@ -29,7 +39,8 @@ const GroupsSettings = () => {
         </div>
 
         <div className="application__info-item">
-          Total groups: <span>{groups?.length? groups?.length : <Spin />}</span>
+          Total groups:{" "}
+          <span>{(groups === undefined) ? <Spin /> : groups?.length}</span>
         </div>
       </div>
 
@@ -56,7 +67,12 @@ const GroupsSettings = () => {
 
   const footerContent = (
     <>
-      <Button block type="primary" size="large">
+      <Button
+        block
+        type="primary"
+        size="large"
+        onClick={saveGroupsChange}
+      >
         Save
       </Button>
 

@@ -20,6 +20,7 @@ const Applications = () => {
 
   const { user } = useUser();
   const { data: userCompany } = useUserCompany(user.id);
+
   const [progType, setProgType] = useState("Telegram");
 
   function handleService(value) {
@@ -46,13 +47,13 @@ const Applications = () => {
             ?.filter((company) => company.progType === progType)
             ?.map((item) => (
               <CompanyItem
-                key={Math.random()}
+                key={item.id}
                 companyName={item.name}
                 active={item.active}
                 isRunning={item.isRunning}
                 companyId={item.id}
                 botId={item.botId}
-                selectTemplateId ={item.selectTemplateId}
+                selectTemplateId={item.selectTemplateId}
               />
             ))}
         </ul>
