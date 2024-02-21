@@ -9,29 +9,81 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./NewTemplate.scss";
 import InputRange from "../../ui/InputRange/InputRange";
+import {
+  createClientTemplate,
+  delClientTemplate,
+  updateClientTemplate,
+} from "../../services/apiAuthClient";
+import { useUser } from "../../features/authentication/useUser";
 
 const NewTemplate = () => {
   const moveBack = useMoveBack();
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useUser();
+
   const [templateName, setTemplateName] = useState(location?.state?.name);
-  
+  const [messageText, setMessageText] = useState(location?.state.text);
+
   const [messageInterval, setMessageInterval] = useState(
-    location?.state?.initialDelay
+    location?.state?.initialDelay || 0
   );
   const [mailingDelay, setMailingDelay] = useState(
-    location?.state?.messageDelay
+    location?.state?.messageDelay || 25
   );
   const [mailingStart, setMailingStart] = useState(
-    location?.state?.mailingInterval
-  );
-  const [templateText, setTemplateText] = useState(
-    location?.state?.text
+    location?.state?.mailingInterval || 360
   );
 
   useEffect(() => {
     if (!location?.state?.companyId) navigate("/applications");
   }, []);
+
+  function createTemplate() {
+    createClientTemplate(
+      user?.id,
+      messageText,
+      null,
+      messageInterval,
+      mailingDelay,
+      mailingStart,
+      templateName
+    );
+    navigate("/applications/templates", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+      },
+    });
+  }
+
+  function delTemplate() {
+    delClientTemplate(location?.state.templateId);
+    navigate("/applications/templates", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+      },
+    });
+  }
+
+  function updateTemplate() {
+    updateClientTemplate(
+      location?.state.templateId,
+      messageText,
+      null,
+      messageInterval,
+      mailingDelay,
+      mailingStart,
+      templateName
+    );
+    navigate("/applications/templates", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+      },
+    });
+  }
 
   const mainContent = (
     <>
@@ -45,7 +97,8 @@ const NewTemplate = () => {
       />
 
       <TextArea
-        value={templateText}
+        onChange={(e) => setMessageText(e.target.value)}
+        value={messageText}
         style={{
           height: "10rem",
           resize: "none",
@@ -98,9 +151,30 @@ const NewTemplate = () => {
 
   const footerContent = (
     <>
-      <Button block type="primary" size="large">
-        Save
-      </Button>
+      {location?.state === undefined ? (
+        "..."
+      ) : location?.state.templateId === null ? (
+        <Button block type="primary" size="large" onClick={createTemplate}>
+          Create
+        </Button>
+      ) : (
+        <Button block type="primary" size="large" onClick={updateTemplate}>
+          Save
+        </Button>
+      )}
+      {!(location?.state.templateId === null) ? (
+        <Button
+          block
+          danger
+          type="primary"
+          size="large"
+          onClick={delTemplate}
+        >
+          Delete
+        </Button>
+      ) : (
+        ""
+      )}
 
       <Button
         block

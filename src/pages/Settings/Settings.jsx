@@ -8,7 +8,10 @@ import Input from "../../ui/Input/Input";
 
 import "./Settings.scss";
 import { getCompanyData } from "../../features/authentication/useCompanyData";
-import { DelClientCompany } from "../../services/apiAuthClient";
+import {
+  delClientCompany,
+  saveNameCompany,
+} from "../../services/apiAuthClient";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -17,17 +20,19 @@ const Settings = () => {
 
   const [companyName, setCompanyName] = useState(location?.state?.companyName);
 
-  async function DelCompany(){
-    await DelClientCompany(company.ClientCompanysData.id);
-    navigate("/applications")
+  async function DelCompany() {
+    await delClientCompany(company?.ClientCompanysData.id);
+    navigate("/applications");
+  }
+
+  async function saveName(value) {
+    await saveNameCompany(company?.ClientCompanysData.id, value);
+    setCompanyName(value);
+    navigate("/applications");
   }
   useEffect(() => {
     if (!location?.state) navigate("/applications");
   }, []);
-
-  function handleOk() {
-    console.log("OK");
-  }
 
   const mainContent = (
     <>
@@ -43,7 +48,7 @@ const Settings = () => {
           block
           type="primary"
           size="large"
-          onClick={handleOk}
+          onClick={() => saveName(companyName)}
           style={{ width: "5rem", padding: 0 }}
         >
           SAVE
@@ -56,16 +61,15 @@ const Settings = () => {
         </div>
 
         <div className="application__info-item">
-          {!company?.ClientCompanysData.active &&
-            company?.ClientCompanysData !== undefined && (
-              <CloseCircleFilled
-                style={{
-                  color: "#c82121",
-                  fontSize: "20px",
-                  marginRight: "0.5rem",
-                }}
-              />
-            )}
+          {company?.ClientCompanysData.active === null && (
+            <CloseCircleFilled
+              style={{
+                color: "#c82121",
+                fontSize: "20px",
+                marginRight: "0.5rem",
+              }}
+            />
+          )}
           Status:{" "}
           <span>
             {company?.ClientCompanysData.active === undefined ? (
@@ -79,20 +83,19 @@ const Settings = () => {
         </div>
 
         <div className="application__info-item">
-          {company?.ClientCompanyBot.apiId === undefined &&
-            company?.ClientCompanyBot !== undefined && (
-              <CloseCircleFilled
-                style={{
-                  color: "#c82121",
-                  fontSize: "20px",
-                  marginRight: "0.5rem",
-                }}
-              />
-            )}
+          {company?.ClientCompanysData.apiId === null && (
+            <CloseCircleFilled
+              style={{
+                color: "#c82121",
+                fontSize: "20px",
+                marginRight: "0.5rem",
+              }}
+            />
+          )}
           API ID:{" "}
           <span>
-            {!!company?.ClientCompanyBot.apiId ? (
-              company?.ClientCompanyBot?.apiId
+            {!!company?.ClientCompanysData.apiId ? (
+              company?.ClientCompanysData?.apiId
             ) : company?.ClientCompanysData === undefined ? (
               <Spin />
             ) : (
@@ -102,20 +105,19 @@ const Settings = () => {
         </div>
 
         <div className="application__info-item">
-          {company?.ClientCompanyBot.apiHash === undefined &&
-            company?.ClientCompanyBot !== undefined && (
-              <ExclamationCircleFilled
-                style={{
-                  color: "#c82121",
-                  fontSize: "20px",
-                  marginRight: "0.5rem",
-                }}
-              />
-            )}
+          {company?.ClientCompanysData.apiHash === null && (
+            <ExclamationCircleFilled
+              style={{
+                color: "#c82121",
+                fontSize: "20px",
+                marginRight: "0.5rem",
+              }}
+            />
+          )}
           API HASH:{" "}
           <span>
-            {!!company?.ClientCompanyBot.apiHash ? (
-              company?.ClientCompanyBot?.apiHash
+            {!!company?.ClientCompanysData.apiHash ? (
+              company?.ClientCompanysData?.apiHash
             ) : company?.ClientCompanysData === undefined ? (
               <Spin />
             ) : (
@@ -127,16 +129,15 @@ const Settings = () => {
 
       <div className="settings__template-wrapper">
         <div className="settings__template-text">
-          {company?.ClientMessageTemplates.name === undefined &&
-            company !== undefined && (
-              <CloseCircleFilled
-                style={{
-                  color: "#c82121",
-                  fontSize: "20px",
-                  marginRight: "0.5rem",
-                }}
-              />
-            )}
+          {company?.ClientCompanysData.selectTemplateId === null && (
+            <CloseCircleFilled
+              style={{
+                color: "#c82121",
+                fontSize: "20px",
+                marginRight: "0.5rem",
+              }}
+            />
+          )}
           Template:{" "}
           <span>
             {!!company?.ClientMessageTemplates.name ? (
@@ -151,12 +152,15 @@ const Settings = () => {
 
         <Button
           size="large"
-          onClick={() => navigate("/applications/templates", {
-            state: {
-              companyId: location?.state?.companyId,
-              selectTemplateId: company?.ClientCompanysData?.selectTemplateId,
-            },
-          })}
+          onClick={() =>
+            navigate("/applications/templates", {
+              state: {
+                companyId: location?.state?.companyId,
+                companyName: location?.state?.companyName,
+                selectTemplateId: company?.ClientCompanysData?.selectTemplateId,
+              },
+            })
+          }
           className="application__button--black"
         >
           Choose template
@@ -175,6 +179,7 @@ const Settings = () => {
           navigate("/applications/bot-settings", {
             state: {
               companyId: location?.state?.companyId,
+              companyName: location?.state?.companyName,
               apiId: company?.ClientCompanyBot?.apiId,
               apiHash: company?.ClientCompanyBot?.apiHash,
             },
@@ -201,13 +206,7 @@ const Settings = () => {
         Groups settings
       </Button>
 
-      <Button
-        block
-        danger
-        type="primary"
-        size="large"
-        onClick={DelCompany}
-      >
+      <Button block danger type="primary" size="large" onClick={DelCompany}>
         Delete company
       </Button>
 

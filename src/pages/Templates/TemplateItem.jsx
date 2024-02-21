@@ -5,7 +5,8 @@ import {
   PauseCircleFilled,
   PlayCircleFilled,
 } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { updateCompanyTemplate } from "../../services/apiAuthClient";
 
 function TemplateItem({
   companyId,
@@ -19,7 +20,18 @@ function TemplateItem({
   sendingAfterJoining,
   selectTemplateId,
 }) {
+  const location = useLocation();
   const navigate = useNavigate();
+
+  function selectTemplate(companyId, id) {
+    updateCompanyTemplate(companyId, id);
+    navigate("/applications/settings", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+      },
+    });
+  }
   return (
     <li className="application__item">
       <div className="application__item-left">
@@ -29,12 +41,12 @@ function TemplateItem({
       <div className="application__item-right">
         {id === selectTemplateId ? (
           <PauseCircleFilled
-            onClick={() => console.log("Stop")}
+            onClick={() => selectTemplate(companyId, null)}
             className="application__launch-icon"
           />
         ) : (
           <PlayCircleFilled
-            onClick={() => console.log("Play")}
+            onClick={() => selectTemplate(companyId, id)}
             className="application__launch-icon"
           />
         )}
@@ -43,6 +55,7 @@ function TemplateItem({
             navigate("info", {
               state: {
                 companyId: companyId,
+                templateId: id,
                 name: templateName,
                 text: text,
                 files: files,
