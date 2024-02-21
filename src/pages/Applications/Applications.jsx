@@ -27,6 +27,14 @@ const Applications = () => {
     setProgType(value);
   }
 
+  function createСompanyButton() {
+    userCompany === undefined
+      ? alert("imposible")
+      : userCompany?.length >= 10
+      ? alert("limit")
+      : navigate("new");
+  }
+
   const mainContent = (
     <>
       <Select
@@ -53,6 +61,7 @@ const Applications = () => {
                 isRunning={item.isRunning}
                 companyId={item.id}
                 botId={item.botId}
+                apiId={item.apiId}
                 selectTemplateId={item.selectTemplateId}
               />
             ))}
@@ -62,8 +71,8 @@ const Applications = () => {
   );
 
   const footerContent = (
-    <Button block type="primary" size="large" onClick={() => navigate("new")}>
-      Create company
+    <Button block type="primary" size="large" onClick={createСompanyButton}>
+      Create company ({userCompany?.length}/10)
     </Button>
   );
 

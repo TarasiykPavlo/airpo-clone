@@ -13,13 +13,14 @@ function CompanyItem({
   isRunning,
   companyId,
   botId,
+  apiId,
   selectTemplateId,
 }) {
   const navigate = useNavigate();
   return (
     <li className="application__item">
       <div className="application__item-left">
-        {!active || botId == null || selectTemplateId == null ? (
+        {!active || (botId === null && apiId === null) || selectTemplateId === null ? (
           <CloseCircleFilled className="application__stop-icon" />
         ) : (
           ""
@@ -29,7 +30,7 @@ function CompanyItem({
 
       <div className="application__item-right">
         <ExclamationCircleFilled className="application__error-icon" />
-        {!active || botId == null || selectTemplateId == null ? (
+        {!active || botId === null && apiId === null || selectTemplateId === null ? (
           <CloseCircleFilled className="application__stop-icon" />
         ) : isRunning ? (
           <PauseCircleFilled className="application__pause-icon" />

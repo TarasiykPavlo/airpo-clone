@@ -10,6 +10,7 @@ import { updateCompanyTemplate } from "../../services/apiAuthClient";
 
 function TemplateItem({
   companyId,
+  companyName,
   id,
   templateName,
   text,
@@ -29,6 +30,7 @@ function TemplateItem({
       state: {
         companyId: location?.state?.companyId,
         companyName: location?.state?.companyName,
+        templateName: templateName,
       },
     });
   }
@@ -55,6 +57,7 @@ function TemplateItem({
             navigate("info", {
               state: {
                 companyId: companyId,
+                companyName: companyName,
                 templateId: id,
                 name: templateName,
                 text: text,
@@ -63,6 +66,7 @@ function TemplateItem({
                 messageDelay: messageDelay,
                 mailingInterval: mailingInterval,
                 sendingAfterJoining: sendingAfterJoining,
+                selectTemplateId: selectTemplateId,
               },
             })
           }

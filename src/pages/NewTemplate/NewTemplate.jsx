@@ -5,7 +5,6 @@ import { Button, Upload } from "antd";
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import Input from "../../ui/Input/Input";
 import TextArea from "../../ui/TextArea";
-import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./NewTemplate.scss";
 import InputRange from "../../ui/InputRange/InputRange";
@@ -17,7 +16,6 @@ import {
 import { useUser } from "../../features/authentication/useUser";
 
 const NewTemplate = () => {
-  const moveBack = useMoveBack();
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useUser();
@@ -39,6 +37,15 @@ const NewTemplate = () => {
     if (!location?.state?.companyId) navigate("/applications");
   }, []);
 
+  function moveBackButton() {
+    navigate("/applications/templates", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+        selectTemplateId: location?.state?.selectTemplateId,
+      },
+    });
+  }
   function createTemplate() {
     createClientTemplate(
       user?.id,
@@ -163,13 +170,7 @@ const NewTemplate = () => {
         </Button>
       )}
       {!(location?.state.templateId === null) ? (
-        <Button
-          block
-          danger
-          type="primary"
-          size="large"
-          onClick={delTemplate}
-        >
+        <Button block danger type="primary" size="large" onClick={delTemplate}>
           Delete
         </Button>
       ) : (
@@ -179,7 +180,7 @@ const NewTemplate = () => {
       <Button
         block
         size="large"
-        onClick={moveBack}
+        onClick={moveBackButton}
         className="application__button--back"
       >
         Back

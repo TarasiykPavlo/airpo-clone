@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../features/authentication/useUser";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
-import { useMoveBack } from "../../hooks/useMoveBack";
 import TemplateItem from "./TemplateItem";
 import "./Templates.scss";
 import { useClientTemlates } from "../../features/authentication/useClientTemlatatesData";
@@ -15,11 +14,19 @@ const Templates = () => {
   const { data: temlates } = useClientTemlates(user?.id);
   const navigate = useNavigate();
   const location = useLocation();
-  const moveBack = useMoveBack();
 
   useEffect(() => {
     if (!location?.state?.companyId) navigate("/applications");
   }, []);
+
+  function moveBackButton() {
+    navigate("/applications/settings", {
+      state: {
+        companyId: location?.state?.companyId,
+        companyName: location?.state?.companyName,
+      },
+    });
+  }
 
   function createTemplateButton() {
     temlates === undefined
@@ -41,7 +48,9 @@ const Templates = () => {
           <TemplateItem
             key={item.id}
             companyId={location?.state?.companyId}
+            companyName={location?.state?.companyName}
             id={item.id}
+            apiId={item.apiId}
             templateName={item.name}
             text={item.text}
             files={item.files}
@@ -65,7 +74,7 @@ const Templates = () => {
       <Button
         block
         size="large"
-        onClick={moveBack}
+        onClick={moveBackButton}
         className="application__button--back"
       >
         Back
