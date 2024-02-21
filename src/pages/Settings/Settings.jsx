@@ -83,10 +83,21 @@ const Settings = () => {
         </div>
 
         <div className="application__info-item">
-          {company?.ClientCompanysData.apiId === null && (
+          {company?.ClientCompanysData.apiId === null &&
+          company?.ClientCompanysData.botId === null ? (
             <CloseCircleFilled
               style={{
                 color: "#c82121",
+                fontSize: "20px",
+                marginRight: "0.5rem",
+              }}
+            />
+          ) : company?.ClientCompanysData.botId === null ? (
+            ""
+          ) : (
+            <ExclamationCircleFilled
+              style={{
+                color: "#FFD700",
                 fontSize: "20px",
                 marginRight: "0.5rem",
               }}
@@ -95,20 +106,33 @@ const Settings = () => {
           API ID:{" "}
           <span>
             {!!company?.ClientCompanysData.apiId ? (
-              company?.ClientCompanysData?.apiId
+              location?.state?.apiId || company?.ClientCompanysData?.apiId
             ) : company?.ClientCompanysData === undefined ? (
               <Spin />
-            ) : (
+            ) : company?.ClientCompanysData.botId === null ? (
               "NOT SELECTED"
+            ) : (
+              "OUR APIID"
             )}
           </span>
         </div>
 
         <div className="application__info-item">
-          {company?.ClientCompanysData.apiHash === null && (
+          {company?.ClientCompanysData.apiHash === null &&
+          company?.ClientCompanysData.botId === null ? (
             <ExclamationCircleFilled
               style={{
                 color: "#c82121",
+                fontSize: "20px",
+                marginRight: "0.5rem",
+              }}
+            />
+          ) : company?.ClientCompanysData.botId === null ? (
+            ""
+          ) : (
+            <ExclamationCircleFilled
+              style={{
+                color: "#FFD700",
                 fontSize: "20px",
                 marginRight: "0.5rem",
               }}
@@ -117,11 +141,13 @@ const Settings = () => {
           API HASH:{" "}
           <span>
             {!!company?.ClientCompanysData.apiHash ? (
-              company?.ClientCompanysData?.apiHash
+              location?.state?.apiHash || company?.ClientCompanysData.apiHash
             ) : company?.ClientCompanysData === undefined ? (
               <Spin />
-            ) : (
+            ) : company?.ClientCompanysData.botId === null ? (
               "NOT SELECTED"
+            ) : (
+              "OUR APIHASH"
             )}
           </span>
         </div>
@@ -141,6 +167,7 @@ const Settings = () => {
           Template:{" "}
           <span>
             {!!company?.ClientMessageTemplates.name ? (
+              location?.state?.templateName ||
               company?.ClientMessageTemplates.name
             ) : company?.ClientMessageTemplates === undefined ? (
               <Spin />
@@ -180,8 +207,9 @@ const Settings = () => {
             state: {
               companyId: location?.state?.companyId,
               companyName: location?.state?.companyName,
-              apiId: company?.ClientCompanyBot?.apiId,
-              apiHash: company?.ClientCompanyBot?.apiHash,
+              apiId: company?.ClientCompanysData.apiId,
+              apiHash: company?.ClientCompanysData.apiHash,
+              botId: company?.ClientCompanysData.botId,
             },
           })
         }

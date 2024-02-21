@@ -8,6 +8,7 @@ import Input from "../../ui/Input/Input";
 import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./BotSettings.scss";
+import { updateCompanyBotData } from "../../services/apiAuthClient";
 
 const BotSettings = () => {
   const moveBack = useMoveBack();
@@ -16,17 +17,22 @@ const BotSettings = () => {
 
   const [apiId, setApiId] = useState(location.state?.apiId);
   const [apiHash, setApiHash] = useState(location.state?.apiHash);
+  const [botId, setBotId] = useState(location.state?.botId);
 
   function setNewApiIdAndApiHash() {
-    setApiId();
-    setApiHash();
+    setBotId(null);
+    updateCompanyBotData(location?.state?.companyId, apiId, apiHash);
   }
 
   function saveNewApiIdAndApiHash() {
+    setBotId(null);
+    updateCompanyBotData(location?.state?.companyId, apiId, apiHash);
     navigate("/applications/settings", {
       state: {
         companyId: location?.state?.companyId,
         companyName: location?.state?.companyName,
+        apiId: apiId,
+        apiHash: apiHash,
       },
     });
   }
@@ -42,7 +48,7 @@ const BotSettings = () => {
           <p className="bot-settings__input-label">API ID</p>
           <Input
             maxLength={18}
-            type="string"
+            type="number"
             value={apiId}
             placeholder="Empty  :("
             onChange={(e) => setApiId(e.target.value)}
@@ -60,7 +66,7 @@ const BotSettings = () => {
           />
         </div>
       </div>
-
+      <p>{botId ? "Our bot was connected!" : "Our bot is not connected"}</p>
       <p className="application__link" onClick={setNewApiIdAndApiHash}>
         Regenerate API ID, API HASH
       </p>

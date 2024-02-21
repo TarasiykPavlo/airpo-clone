@@ -32,7 +32,9 @@ export async function getClientInfoForProfile(userId) {
 export async function getCompanies(userId) {
   let { data: ClientCompanysData } = await supabase
     .from("ClientsCompanyBase")
-    .select("name, active, isRunning, id, progType, botId, selectTemplateId")
+    .select(
+      "name, active, isRunning, id, progType, botId, apiId, selectTemplateId"
+    )
     .match({ authId: userId });
   return ClientCompanysData;
 }
@@ -85,20 +87,18 @@ export async function createClientTemplate(
   mailingInterval,
   templateName
 ) {
-  await supabase
-    .from("ClientsMessageTemplates")
-    .insert({
-      authId: userId,
-      text: text,
-      files: files,
-      initialDelay: initialDelay,
-      messageDelay: messageDelay,
-      mailingInterval: mailingInterval,
-      name: templateName,
-    });
+  await supabase.from("ClientsMessageTemplates").insert({
+    authId: userId,
+    text: text,
+    files: files,
+    initialDelay: initialDelay,
+    messageDelay: messageDelay,
+    mailingInterval: mailingInterval,
+    name: templateName,
+  });
 }
 
-export async function delClientTemplate(templateId){
+export async function delClientTemplate(templateId) {
   await supabase.from("ClientsMessageTemplates").delete().eq("id", templateId);
 }
 
@@ -129,6 +129,19 @@ export async function updateCompanyTemplate(companyId, templateId) {
     .from("ClientsCompanyBase")
     .update({ selectTemplateId: templateId })
     .eq("id", companyId);
+}
+
+export async function updateCompanyBotData(companyId, apiId, apiHash) {
+  if (apiId) {
+    await supabase
+      .from("ClientsCompanyBase")
+      .update({ botId: null, apiId: apiId, apiHash: apiHash })
+      .eq("id", companyId);
+  }
+}
+
+export async function regenerateBotId(companyId) {
+  //Підключення до айпі Влада
 }
 
 export async function delClientCompany(companyId) {
