@@ -16,6 +16,7 @@ import "./NewApplication.scss";
 
 const NewApplication = () => {
   const navigate = useNavigate();
+  const link = "http://46.175.151.65:8000/api/send_telegram_code";
 
   const localData = JSON.parse(localStorage.getItem("newCompany"));
   const [companyName, setCompanyName] = useState(localData?.name || "");
@@ -30,7 +31,7 @@ const NewApplication = () => {
 
   async function postCompany(data) {
     try {
-      const response = await fetch("http://46.175.151.65:8000/api/start_api", {
+      const response = await fetch(link, {
         method: "POST",
         body: JSON.stringify(data),
       });
