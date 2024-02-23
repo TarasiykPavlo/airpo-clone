@@ -13,9 +13,12 @@ import { selectRegion, selectCategory } from "../../utils/constants";
 
 import "react-international-phone/style.css";
 import "./NewApplication.scss";
+import { useUser } from "../../features/authentication/useUser";
 
 const NewApplication = () => {
   const navigate = useNavigate();
+  const { user } = useUser();
+  const userId = user?.id
   const link = "http://46.175.151.65:8000/api/send_telegram_code";
 
   const localData = JSON.parse(localStorage.getItem("newCompany"));
@@ -37,11 +40,14 @@ const NewApplication = () => {
       });
       if (response.ok) {
         console.log("OK");
+        const responseData = await response.json(); // Преобразование ответа в JSON
+        console.log("Data received:", responseData);
       }
     } catch (error) {
       console.log(error);
     } finally {
       console.log("FINALLY!");
+
     }
   }
 
@@ -53,6 +59,7 @@ const NewApplication = () => {
       region,
       category,
       phone,
+      userId
     };
 
     console.log(companyData);
