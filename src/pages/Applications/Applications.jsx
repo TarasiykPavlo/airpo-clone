@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "antd";
 
 import { useUser } from "../../features/authentication/useUser";
@@ -15,17 +15,13 @@ import CompanyItem from "./CompanyItem";
 
 const Applications = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isSelectActive, setIsSelectActive] = useState(false);
 
   const { user } = useUser();
   const { data: userCompany } = useUserCompany(user.id);
-
-  const [progType, setProgType] = useState("Telegram");
-
-  function handleService(value) {
-    setProgType(value);
-  }
+  const [progType, setProgType] = useState(location?.state?.progType || "Telegram");
 
   function createСompanyButton() {
     userCompany === undefined
@@ -39,11 +35,11 @@ const Applications = () => {
     <>
       <Select
         autoFocus
-        defaultValue="Telegram"
+        defaultValue={progType}
         options={selectService}
         isActive={isSelectActive}
         setIsActive={setIsSelectActive}
-        onChange={handleService}
+        onChange={(e) => setProgType(e)}
         style={{ marginBottom: "3rem" }}
       />
 
