@@ -13,13 +13,10 @@ import { selectRegion, selectCategory } from "../../utils/constants";
 
 import "react-international-phone/style.css";
 import "./NewApplication.scss";
-import { useUser } from "../../features/authentication/useUser";
+import { postCompany } from "../../services/apiAplication";
 
 const NewApplication = () => {
   const navigate = useNavigate();
-  const { user } = useUser();
-  const userId = user?.id
-  const link = "http://46.175.151.65:8000/api/send_telegram_code";
 
   const localData = JSON.parse(localStorage.getItem("newCompany"));
   const [companyName, setCompanyName] = useState(localData?.name || "");
@@ -31,42 +28,6 @@ const NewApplication = () => {
   const [isSelectRegionActive, setIsSelectRegionActive] = useState(false);
   const [isSelectCategoryActive, setIsSelectCategoryActive] = useState(false);
   const [isNextHovered, setIsNextHovered] = useState(false);
-
-  async function postCompany(data) {
-    try {
-      const response = await fetch(link, {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        console.log("OK");
-        const responseData = await response.json(); // Преобразование ответа в JSON
-        console.log("Data received:", responseData);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      console.log("FINALLY!");
-
-    }
-  }
-
-  async function handleNext() {
-    if (!isPhoneValid) return;
-
-    const companyData = {
-      name: companyName,
-      region,
-      category,
-      phone,
-      userId
-    };
-
-    console.log(companyData);
-    await postCompany(companyData);
-    localStorage.setItem("newCompany", JSON.stringify(companyData));
-    navigate("/applications/new/phone-validation");
-  }
 
   const mainContent = (
     <>
@@ -142,7 +103,7 @@ const NewApplication = () => {
           block
           type="primary"
           size="large"
-          onClick={handleNext}
+          onClick={postCompany}
           onMouseEnter={() => setIsNextHovered(true)}
           onMouseLeave={() => setIsNextHovered(false)}
         >
