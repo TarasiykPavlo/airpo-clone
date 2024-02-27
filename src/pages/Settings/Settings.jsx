@@ -237,11 +237,18 @@ const Settings = () => {
       <Button block danger type="primary" size="large" onClick={DelCompany}>
         Delete company
       </Button>
-
+      
       <Button
         block
         size="large"
-        onClick={() => navigate("/applications")}
+        onClick={() =>
+          navigate("/applications", {
+            state: {
+              region: company?.ClientCompanysData.region,
+              progType: company?.ClientCompanysData.progType
+            },
+          })
+        }
         className="application__button--back"
       >
         Back

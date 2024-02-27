@@ -13,14 +13,13 @@ import { selectRegion, selectCategory } from "../../utils/constants";
 
 import "react-international-phone/style.css";
 import "./NewApplication.scss";
+//import { postResponseToLink } from "../../services/apiAplication";
 import { useUser } from "../../features/authentication/useUser";
 
 const NewApplication = () => {
   const navigate = useNavigate();
   const { user } = useUser();
-  const userId = user?.id
-  const link = "http://46.175.151.65:8000/api/send_telegram_code";
-
+  const userId = user.id;
   const localData = JSON.parse(localStorage.getItem("newCompany"));
   const [companyName, setCompanyName] = useState(localData?.name || "");
   const [region, setRegion] = useState(localData?.region || "");
@@ -32,26 +31,27 @@ const NewApplication = () => {
   const [isSelectCategoryActive, setIsSelectCategoryActive] = useState(false);
   const [isNextHovered, setIsNextHovered] = useState(false);
 
-  async function postCompany(data) {
-    try {
-      const response = await fetch(link, {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        console.log("OK");
-        const responseData = await response.json(); // Преобразование ответа в JSON
-        console.log("Data received:", responseData);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      console.log("FINALLY!");
-
-    }
+  async function postResponseToLink(data) {
+    const link = "http://46.175.151.65:8000/api/send_telegram_code";
+    
+    console.log(JSON.stringify(data));
+    await fetch(link, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log(response);
+        response.json().then((data) => console.log("Data received:", data));
+      })
+      .catch((error) => console.log(error));
   }
 
-  async function handleNext() {
+  async function postCompany() {
     if (!isPhoneValid) return;
 
     const companyData = {
@@ -59,11 +59,10 @@ const NewApplication = () => {
       region,
       category,
       phone,
-      userId
+      userId,
     };
 
-    console.log(companyData);
-    await postCompany(companyData);
+    await postResponseToLink(companyData);
     localStorage.setItem("newCompany", JSON.stringify(companyData));
     navigate("/applications/new/phone-validation");
   }
@@ -142,7 +141,7 @@ const NewApplication = () => {
           block
           type="primary"
           size="large"
-          onClick={handleNext}
+          onClick={postCompany}
           onMouseEnter={() => setIsNextHovered(true)}
           onMouseLeave={() => setIsNextHovered(false)}
         >
