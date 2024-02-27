@@ -13,11 +13,13 @@ import { selectRegion, selectCategory } from "../../utils/constants";
 
 import "react-international-phone/style.css";
 import "./NewApplication.scss";
-import { postCompany } from "../../services/apiAplication";
+//import { postResponseToLink } from "../../services/apiAplication";
+import { useUser } from "../../features/authentication/useUser";
 
 const NewApplication = () => {
   const navigate = useNavigate();
-
+  const { user } = useUser();
+  const userId = user.id;
   const localData = JSON.parse(localStorage.getItem("newCompany"));
   const [companyName, setCompanyName] = useState(localData?.name || "");
   const [region, setRegion] = useState(localData?.region || "");
@@ -28,6 +30,42 @@ const NewApplication = () => {
   const [isSelectRegionActive, setIsSelectRegionActive] = useState(false);
   const [isSelectCategoryActive, setIsSelectCategoryActive] = useState(false);
   const [isNextHovered, setIsNextHovered] = useState(false);
+
+  async function postResponseToLink(data) {
+    const link = "http://46.175.151.65:8000/api/send_telegram_code";
+    
+    console.log(JSON.stringify(data));
+    await fetch(link, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log(response);
+        response.json().then((data) => console.log("Data received:", data));
+      })
+      .catch((error) => console.log(error));
+  }
+
+  async function postCompany() {
+    if (!isPhoneValid) return;
+
+    const companyData = {
+      name: companyName,
+      region,
+      category,
+      phone,
+      userId,
+    };
+
+    await postResponseToLink(companyData);
+    localStorage.setItem("newCompany", JSON.stringify(companyData));
+    navigate("/applications/new/phone-validation");
+  }
 
   const mainContent = (
     <>
