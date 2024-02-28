@@ -1,42 +1,17 @@
-import { useNavigate } from "react-router-dom";
-
-export async function postResponseToLink(data) {
-  const link = "http://46.175.151.65:8000/api/send_telegram_code";
-
-  try {
-    const response = await fetch(link, {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify(data),
-    }).then((response) => {
-      const responseData = response.json(); // Преобразование ответа в JSON
-      console.log(response)
-      console.log("Data received:", responseData);
-    });
-    if (response.ok) {
-      console.log("OK");
-      const responseData = await response.json(); // Преобразование ответа в JSON
-      console.log("Data received:", responseData);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function postCompany(isPhoneValid) {
-  if (!isPhoneValid) return;
-  const navigate = useNavigate();
-
-  const companyData = {
-    name: companyName,
-    region,
-    category,
-    phone,
-    userId,
-  };
-
-  console.log(companyData);
-  await postResponseToLink(companyData);
-  localStorage.setItem("newCompany", JSON.stringify(companyData));
-  navigate("/applications/new/phone-validation");
+export async function postResponseToLink(data, link) {
+  console.log(JSON.stringify(data));
+  await fetch(link, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      console.log(response);
+      response.json().then((data) => console.log("Data received:", data));
+    })
+    .catch((error) => console.log(error));
 }
