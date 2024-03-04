@@ -44,7 +44,7 @@ const PhoneValidation = () => {
   async function handleOk() {
     if (!code.length) return;
 
-    const link = "http://46.175.151.65:8000/api/send_telegram_code";
+    const link = "http://46.175.151.65:8000/api/sign_in_with_code_in_telegram";
     const codeData = {
       phone: location?.state?.phone,
       code,
