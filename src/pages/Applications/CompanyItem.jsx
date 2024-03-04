@@ -19,10 +19,23 @@ function CompanyItem({
 }) {
   const navigate = useNavigate();
 
-  async function handlePlayandStop() {
+  async function handlePlay() {
     if (!active || (botId === null && apiId === null) || selectTemplateId === null) return;
   
-    const link = "http://46.175.151.65:8000/api/send_telegram_code";
+    const link = "http://46.175.151.65:8000/api/start_telegram_sending";
+    const codeData = {
+      companyId: companyId,
+      isRunning: isRunning
+    };
+  
+    await postResponseToLink(codeData, link);
+    navigate("/applications")
+  }
+
+  async function handleStop() {
+    if (!active || (botId === null && apiId === null) || selectTemplateId === null) return;
+  
+    const link = "http://46.175.151.65:8000/api/stop_telegram_sending";
     const codeData = {
       companyId: companyId,
       isRunning: isRunning
@@ -48,9 +61,9 @@ function CompanyItem({
         {!active || botId === null && apiId === null || selectTemplateId === null ? (
           <CloseCircleFilled className="application__stop-icon" />
         ) : isRunning ? (
-          <PauseCircleFilled className="application__pause-icon" onClick={handlePlayandStop} />
+          <PauseCircleFilled className="application__pause-icon" onClick={handleStop} />
         ) : (
-          <PlayCircleFilled className="application__launch-icon" onClick={handlePlayandStop} />
+          <PlayCircleFilled className="application__launch-icon" onClick={handlePlay} />
         )}
 
         <MoreOutlined
