@@ -301,9 +301,9 @@ export const selectCategory = [
 	},
 ];
 
-const domen = "http://46.175.151.65:8000"
+const domen = "https://api.ai-pro.company/"
 export const linksResponse = {
-	sendTelegramCode: domen + "/api/send_telegram_code",
-	startTelegramSending: domen + "/api/start_telegram_sending",
-	stopTelegramSending: domen + "/api/stop_telegram_sending"
+	sendTelegramCode: domen + "api/send_telegram_code",
+	startTelegramSending: domen + "api/start_telegram_sending",
+	stopTelegramSending: domen + "api/stop_telegram_sending"
 }
