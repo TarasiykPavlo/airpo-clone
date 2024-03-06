@@ -14,21 +14,27 @@ import "./Applications.scss";
 import CompanyItem from "./CompanyItem";
 
 const Applications = () => {
+  const LimitOfСompanies = 5;
+
   const navigate = useNavigate();
   const location = useLocation();
 
   const [isSelectActive, setIsSelectActive] = useState(false);
+  const [progType, setProgType] = useState(location?.state?.progType || "Telegram");
 
   const { user } = useUser();
   const { data: userCompany } = useUserCompany(user.id);
-  const [progType, setProgType] = useState(location?.state?.progType || "Telegram");
+  const onlyCompanyWithThisType = userCompany?.filter((company) => company.progType === progType);
 
   function createСompanyButton() {
+    if (progType != "Telegram") return navigate("/products")
+
     userCompany === undefined
       ? alert("imposible")
-      : userCompany?.length >= 10
+      : onlyCompanyWithThisType?.length >= LimitOfСompanies
       ? alert("limit")
       : navigate("new");
+
   }
 
   const mainContent = (
@@ -47,9 +53,7 @@ const Applications = () => {
 
       <section className="application__companies">
         <ul className="application__list">
-          {userCompany
-            ?.filter((company) => company.progType === progType)
-            ?.map((item) => (
+          {onlyCompanyWithThisType?.map((item) => (
               <CompanyItem
                 key={item.id}
                 companyName={item.name}
@@ -68,7 +72,7 @@ const Applications = () => {
 
   const footerContent = (
     <Button block type="primary" size="large" onClick={createСompanyButton}>
-      Create company ({userCompany?.length}/10)
+      Create company ({onlyCompanyWithThisType?.length}/{LimitOfСompanies})
     </Button>
   );
 

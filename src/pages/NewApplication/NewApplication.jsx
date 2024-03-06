@@ -9,7 +9,7 @@ import Input from "../../ui/Input/Input";
 import Select from "../../ui/Select/Select";
 
 import { validatePhone } from "../../utils/helpers";
-import { selectRegion, selectCategory } from "../../utils/constants";
+import { selectRegion, selectCategory, linksResponse } from "../../utils/constants";
 
 import "react-international-phone/style.css";
 import "./NewApplication.scss";
@@ -35,7 +35,6 @@ const NewApplication = () => {
   async function postCompany() {
     if (!isPhoneValid) return;
 
-    const link = "http://46.175.151.65:8000/api/send_telegram_code";
     const companyData = {
       name: companyName,
       region,
@@ -44,7 +43,7 @@ const NewApplication = () => {
       userId,
     };
 
-    await postResponseToLink(companyData, link);
+    var a = await postResponseToLink(companyData, linksResponse.sendTelegramCode);
     navigate("/applications/new/phone-validation", {
             state: {
               phone: phone,
