@@ -16,11 +16,11 @@ import {
 const Settings = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { data: company } = getCompanyData(location?.state?.companyId);
 
+  const { data: company } = getCompanyData(location?.state?.companyId);
   const [companyName, setCompanyName] = useState(location?.state?.companyName);
 
-  async function DelCompany() {
+  async function delCompany() {
     await delClientCompany(company?.ClientCompanysData.id);
     navigate("/applications");
   }
@@ -61,7 +61,7 @@ const Settings = () => {
         </div>
 
         <div className="application__info-item">
-          {company?.ClientCompanysData.active === null && (
+          {!company?.ClientCompanysData.active && (
             <CloseCircleFilled
               style={{
                 color: "#c82121",
@@ -76,6 +76,8 @@ const Settings = () => {
               <Spin />
             ) : company?.ClientCompanysData.active ? (
               "Active"
+            ) : company?.ClientCompanysData.isRunning ? (
+              "Running"
             ) : (
               "Disabled"
             )}
@@ -105,14 +107,14 @@ const Settings = () => {
           )}
           API ID:{" "}
           <span>
-            {!!company?.ClientCompanysData.apiId ? (
-              location?.state?.apiId || company?.ClientCompanysData?.apiId
-            ) : company?.ClientCompanysData === undefined ? (
+            {company?.ClientCompanysData === undefined ? (
               <Spin />
+            ) : !!company?.ClientCompanysData.apiId ? (
+              location?.state?.apiId || company?.ClientCompanysData?.apiId
             ) : company?.ClientCompanysData.botId === null ? (
               "NOT SELECTED"
             ) : (
-              "OUR APIID"
+              "OUR API ID"
             )}
           </span>
         </div>
@@ -140,14 +142,14 @@ const Settings = () => {
           )}
           API HASH:{" "}
           <span>
-            {!!company?.ClientCompanysData.apiHash ? (
-              location?.state?.apiHash || company?.ClientCompanysData.apiHash
-            ) : company?.ClientCompanysData === undefined ? (
+            {company?.ClientCompanysData === undefined ? (
               <Spin />
+            ) : !!company?.ClientCompanysData.apiHash ? (
+              location?.state?.apiHash || company?.ClientCompanysData.apiHash
             ) : company?.ClientCompanysData.botId === null ? (
               "NOT SELECTED"
             ) : (
-              "OUR APIHASH"
+              "OUR API HASH"
             )}
           </span>
         </div>
@@ -166,11 +168,11 @@ const Settings = () => {
           )}
           Template:{" "}
           <span>
-            {!!company?.ClientMessageTemplates.name ? (
+            {company?.ClientMessageTemplates === undefined ? (
+              <Spin />
+            ) : !!company?.ClientMessageTemplates.name ? (
               location?.state?.templateName ||
               company?.ClientMessageTemplates.name
-            ) : company?.ClientMessageTemplates === undefined ? (
-              <Spin />
             ) : (
               "NOT SELECTED"
             )}
@@ -234,10 +236,10 @@ const Settings = () => {
         Groups settings
       </Button>
 
-      <Button block danger type="primary" size="large" onClick={DelCompany}>
+      <Button block danger type="primary" size="large" onClick={delCompany}>
         Delete company
       </Button>
-      
+
       <Button
         block
         size="large"
@@ -245,7 +247,7 @@ const Settings = () => {
           navigate("/applications", {
             state: {
               region: company?.ClientCompanysData.region,
-              progType: company?.ClientCompanysData.progType
+              progType: company?.ClientCompanysData.progType,
             },
           })
         }

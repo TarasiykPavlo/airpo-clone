@@ -177,7 +177,6 @@ function ProfileCard() {
                 </tr>
               </thead>
               <tbody>
-                {/* change RefId to AuthIdRegistered from  ClientsReferralLogs table */}
                 {clientData?.ClientReferralLogs?.map((item) => (
                   <ProfileReferalsHistoryItem
                     key={Math.random()}

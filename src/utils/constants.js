@@ -304,6 +304,7 @@ export const selectCategory = [
 const domen = "https://api.ai-pro.company/"
 export const linksResponse = {
 	sendTelegramCode: domen + "api/send_telegram_code",
+	signInWithCodeInTelegram: domen + "api/sign_in_with_code_in_telegram",
 	startTelegramSending: domen + "api/start_telegram_sending",
 	stopTelegramSending: domen + "api/stop_telegram_sending"
 }
