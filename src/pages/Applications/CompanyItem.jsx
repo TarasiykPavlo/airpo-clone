@@ -6,7 +6,7 @@ import {
 	PlayCircleFilled,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { postResponseToLink } from "../../services/apiAplication";
+import { postResponseToLink } from "../../services/apiApplication";
 import { linksResponse } from "../../utils/constants";
 
 function CompanyItem({

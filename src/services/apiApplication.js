@@ -11,7 +11,11 @@ export async function postResponseToLink(data, link) {
   })
     .then((response) => {
       console.log(response);
-      response.json().then((data) => console.log("Data received:", data));
+      response.json().then((data) => {
+        console.log("Data received:", data);
+        const responsedata = data;
+        return responsedata;
+      });
     })
     .catch((error) => console.log(error));
 }

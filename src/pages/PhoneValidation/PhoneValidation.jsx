@@ -7,7 +7,8 @@ import Input from "../../ui/Input/Input";
 import { formatTimer } from "../../utils/helpers";
 
 import "./PhoneValidation.scss";
-import { postResponseToLink } from "../../services/apiAplication";
+import { postResponseToLink } from "../../services/apiApplication";
+import { linksResponse } from "../../utils/constants";
 
 const PhoneValidation = () => {
   const navigate = useNavigate();
@@ -44,15 +45,14 @@ const PhoneValidation = () => {
   async function handleOk() {
     if (!code.length) return;
 
-    const link = "http://46.175.151.65:8000/api/sign_in_with_code_in_telegram";
     const codeData = {
       phone: location?.state?.phone,
       code,
     };
 
-    await postResponseToLink(codeData, link);
+    const {status} = await postResponseToLink(codeData, linksResponse.signInWithCodeInTelegram);
 
-    if (code == 1111) setIsCodeApprove(true);
+    if (status == "susuccess") setIsCodeApprove(true);
     console.log(code);
   }
 

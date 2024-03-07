@@ -50,7 +50,7 @@ const BotSettings = () => {
             maxLength={18}
             type="number"
             value={apiId}
-            placeholder="Empty  :("
+            placeholder={!!botId ? "OUR API ID": "Empty  :("}
             onChange={(e) => setApiId(e.target.value)}
           />
         </div>
@@ -61,7 +61,7 @@ const BotSettings = () => {
             maxLength={25}
             type="string"
             value={apiHash}
-            placeholder="Empty  :("
+            placeholder={!!botId ? "OUR API HASH": "Empty  :("}
             onChange={(e) => setApiHash(e.target.value)}
           />
         </div>
