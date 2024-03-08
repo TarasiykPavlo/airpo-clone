@@ -27,9 +27,9 @@ const NewApplication = () => {
   const userId = user.id;
 
   const localData = JSON.parse(localStorage.getItem("newCompany"));
-  const [companyName, setCompanyName] = useState(localData?.name || "");
-  const [region, setRegion] = useState(localData?.region || "");
-  const [category, setCategory] = useState(localData?.category || "");
+  const [companyName, setCompanyName] = useState(localData?.name || "CompanyName");
+  const [region, setRegion] = useState(localData?.region || "EU");
+  const [category, setCategory] = useState(localData?.category || "IT");
   const [phone, setPhone] = useState("");
   const isPhoneValid = validatePhone(phone);
 
