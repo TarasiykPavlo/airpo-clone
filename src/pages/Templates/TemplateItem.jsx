@@ -44,7 +44,7 @@ function TemplateItem({
         {id === selectTemplateId ? (
           <PauseCircleFilled
             onClick={() => selectTemplate(companyId, null)}
-            className="application__launch-icon"
+            className="application__pause-icon"
           />
         ) : (
           <PlayCircleFilled

@@ -126,7 +126,7 @@ const NewTemplate = () => {
             value={messageInterval}
             setValue={setMessageInterval}
             min={0}
-            max={100}
+            max={60}
             step={1}
           />
         </div>
@@ -136,8 +136,8 @@ const NewTemplate = () => {
           <InputRange
             value={mailingDelay}
             setValue={setMailingDelay}
-            min={0}
-            max={100}
+            min={10}
+            max={120}
             step={1}
           />
         </div>
@@ -147,8 +147,8 @@ const NewTemplate = () => {
           <InputRange
             value={mailingStart}
             setValue={setMailingStart}
-            min={0}
-            max={500}
+            min={240}
+            max={600}
             step={5}
           />
         </div>
