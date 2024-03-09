@@ -51,7 +51,7 @@ const Settings = () => {
 					onClick={() => saveName(companyName)}
 					style={{ width: "5rem", padding: 0 }}
 				>
-					SAVE
+					OK
 				</Button>
 			</div>
 
