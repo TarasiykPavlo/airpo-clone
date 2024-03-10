@@ -33,13 +33,13 @@ const NewTemplate = () => {
   const [messageText, setMessageText] = useState(location?.state.text);
 
   const [messageInterval, setMessageInterval] = useState(
-    location?.state?.initialDelay || 0
+    location?.state?.initialDelay || 20
   );
   const [mailingDelay, setMailingDelay] = useState(
-    location?.state?.messageDelay || 25
+    location?.state?.messageDelay/60 || 60
   );
   const [mailingStart, setMailingStart] = useState(
-    location?.state?.mailingInterval || 360
+    location?.state?.mailingInterval/60 || 10
   );
   const [fileList, setFileList] = useState([]);
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -55,7 +55,10 @@ const NewTemplate = () => {
     setPreviewOpen(true);
     setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  function handleChange({ fileList: newFileList }){
+    setFileList(newFileList);
+    uploadFileToTemplate(newFileList, user.id, );
+  }
 
   useEffect(() => {
     if (!location?.state?.companyId) navigate("/applications");
@@ -76,8 +79,8 @@ const NewTemplate = () => {
       messageText,
       null,
       messageInterval,
-      mailingDelay,
-      mailingStart,
+      mailingDelay*60,
+      mailingStart*60,
       templateName
     );
     navigate("/applications/templates", {
@@ -104,8 +107,8 @@ const NewTemplate = () => {
       messageText,
       null,
       messageInterval,
-      mailingDelay,
-      mailingStart,
+      mailingDelay*60,
+      mailingStart*60,
       templateName
     );
     navigate("/applications/templates", {
@@ -180,24 +183,24 @@ const NewTemplate = () => {
         </div>
 
         <div className="ranges-container__row">
-          <p>Delay between mailings - {mailingDelay} sec</p>
+          <p>Delay between mailings - {mailingDelay} min</p>
           <InputRange
             value={mailingDelay}
             setValue={setMailingDelay}
-            min={10}
-            max={120}
-            step={1}
+            min={20}
+            max={360}
+            step={5}
           />
         </div>
 
         <div className="ranges-container__row">
-          <p>Start before mailing - {mailingStart} sec</p>
+          <p>Start before mailing - {mailingStart} min</p>
           <InputRange
             value={mailingStart}
             setValue={setMailingStart}
-            min={240}
-            max={600}
-            step={5}
+            min={0}
+            max={60}
+            step={1}
           />
         </div>
       </div>

@@ -94,7 +94,7 @@ function ProfileCard() {
 							className="btn-check"
 							block
 							style={{ display: "block" }}
-							//onClick={navigate("/applications")}
+							onClick={() => navigate("/applications")}
 						>
 							My applications
 						</Button>
@@ -118,17 +118,17 @@ function ProfileCard() {
 							</Button>
 						</ul>
 					</div>
-					{matches && (
+					{/* {matches && (
 						<Button
 							type="primary"
 							className="btn-check"
 							style={{ display: "block" }}
 							block
-							//onClick={navigate("/applications")}
+							onClick={() => navigate("/applications")}
 						>
 							My applications
 						</Button>
-					)}
+					)} */}
 				</div>
 			</div>
 
