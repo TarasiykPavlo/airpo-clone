@@ -1,4 +1,23 @@
-const ApplicationLayout = ({ title, mainContent, footerContent }) => {
+import { Spin } from "antd";
+
+const ApplicationLayout = ({ title, mainContent, footerContent, showSpin }) => {
+	if (showSpin) {
+		return (
+			<main className="application">
+				<span
+					style={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+					}}
+				>
+					<Spin size="large" />
+				</span>
+			</main>
+		);
+	}
+
 	return (
 		<main className="application">
 			<div>
