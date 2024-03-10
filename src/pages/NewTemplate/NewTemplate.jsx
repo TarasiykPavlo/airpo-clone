@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Upload } from "antd";
+import { Button, Modal, Upload } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import Input from "../../ui/Input/Input";
@@ -14,6 +14,15 @@ import {
   updateClientTemplate,
 } from "../../services/apiAuthClient";
 import { useUser } from "../../features/authentication/useUser";
+import { uploadFileToTemplate } from "../../services/apiAuth";
+
+const getBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 const NewTemplate = () => {
   const navigate = useNavigate();
@@ -32,6 +41,21 @@ const NewTemplate = () => {
   const [mailingStart, setMailingStart] = useState(
     location?.state?.mailingInterval || 360
   );
+  const [fileList, setFileList] = useState([]);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+
+  const handleCancel = () => setPreviewOpen(false);
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+  };
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
   useEffect(() => {
     if (!location?.state?.companyId) navigate("/applications");
@@ -94,6 +118,15 @@ const NewTemplate = () => {
 
   const mainContent = (
     <>
+    <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+        <img
+          alt="example"
+          style={{
+            width: '100%',
+          }}
+          src={previewImage}
+        />
+      </Modal>
       <Input
         placeholder="Enter name..."
         maxLength={20}
@@ -112,13 +145,28 @@ const NewTemplate = () => {
           marginBottom: "1rem",
         }}
       />
-
-      <Upload>
+      {console.log()}
+      <Upload
+      style={{color:"#f9fafb"}}
+        accept=".jpeg, .jpg"
+        action="https://run.mocky.io/v3/dc24de02-8bab-469b-b8b9-cdfa73d45260"
+        listType="picture"
+        // beforeUpload={() => {
+        //     return false;
+        //  }}
+        fileList={fileList}
+        onPreview={handlePreview}
+        onChange={handleChange}
+        onDownload={() => {console.log(fileList) 
+          //uploadFileToTemplate
+        }}
+      >
+        
         <Button block size="large" className="application__button--black">
           Click to Upload
         </Button>
       </Upload>
-
+        
       <div className="ranges-container">
         <div className="ranges-container__row">
           <p>Message sending interval - {messageInterval} sec</p>

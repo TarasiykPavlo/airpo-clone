@@ -93,7 +93,8 @@ function ProfileCard() {
 							type="primary"
 							className="btn-check"
 							block
-							onClick={navigate("/applications")}
+							style={{ display: "block" }}
+							//onClick={navigate("/applications")}
 						>
 							My applications
 						</Button>
@@ -123,7 +124,7 @@ function ProfileCard() {
 							className="btn-check"
 							style={{ display: "block" }}
 							block
-							onClick={navigate("/applications")}
+							//onClick={navigate("/applications")}
 						>
 							My applications
 						</Button>
