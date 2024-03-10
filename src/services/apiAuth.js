@@ -52,9 +52,9 @@ export async function logout() {
 	if (error) throw new Error(error.message);
 }
 
-export async function updateCurrentUserAvatar(props) {
-	const fileName = `avatar-${Math.random()}`;
-
+export async function updateCurrentUserAvatar({props, userId}) {
+	const fileName = `${userId}/avatar-${Math.random()}`;
+	
 	const { error: storageError } = await supabase.storage
 		.from("avatar")
 		.upload(fileName, props);
@@ -70,4 +70,28 @@ export async function updateCurrentUserAvatar(props) {
 
 	if (userError) throw new Error(userError.message);
 	return updatedUser;
+}
+///////////////////////////////////////
+export async function uploadFileToTemplate({file, userId, templateId}) {
+	const fileName = `${userId}/${templateId}/file-${Math.random()}`;
+
+	const { error: storageError } = await supabase.storage
+		.from("templates")
+		.upload(fileName, file, {
+  cacheControl: '3600',
+  upsert: false
+});
+
+	if (storageError) throw new Error(storageError.message);
+}
+
+export async function DelFileFromTemlate({file, userId, templateId}) {
+	const fileName = `${userId}/${templateId}/file-${Math.random()}`;
+
+	const { error: storageError } = await supabase.storage
+		.from("templates")
+		.upload(fileName, file, {
+  cacheControl: '3600',
+  upsert: false
+		});
 }

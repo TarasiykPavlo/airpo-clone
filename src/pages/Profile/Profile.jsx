@@ -21,6 +21,7 @@ function Profile() {
     avatar_url,
     full_name: fullName,
   } = user.user_metadata;
+  const userId = user.id
   const { updateUserAicoin } = useUpdateUserAicoin();
   const { updateUserAvatar, isUpdating } = useUpdateUserAvatar();
 
@@ -56,7 +57,9 @@ function Profile() {
                     accept="image/*"
                     disabled={isUpdating}
                     onChange={(e) => {
-                      updateUserAvatar(e.target.files[0]);
+                      var props = e.target.files[0];
+                      
+                      updateUserAvatar({props, userId});
                     }}
                   />
                   <label htmlFor="sendPhoto">
