@@ -191,6 +191,33 @@
 		border-radius: 0.8rem;
 		font-size: 1.6rem !important;
 	}
+
+	&__checkbox {
+		margin-left: 1rem;
+		font-size: 1.4rem !important;
+	}
+
+	&__link {
+		color: #24a1e0 !important;
+		font-size: 1.5rem !important;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	&__policy-list {
+		margin-top: 2rem;
+		padding: 0;
+		text-align: left;
+
+		h2 {
+			font-size: 2rem;
+		}
+	}
+
+	&__thanks {
+		margin: 2rem;
+		font-weight: 600;
+	}
 }
 
 @media screen and (max-width: 768px) {
