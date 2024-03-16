@@ -2,16 +2,17 @@ import { Button, Form, Input, Spin, message } from "antd";
 
 import { useSignup } from "./useSignup";
 import "../../pages/Auth/Auth.scss";
+import { useParams } from "react-router-dom";
 
 function SignupForm({ children }) {
   const { signup, isLoading } = useSignup();
-
+  const { refid } = useParams();
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const onFinish = ({ fullName, email, password }) => {
+  const onFinish = ({ refLink, fullName, email, password }) => {
     signup(
-      { fullName, email, password },
+      { refLink, fullName, email, password },
       {
         onSettled: () => form.resetFields(),
         onSuccess: () => {
@@ -37,8 +38,37 @@ function SignupForm({ children }) {
     <>
       {contextHolder}
 
-      <Form form={form} onFinish={onFinish} autoComplete="off">
+      <Form
+        form={form}
+        onFinish={
+          (e) =>
+            onFinish({
+              refid,
+              fullName: e.fullName,
+              email: e.email,
+              password: e.password,
+            })
+          //
+        }
+        autoComplete="off"
+      >
         {children}
+        {/* <Form.Item name="refLink" style={{ height: "0px", margin: 0 }}>
+          <Input
+            type="text"
+            value={refid}            
+            style={{
+              backgroundColor: "transparent",
+              color: "transparent",
+              border: "none",
+              outline: "none",
+              caretColor: "transparent",
+              fontSize: 0,
+              width: "100px", // Змініть на потрібне значення
+              height: "20px", // Змініть на потрібне значення
+            }}
+          />
+        </Form.Item> */}
 
         <Form.Item
           name="fullName"

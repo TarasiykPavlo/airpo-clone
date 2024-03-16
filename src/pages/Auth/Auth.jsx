@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "antd";
 
 import { authGoogle } from "../../services/apiAuth";
@@ -10,20 +10,22 @@ import "./Auth.scss";
 
 function Auth() {
   const navigate = useNavigate();
+  const { refid } = useParams();
+  const refLink = refid !== undefined? "/"+refid : "" 
 
   // when isActive === true -> signup form active
   const [isActive, setIsActive] = useState(
-    window.location.pathname === "/signup"
+    window.location.pathname === "/signup"+refLink
   );
 
   const handleLoginClick = () => {
     setIsActive(false);
-    navigate("/login", { replace: true });
+    navigate("/login"+refLink, { replace: true });
   };
 
   const handleRegisterClick = () => {
     setIsActive(true);
-    navigate("/signup", { replace: true });
+    navigate("/signup"+refLink, { replace: true });
   };
 
   return (

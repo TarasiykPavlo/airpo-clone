@@ -17,15 +17,22 @@ export async function authGoogle() {
   });
 }
 
-export async function signup({ fullName, email, password }) {
+export async function signup({ refLink, fullName, email, password }) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
         fullName,
+        refLink,
         aicoin: 0,
         avatar: "",
+      },
+      options: {
+        emailRedirectTo:
+          "https://ai-pro.company/login/" + refLink !== undefined
+            ? refLink
+            : "",
       },
     },
   });
