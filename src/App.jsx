@@ -58,7 +58,9 @@ function App() {
 					</Route>
 
 					<Route path="login" element={<Auth />} />
+					<Route path="login/:refid" element={<Auth />} />
 					<Route path="signup" element={<Auth />} />
+					<Route path="signup/:refid" element={<Auth />} />
 					<Route path="*" element={<PageNotFound />} />
 				</Routes>
 			</BrowserRouter>

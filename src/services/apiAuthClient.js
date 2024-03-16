@@ -155,6 +155,8 @@ export async function saveNameCompany(companyId, nameValue) {
     .eq("id", companyId);
 }
 
+export async function createRefForClient(){}
+
 export async function updateCurrentUserAicoin(aicoin) {
   if (typeof aicoin != Number) {
     const { data: updatedUser } = await supabase.auth.updateUser({

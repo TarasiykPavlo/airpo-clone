@@ -3,16 +3,17 @@ import { Button, Checkbox, Form, Input, Spin, Modal, message } from "antd";
 
 import { useSignup } from "./useSignup";
 import "../../pages/Auth/Auth.scss";
+import { useParams } from "react-router-dom";
 
 function SignupForm({ children }) {
-	const { signup, isLoading } = useSignup();
-
-	const [form] = Form.useForm();
-	const [messageApi, contextHolder] = message.useMessage();
+  const { signup, isLoading } = useSignup();
+  const { refid } = useParams();
+  const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
 	const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const onFinish = ({ fullName, email, password }) => {
+	const onFinish = ({ refLink, fullName, email, password }) => {
 		if (!isTermsAccepted) {
 			messageApi.open({
 				type: "error",
@@ -23,7 +24,7 @@ function SignupForm({ children }) {
 		}
 
 		signup(
-			{ fullName, email, password },
+			{ refLink, fullName, email, password },
 			{
 				onSettled: () => form.resetFields(),
 				onSuccess: () => {
@@ -59,8 +60,37 @@ function SignupForm({ children }) {
 		<>
 			{contextHolder}
 
-			<Form form={form} onFinish={onFinish} autoComplete="off">
-				{children}
+      <Form
+        form={form}
+        onFinish={
+          (e) =>
+            onFinish({
+              refid,
+              fullName: e.fullName,
+              email: e.email,
+              password: e.password,
+            })
+          //
+        }
+        autoComplete="off"
+      >
+        {children}
+        {/* <Form.Item name="refLink" style={{ height: "0px", margin: 0 }}>
+          <Input
+            type="text"
+            value={refid}            
+            style={{
+              backgroundColor: "transparent",
+              color: "transparent",
+              border: "none",
+              outline: "none",
+              caretColor: "transparent",
+              fontSize: 0,
+              width: "100px", // Змініть на потрібне значення
+              height: "20px", // Змініть на потрібне значення
+            }}
+          />
+        </Form.Item> */}
 
 				<Form.Item
 					name="fullName"
