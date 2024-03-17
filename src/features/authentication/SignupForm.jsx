@@ -13,7 +13,7 @@ function SignupForm({ children }) {
 	const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const onFinish = ({ refLink, fullName, email, password }) => {
+	const onFinish = (values) => {
 		if (!isTermsAccepted) {
 			messageApi.open({
 				type: "error",
@@ -23,8 +23,9 @@ function SignupForm({ children }) {
 			return;
 		}
 
-		signup(
-			{ refLink, fullName, email, password },
+		const returnedTarget = Object.assign({refLink: refid}, values);
+		console.log(returnedTarget);
+		signup(returnedTarget,
 			{
 				onSettled: () => form.resetFields(),
 				onSuccess: () => {
