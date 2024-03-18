@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, message } from "antd";
+import { Button, message, Popover } from "antd";
 import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
 
 import { useUser } from "../../features/authentication/useUser";
@@ -47,30 +47,44 @@ function ProfileCard() {
 				<div className="card__info">
 					<div className="card__main-info">
 						<div className="card__user-info">
-							<div className="title">Рersonal information</div>
-							<div id="name" className="card__text">
-								Name: {fullName}
+							<div className="card__user-content">
+								<div className="title">Рersonal information</div>
+								<div id="name" className="card__text">
+									Name: {fullName}
+								</div>
+								<div id="email" className="card__text">
+									Email: {user?.email}
+								</div>
 							</div>
-							<div id="email" className="card__text">
-								Email: {user?.email}
-							</div>
-							<ButtonForIcon
-								icon={
-									<InfoCircleOutlined
-										style={{
-											color: "#24A1E0",
-											position: "absolute",
-											top: "15px",
-											right: "15px",
-										}}
+							<div
+								style={{
+									display: "flex",
+									alignItems: "center",
+									top: "15px",
+									right: "15px",
+									position: "absolute",
+								}}
+							>
+								<Popover
+									content="Your personal data that you provided during registration."
+									trigger="click"
+								>
+									<ButtonForIcon
+										icon={
+											<InfoCircleOutlined
+												style={{
+													color: "#24A1E0",
+												}}
+											/>
+										}
 									/>
-								}
-							/>
+								</Popover>
+							</div>
 						</div>
 						<div className="ref-link">
 							Referral link:
 							<div className="link">{user?.id}</div>
-							<div className="ref-link-item">
+							<div className="popover-item">
 								<CopyOutlined
 									style={{
 										fontSize: "15px",
@@ -80,13 +94,18 @@ function ProfileCard() {
 										messageShow.info("Copy link!");
 									}}
 								/>
-								<ButtonForIcon
-									icon={
-										<InfoCircleOutlined
-											style={{ color: "#24A1E0", fontSize: "15px" }}
-										/>
-									}
-								/>
+								<Popover
+									content="Invite new users through your link and receive 10% in AiCoin, from each purchase by your invited users."
+									trigger="click"
+								>
+									<ButtonForIcon
+										icon={
+											<InfoCircleOutlined
+												style={{ color: "#24A1E0", fontSize: "15px" }}
+											/>
+										}
+									/>
+								</Popover>
 							</div>
 						</div>
 						<Button
@@ -147,18 +166,33 @@ function ProfileCard() {
 					<div className="card__main-info">
 						<div className="card__total-earnings">
 							Total earnings: <span>{aicoin} AiCoin</span>
-							<ButtonForIcon
-								icon={
-									<InfoCircleOutlined
-										style={{ color: "#24A1E0", fontSize: "15px" }}
+							<div
+								style={{
+									display: "flex",
+									alignItems: "center",
+									top: "1px",
+									right: "1px",
+									position: "absolute",
+								}}
+							>
+								<Popover
+									content="the total amount of AiCoin received by you from the new users invited by you for the whole period."
+									trigger="click"
+								>
+									<ButtonForIcon
+										icon={
+											<InfoCircleOutlined
+												style={{ color: "#24A1E0", fontSize: "15px" }}
+											/>
+										}
 									/>
-								}
-							/>
+								</Popover>
+							</div>
 						</div>
 						<div className="ref-link">
 							Referral link:
 							<div className="link">{user?.id}</div>
-							<div className="ref-link-item">
+							<div className="popover-item">
 								<CopyOutlined
 									style={{
 										fontSize: "15px",
@@ -168,13 +202,18 @@ function ProfileCard() {
 										messageShow.info("Copy link!");
 									}}
 								/>
-								<ButtonForIcon
-									icon={
-										<InfoCircleOutlined
-											style={{ color: "#24A1E0", fontSize: "15px" }}
-										/>
-									}
-								/>
+								<Popover
+									content="Invite new users through your link and receive 10% in AiCoin from each purchase by your invited users."
+									trigger="click"
+								>
+									<ButtonForIcon
+										icon={
+											<InfoCircleOutlined
+												style={{ color: "#24A1E0", fontSize: "15px" }}
+											/>
+										}
+									/>
+								</Popover>
 							</div>
 						</div>
 					</div>

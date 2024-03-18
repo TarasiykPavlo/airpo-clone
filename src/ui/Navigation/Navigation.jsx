@@ -48,7 +48,9 @@ function Navigation() {
 					<div className="user-info__balance">Вalance: {"0"} AiCoin</div>
 				</div>
 			</div>
-			<Menu.Item key="1">AiPro</Menu.Item>
+			<Menu.Item key="1">
+				<Link to="https://ai-pro.company/">AiPro</Link>
+			</Menu.Item>
 			<Menu.Item key="2">
 				<Link to={"/profile"}>My account</Link>
 			</Menu.Item>
@@ -93,10 +95,6 @@ function Navigation() {
 						defaultValue="En"
 						className="change-lang"
 						options={[
-							{
-								value: "Ua",
-								label: "Ua",
-							},
 							{
 								value: "En",
 								label: "En",
