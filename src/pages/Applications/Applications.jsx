@@ -15,7 +15,6 @@ import CompanyItem from "./CompanyItem";
 import { usePermissionsData } from "../../features/authentication/useClientPermissionsData";
 
 const Applications = () => {
-
   const navigate = useNavigate();
   const location = useLocation();
   const [messageShow, messageContext] = message.useMessage();
@@ -65,32 +64,43 @@ const Applications = () => {
 
       <section className="application__companies">
         <ul className="application__list">
-          {(onlySelectPermission?.length > 0) && onlyCompanyWithThisType?.map((item) => (
-            <CompanyItem
-              key={item.id}
-              companyName={item.name}
-              active={item.active}
-              isRunning={item.isRunning}
-              companyId={item.id}
-              botId={item.botId}
-              apiId={item.apiId}
-              selectTemplateId={item.selectTemplateId}
-            />
-          ))}
+          {onlySelectPermission?.length > 0 &&
+            onlyCompanyWithThisType?.map((item) => (
+              <CompanyItem
+                key={item.id}
+                companyName={item.name}
+                active={item.active}
+                isRunning={item.isRunning}
+                companyId={item.id}
+                botId={item.botId}
+                apiId={item.apiId}
+                selectTemplateId={item.selectTemplateId}
+              />
+            ))}
         </ul>
       </section>
     </>
   );
 
-  const footerContent = (
-    onlySelectPermission?.length !== 0? 
-    <Button block type="primary" size="large" onClick={createСompanyButton}>
-      Create company ({onlyCompanyWithThisType?.length}/{onlySelectPermission!==undefined?onlySelectPermission[0]?.LimitOfСompanies : 0})
-    </Button> :
-    <Button block type="primary" size="large" onClick={() => navigate("/products")}>
-    Buy Application
-  </Button>
-  );
+  const footerContent =
+    onlySelectPermission?.length === 0 ? (
+      <Button
+        block
+        type="primary"
+        size="large"
+        onClick={() => navigate("/products")}
+      >
+        Buy application
+      </Button>
+    ) : (
+      <Button block type="primary" size="large" onClick={createСompanyButton}>
+        Create company ({onlyCompanyWithThisType?.length}/
+        {onlySelectPermission !== undefined
+          ? onlySelectPermission[0]?.LimitOfСompanies
+          : 0}
+        )
+      </Button>
+    );
 
   return (
     <ApplicationLayout
