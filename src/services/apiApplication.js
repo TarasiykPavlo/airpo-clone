@@ -1,6 +1,6 @@
 export async function postResponseToLink(data, link) {
-	console.log(JSON.stringify(data));
-	await fetch(link, {
+	//console.log(JSON.stringify(data));
+	const response = await fetch(link, {
 		method: "POST",
 		mode: "cors",
 		headers: {
@@ -8,14 +8,9 @@ export async function postResponseToLink(data, link) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(data),
-	})
-		.then((response) => {
-			console.log(response);
-			response.json().then((data) => {
-				console.log("Data received:", data);
-				const responsedata = data;
-				return responsedata;
-			});
-		})
-		.catch((error) => console.log(error));
+	}).catch((error) => console.log(error));
+	const datafromresponse = await response.json()
+	//console.log("Data received:", data);
+	return datafromresponse;
+		
 }

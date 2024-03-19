@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { postResponseToLink } from "../../services/apiApplication";
 import { linksResponse } from "../../utils/constants";
+import { message } from "antd";
 
 function CompanyItem({
 	companyName,
@@ -19,6 +20,7 @@ function CompanyItem({
 	selectTemplateId,
 }) {
 	const navigate = useNavigate();
+	const [messageShow, messageContext] = message.useMessage();
 
 	const companyStatus =
 		!active || (botId === null && apiId === null) || selectTemplateId === null;
@@ -31,7 +33,11 @@ function CompanyItem({
 			isRunning: isRunning,
 		};
 
-		await postResponseToLink(codeData, link);
+		const {status} = await postResponseToLink(codeData, link);
+		console.log(status);
+		if(status == "ok") {
+			messageShow.success("API running");
+		}else messageShow.error("error");
 		navigate("/applications");
 	}
 
@@ -52,7 +58,7 @@ function CompanyItem({
 					{companyName}
 				</span>
 			</div>
-
+					{messageContext}
 			<div className="application__item-right">
 				<ExclamationCircleFilled className="application__error-icon" />
 				{companyStatus ? (
