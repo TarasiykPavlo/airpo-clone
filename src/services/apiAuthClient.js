@@ -36,7 +36,12 @@ export async function getCompanies(userId) {
       "name, active, isRunning, id, progType, botId, apiId, selectTemplateId"
     )
     .match({ authId: userId });
+
   return ClientCompanysData;
+}
+
+export async function selectClientsPermissions(userid){
+  return getData(userid, "ClientsPermissions", "progType,LimitOfСompanies,activatedUntil");
 }
 
 export async function getCompanyDataForSettings(companyId) {
@@ -167,6 +172,8 @@ export async function updateCurrentUserAicoin(aicoin) {
     return updatedUser;
   }
 }
+
+
 
 async function getData(id, from, select) {
   const { data } = await supabase.from(from).select(select).eq("authId", id);
