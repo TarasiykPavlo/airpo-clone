@@ -85,7 +85,7 @@ const Applications = () => {
   const footerContent = (
     onlySelectPermission?.length !== 0? 
     <Button block type="primary" size="large" onClick={createСompanyButton}>
-      Create company ({onlyCompanyWithThisType?.length}/{onlySelectPermission[0]?.LimitOfСompanies || 0})
+      Create company ({onlyCompanyWithThisType?.length}/{onlySelectPermission!==undefined?onlySelectPermission[0]?.LimitOfСompanies : 0})
     </Button> :
     <Button block type="primary" size="large" onClick={() => navigate("/products")}>
     Buy Application
