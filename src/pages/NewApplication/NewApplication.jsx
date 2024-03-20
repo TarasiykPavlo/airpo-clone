@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Tooltip, Spin } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { PhoneInput } from "react-international-phone";
@@ -122,8 +122,7 @@ const NewApplication = () => {
 	const footerContent = (
 		<>
 			<p className="new-application__footer-text">
-				Якщо у вас немає резервного акаунту телеграм - ви можете його{" "}
-				<span>купити на сайті</span>
+				Where to buy a telegram account? <NavLink to="/faq">FAQ</NavLink>
 			</p>
 
 			<Tooltip
@@ -159,8 +158,8 @@ const NewApplication = () => {
 		<ApplicationLayout
 			title="Create company"
 			mainContent={mainContent}
-      footerContent={footerContent}
-      showSpin={isLoading}
+			footerContent={footerContent}
+			showSpin={isLoading}
 		/>
 	);
 };
