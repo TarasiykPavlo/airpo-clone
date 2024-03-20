@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Spin } from "antd";
+import { Button, ConfigProvider, Modal, Spin } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
 import GroupItem from "../../ui/GroupItem";
@@ -7,11 +7,14 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./GroupsSettings.scss";
 import { useCompanyGroupsData } from "../../features/authentication/useCompanyGrupeData";
+import { useState } from "react";
 
 const GroupsSettings = () => {
   const moveBack = useMoveBack();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: groups } = useCompanyGroupsData(location?.state?.companyId);
 
@@ -23,6 +26,14 @@ const GroupsSettings = () => {
       },
     });
   }
+
+  const customModalRender = (node) => (
+    <div style={{ backgroundColor: "#1c1c1c" }}>{node}</div>
+  );
+
+  const closeModalWindow = () => {
+    setIsModalOpen(false);
+  };
 
   const mainContent = (
     <>
@@ -40,7 +51,7 @@ const GroupsSettings = () => {
 
         <div className="application__info-item">
           Total groups:{" "}
-          <span>{(groups === undefined) ? <Spin /> : groups?.length}</span>
+          <span>{groups === undefined ? <Spin /> : groups?.length}</span>
         </div>
       </div>
 
@@ -48,7 +59,12 @@ const GroupsSettings = () => {
 
       <div className="application__divider mb-3" />
 
-      <Button block size="large" className="application__button--black">
+      <Button
+        block
+        size="large"
+        className="application__button--black"
+        onClick={() => setIsModalOpen(true)}
+      >
         Add new group
       </Button>
 
@@ -67,12 +83,7 @@ const GroupsSettings = () => {
 
   const footerContent = (
     <>
-      <Button
-        block
-        type="primary"
-        size="large"
-        onClick={saveGroupsChange}
-      >
+      <Button block type="primary" size="large" onClick={saveGroupsChange}>
         Save
       </Button>
 
@@ -84,6 +95,21 @@ const GroupsSettings = () => {
       >
         Back
       </Button>
+      <Modal
+        title="Add new group"
+        open={isModalOpen}
+        onOk={closeModalWindow}
+        onCancel={closeModalWindow}
+        wrapClassName="custom-modal"
+        footer={[
+          <Button key="back" onClick={closeModalWindow}>
+            Clean
+          </Button>,
+          <Button key="submit" type="primary" onClick={closeModalWindow}>
+            Save
+          </Button>,
+        ]}
+      ></Modal>
     </>
   );
 
