@@ -5,15 +5,17 @@ import ProductCard from "./ProductCard/ProductCard";
 import { productCard } from "../../utils/constants";
 
 import "./Products.scss";
+import { usePermissionsData } from "../../features/authentication/useClientPermissionsData";
+import { useUser } from "../../features/authentication/useUser";
 
 function Products() {
+  const progType = ["Telegram"];
   const [checkedBtnMoonth, setCheckedBtnMoonth] = useState(3);
   const [currency, setCurrency] = useState("USD");
-  const [changeCardSide, setChangeCardSide] = useState(false);
+  const { user } = useUser();
+  const { data: PermissionsData } = usePermissionsData(user.id);
 
-  useEffect(() => {
-    setChangeCardSide(false);
-  }, [checkedBtnMoonth]);
+
 
   return (
     <ConfigProvider
@@ -97,12 +99,15 @@ function Products() {
           </div>
         </div>
         <div className="products__wrap">
-          <ProductCard
-            data={productCard[currency][checkedBtnMoonth]}
-            currency={currency}
-            changeCardSide={changeCardSide}
-            setChangeCardSide={setChangeCardSide}
-          />
+          {progType.map((e, index) => (
+            <ProductCard
+              key={index}
+              productProgType={e}
+              data={productCard[currency][checkedBtnMoonth]}
+              currency={currency}
+              PermissionsData={PermissionsData}
+            />
+          ))}
         </div>
       </div>
     </ConfigProvider>

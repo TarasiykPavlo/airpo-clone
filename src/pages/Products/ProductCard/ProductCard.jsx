@@ -3,10 +3,15 @@ import { Button, Select } from "antd";
 import { InstagramOutlined } from "@ant-design/icons";
 
 import check from "./../../../assets/check.svg";
+import TeleramIcon from "./../../../assets/TelegramIcon.png";
 
 import "./ProductCard.scss";
 
-function ProductCard({ data, currency, changeCardSide, setChangeCardSide }) {
+function ProductCard({ productProgType, data, currency, PermissionsData }) {
+  const onlySelectPermission = PermissionsData?.filter(
+    (permission) => permission.progType === productProgType
+  );
+  const [changeCardSide, setChangeCardSide] = useState(false);
   const [peopleCount, setPeopleCount] = useState("1-2");
 
   const currencyIcon =
@@ -34,12 +39,18 @@ function ProductCard({ data, currency, changeCardSide, setChangeCardSide }) {
           <div className="product-card__head">
             <div className="product-card__title">
               <div className="icon">
-                <InstagramOutlined />
+                {productProgType == "Telegram" ? (
+                  <img src={TeleramIcon} style={{ height: "25px" }} />
+                ) : (
+                  <InstagramOutlined />
+                )}
               </div>
-              <div className="product-card__name-product">Telegram</div>
+              <div className="product-card__name-product">
+                {productProgType}
+              </div>
             </div>
             <div className="product-card__subtitle">
-              Distributions in Telegram: simple, fast, effective!
+              Distributions in {productProgType}: simple, fast, effective!
             </div>
           </div>
           <div className="product-card__info-price">
@@ -88,14 +99,26 @@ function ProductCard({ data, currency, changeCardSide, setChangeCardSide }) {
               Persons
             </div>
           </div>
-          <Button
-            type="primary"
-            danger
-            className="product-card__btn-check-product purchased"
-            block
-          >
-            Purchased
-          </Button>
+          {onlySelectPermission == 0 ? (
+            <Button
+              type="primary"
+              danger
+              className="product-card__btn-check-product"
+              style={{ background: "#F98B25" }}
+              block
+            >
+              Buy now
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              danger
+              className="product-card__btn-check-product purchased"
+              block
+            >
+              Purchased
+            </Button>
+          )}
           <Button
             type="primary"
             className="product-card__btn-check-back-card"
@@ -105,10 +128,10 @@ function ProductCard({ data, currency, changeCardSide, setChangeCardSide }) {
           </Button>
           <div className="line"></div>
           <div className="product-card__subtext-info">
-            Send your distribution to Gmail in just two clicks! Forget about
-            hassles with settings - with us it’s simple, fast and effective.
-            Your message will reach your customers instantly, making your
-            communication as effective as possible.
+            Create Telegram mailing in just two clicks! Forget about the hassle
+            of settings - with us, it's easy, fast, and effective. Your messages
+            will reach customers instantly, making your communication highly
+            efficient.
           </div>
         </div>
       </div>
@@ -120,7 +143,9 @@ function ProductCard({ data, currency, changeCardSide, setChangeCardSide }) {
               <div className="icon">
                 <InstagramOutlined />
               </div>
-              <div className="product-card__name-product">Telegram</div>
+              <div className="product-card__name-product">
+                {productProgType}
+              </div>
             </div>
             <div className="product-card__subtitle">
               <p>
@@ -129,9 +154,9 @@ function ProductCard({ data, currency, changeCardSide, setChangeCardSide }) {
                 automated broadcasts!
               </p>
               <p>
-                Telegram is a vast ocean with fish, and we are confident to say
-                that we have created that very fishing rod that saves your time
-                and money.
+                {productProgType} is a vast ocean with fish, and we are
+                confident to say that we have created that very fishing rod that
+                saves your time and money.
               </p>
             </div>
           </div>
@@ -191,14 +216,27 @@ function ProductCard({ data, currency, changeCardSide, setChangeCardSide }) {
             </li>
           </ul>
           <div className="line"></div>
-          <Button
-            type="primary"
-            danger
-            className="product-card__btn-check-product"
-            block
-          >
-            Proceed to Payment
-          </Button>
+          {console.log(onlySelectPermission)}
+          {onlySelectPermission == 0 ? (
+            <Button
+              type="primary"
+              danger
+              className="product-card__btn-check-product"
+              style={{ background: "#F98B25" }}
+              block
+            >
+              Buy now
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              danger
+              className="product-card__btn-check-product"
+              block
+            >
+              Proceed to Payment
+            </Button>
+          )}
           <Button
             type="primary"
             className="product-card__btn-check-back-card"
