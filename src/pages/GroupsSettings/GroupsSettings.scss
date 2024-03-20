@@ -29,3 +29,12 @@
 		}
 	}
 }
+.custom-modal .ant-modal-title,
+.custom-modal .ant-modal-content {
+	background-color: #1c1c1c !important; /* Задаємо колір фону */
+  	color: white;
+}
+.custom-modal .ant-modal-footer{
+	display: flex;
+	justify-content: space-between;
+}
