@@ -17,7 +17,7 @@ import BotSettings from "./pages/BotSettings/BotSettings";
 import GroupsSettings from "./pages/GroupsSettings/GroupsSettings";
 import Templates from "./pages/Templates/Templates";
 import NewTemplate from "./pages/NewTemplate/NewTemplate";
-
+import FAQ from "./pages/FAQ/FAQ";
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
@@ -44,6 +44,7 @@ function App() {
 						<Route path="profile" element={<Profile />} />
 						<Route path="products" element={<Products />} />
 						<Route path="applications" element={<Applications />} />
+						<Route path="faq" element={<FAQ />} />
 						<Route path="applications/new" element={<NewApplication />} />
 						<Route
 							path="applications/new/phone-validation"
@@ -52,9 +53,15 @@ function App() {
 
 						<Route path="applications/settings" element={<Settings />} />
 						<Route path="applications/bot-settings" element={<BotSettings />} />
-						<Route path="applications/groups-settings" element={<GroupsSettings />} />
+						<Route
+							path="applications/groups-settings"
+							element={<GroupsSettings />}
+						/>
 						<Route path="applications/templates" element={<Templates />} />
-						<Route path="applications/templates/info" element={<NewTemplate />} />
+						<Route
+							path="applications/templates/info"
+							element={<NewTemplate />}
+						/>
 					</Route>
 
 					<Route path="login" element={<Auth />} />
