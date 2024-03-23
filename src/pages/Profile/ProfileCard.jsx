@@ -127,7 +127,7 @@ function ProfileCard() {
               style={{ display: "block", marginBottom: "1rem" }}
               onClick={() => navigate("/applications")}
             >
-              Applications
+              My products
             </Button>
           </div>
           <div className="card__pay">
