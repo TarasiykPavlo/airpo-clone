@@ -10,19 +10,22 @@ import bitcoin from "../../assets/bitcoin.svg";
 import {
 	ArrowLeftOutlined,
 	CaretDownOutlined,
+	CopyOutlined,
 	CreditCardOutlined,
 } from "@ant-design/icons";
-import { ConfigProvider, Select, theme } from "antd";
+import { ConfigProvider, Select, Typography, message, theme } from "antd";
 export default function Payment() {
-    const [product, setProduct] = useState()
-    const [peopleCount, setPeopleCount] = useState();
-    const [moonthCount, setMoonthCount] = useState();
+	const [product, setProduct] = useState();
+	const [peopleCount, setPeopleCount] = useState();
+	const [messageShow, messageContext] = message.useMessage();
+	const [moonthCount, setMoonthCount] = useState();
 	return (
 		<ConfigProvider
 			theme={{
 				algorithm: theme.darkAlgorithm,
 			}}
 		>
+			{messageContext}
 			<div className="payment">
 				<NavLink to={"/products"}>
 					<ArrowLeftOutlined /> Back
@@ -64,14 +67,14 @@ export default function Payment() {
 									},
 								]}
 							/>
-							{/* <div className="group-banks">
+							<div className="group-banks">
 								<button className="btn-bank paypal">
 									<img src={paypal} alt="paypal" /> PayPal
 								</button>
 								<button className="btn-bank wise">
 									<img src={wise} alt="wise" /> Wise
 								</button>
-							</div> */}
+							</div>
 						</div>
 						<div className="payment-product">
 							<h1 className="title">PRODUCT SELECTION</h1>
@@ -146,7 +149,27 @@ export default function Payment() {
 							<button className="buy-product">Pay</button>
 						</div>
 					</div>
-					<div className="payment-details"></div>
+					<div className="payment-details">
+						<h1 className="title">PRODUCT SELECTION</h1>
+						<div className="payment__product-info">
+							<p>Invoice for payments</p>
+							<Typography className="card-copy" size="small">
+								<pre>
+									4114 4437 0449 4885{" "}
+									<CopyOutlined
+										style={{
+											fontSize: "25px",
+										}}
+										onClick={() => {
+											navigator.clipboard.writeText("4114443704494885");
+											messageShow.info("Copy link!");
+										}}
+									/>
+								</pre>
+							</Typography>
+						</div>
+						<button className="buy-product">Check payment</button>
+					</div>
 				</div>
 			</div>
 		</ConfigProvider>
