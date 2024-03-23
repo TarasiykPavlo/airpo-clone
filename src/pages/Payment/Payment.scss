@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
     padding: 0px 50px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
     font-family: "Montserrat", sans-serif;
     margin-top: 100px;
 
@@ -14,7 +17,8 @@
         margin-top: 80px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
+        flex-direction: column;
 
         .buy-product {
             width: 100%;
@@ -61,6 +65,12 @@
 
                 .ant-select-selector {
                     font-size: 20px;
+
+                    border: none !important;
+                    box-shadow: none !important;
+                    width: 150px;
+
+
                     border: none;
                     background: none;
                 }
@@ -172,6 +182,36 @@
             }
         }
 
+        .payment-details {
+            display: flex;
+            margin-bottom: 50px;
+            margin-top: 50px;
+            flex-direction: column;
+            width: 550px;
+            justify-content: center;
+            align-items: flex-start;
+
+            .payment__product-info {
+                width: 100%;
+
+                p {
+                    font-size: 24px;
+                    font-weight: 400;
+                }
+
+                .card-copy {
+                    pre {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        font-family: "Nunito Sans", sans-serif;
+                        font-weight: 300;
+                        font-size: 32px;
+                        letter-spacing: 3px;
+                    }
+                }
+            }
+        }
     }
 
 
@@ -179,6 +219,9 @@
         color: #fff;
         text-decoration: none;
         font-weight: 400;
+        position: absolute;
+        top: 0;
+        left: 25px;
         font-size: 20px;
     }
 
@@ -226,9 +269,28 @@
 
 }
 
-@media screen and (max-width: 594px) {
+@media screen and (max-width: 615px) {
     .payment {
         padding: 0px 10px;
+
+        .payment-wrap {
+            align-items: center;
+            justify-content: center;
+
+            .payment-details {
+                width: auto;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+
+                .payment__product-info {
+                    .card-copy pre {
+                        font-size: 25px;
+                    }
+                }
+            }
+        }
+
     }
 
     .payment .payment-wrap .payment-method {
@@ -249,16 +311,32 @@
 }
 
 @media screen and (max-width: 480px) {
+    .payment {
+        .payment-wrap {
+            .payment-details {
+                .payment__product-info {
+                    .card-copy pre {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+    }
+
     .payment .payment-wrap {
         .title {
             font-size: 28px;
         }
+
         .payment__product-card {
             font-size: 17px;
+
             p {
                 font-size: 19px;
             }
         }
+
         .payment-method {
             .select-payment {
                 .ant-select-selector {
