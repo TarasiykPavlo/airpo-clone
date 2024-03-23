@@ -83,14 +83,26 @@ function ProfileCard() {
             </div>
             <div className="ref-link">
               Referral link:
-              <div className="link">{user?.id}</div>
+              <div
+                className="link"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    "https://ai-pro.company/" + user?.id
+                  );
+                  messageShow.info("Copy link!");
+                }}
+              >
+                {user?.id}
+              </div>
               <div className="popover-item">
                 <CopyOutlined
                   style={{
                     fontSize: "15px",
                   }}
                   onClick={() => {
-                    navigator.clipboard.writeText(user?.id);
+                    navigator.clipboard.writeText(
+                      "https://ai-pro.company/" + user?.id
+                    );
                     messageShow.info("Copy link!");
                   }}
                 />
@@ -112,10 +124,10 @@ function ProfileCard() {
               type="primary"
               className="btn-check"
               block
-              style={{ display: "block", marginBottom: "1rem"}}
+              style={{ display: "block", marginBottom: "1rem" }}
               onClick={() => navigate("/applications")}
             >
-              My applications
+              Applications
             </Button>
           </div>
           <div className="card__pay">
@@ -184,7 +196,7 @@ function ProfileCard() {
                 className="link"
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    "https://partners.ai-pro.company/" + user?.id
+                    "https://ai-pro.company/" + user?.id
                   );
                   messageShow.info("Copy link!");
                 }}

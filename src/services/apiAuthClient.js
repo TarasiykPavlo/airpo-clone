@@ -1,4 +1,5 @@
 import supabase from "./supabase";
+import supabaseP from "./supabasePartner";
 
 export async function getClientInfoForProfile(userId) {
   let ClientAicoinLogsData = await getData(
@@ -160,7 +161,60 @@ export async function saveNameCompany(companyId, nameValue) {
     .eq("id", companyId);
 }
 
-export async function createRefForClient(){}
+async function createRefForClient(authId, refLink){
+  const data = getData(authId, "ClientsReferralLogs", "refLink");
+  if (data.length == 0) {
+    await supabase.from("ClientsReferralLogs").insert({ authId: authId, refLink: refLink });
+  }
+}
+
+async function createRefForPartner(authId, refLink){
+  const data = supabaseP.from("RefRegLogs").select("refLink").eq("authId", authId);
+  if (data.length == 0) {
+    await supabase.from("RefRegLogs").insert({ clinetId: authId, refLink: refLink });
+  }
+}
+
+async function updateOrInsertPartnersAnalytical(refLink) {
+  const nowDate = new Date();
+	const month =
+		nowDate.getMonth() + 1 < 10
+			? "0" + (nowDate.getMonth() + 1)
+			: nowDate.getMonth() + 1;
+	const correctFormatDate =
+		nowDate.getFullYear() + "-" + month + "-" + nowDate.getDate();
+
+  const { data: selectPartnerId } = await supabaseP
+		.from("PartnersRefLinks")
+		.select("name")
+		.eq("refLink", refLink);
+
+	const { data: selectUniqueFromAnalitica } = await supabaseP
+		.from("PartnersAnalyticalTable")
+		.select("getClients")
+		.match({ date: correctFormatDate, name: selectPartnerId[0].name, partnerId: refLink, refLink: refLink });
+
+	if (selectUniqueFromAnalitica.length === 0) {
+		await supabaseP
+			.from("PartnersAnalyticalTable")
+			.insert({ refLink: refLink, name: selectPartnerId[0].name, partnerId: refLink, getClients: 1 });
+	} else {
+		await supabaseP
+			.from("PartnersAnalyticalTable")
+			.update({ unique: selectUniqueFromAnalitica[0].getClients + 1 })
+			.match({ date: correctFormatDate, partnerId: refLink, name: selectPartnerId[0].name, refLink: refLink });
+	}
+}
+
+
+export async function createRef(authId, refLink){
+  await createRefForClient(authId, refLink);
+  await createRefForPartner(authId, refLink);
+  await updateOrInsertPartnersAnalytical(refLink)
+  await supabase.auth.updateUser({
+    data: { refLink: undefined }
+  })
+}
 
 export async function updateCurrentUserAicoin(aicoin) {
   if (typeof aicoin != Number) {

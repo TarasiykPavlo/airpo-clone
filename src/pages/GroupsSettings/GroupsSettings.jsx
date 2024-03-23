@@ -282,6 +282,6 @@ const GroupsSettings = () => {
       footerContent={footerContent}
     />
   );
-};
+}}
 
 export default GroupsSettings;
