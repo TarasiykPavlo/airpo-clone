@@ -1,6 +1,7 @@
 import React from "react";
 import "./FAQ.scss";
 import { Collapse, ConfigProvider, theme } from "antd";
+import { NavLink } from "react-router-dom";
 export default function FAQ() {
 	return (
 		<ConfigProvider
@@ -70,6 +71,7 @@ export default function FAQ() {
 						showArrow={false}
 						header="2. What are companies?"
 						key="4"
+						id="whatCompany"
 					>
 						<p>
 							In the context of our service, a "company" represents a single
@@ -159,7 +161,8 @@ export default function FAQ() {
 						key="10"
 					>
 						<p>
-							Indicating the region and category when creating your company
+							Indicating the region and category when creating your{" "}
+							<a href="#whatCompany">company </a>
 							allows for more targeted distributions. It helps you better
 							understand and choose the audience you want to attract with your
 							messages. As a result, we can offer you a list of groups most

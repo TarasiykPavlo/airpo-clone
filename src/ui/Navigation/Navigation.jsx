@@ -53,16 +53,15 @@ function Navigation() {
 			<Menu.Item key="2">
 				<Link to={"/profile"}>My account</Link>
 			</Menu.Item>
-			<Menu.Item key="3">
-				<Link to={"/faq"}>FAQ</Link>
-			</Menu.Item>
 			<Menu.Item key="4">
 				<Link to={"/products"}>Shop</Link>
 			</Menu.Item>
 			<Menu.Item key="5">
 				<Link to={"/applications"}>My products</Link>
 			</Menu.Item>
-
+			<Menu.Item key="3">
+				<Link to={"/faq"}>FAQ</Link>
+			</Menu.Item>
 			<Menu.Item onClick={logout} key="6">
 				Logout
 			</Menu.Item>
