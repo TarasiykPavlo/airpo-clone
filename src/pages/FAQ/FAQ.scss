@@ -1,0 +1,66 @@
+.faq {
+    margin: 0px 50px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 50px;
+   
+   
+
+    .ant-collapse-content-box {
+
+        p {
+            font-size: 17px;
+        }
+    }
+}
+@media screen and (max-width: 775px) {
+   .faq {
+    h1 {
+        font-size: 35px;
+    }
+    .ant-collapse-header-text {
+        font-size: 20px;
+    }
+    .ant-collapse-content-box {
+        p {
+            font-size: 16px;
+        }
+    }
+   }
+}
+@media screen and (max-width: 695px) {
+    .faq {
+        h1 {
+            font-size: 30px;
+        }
+
+        .ant-collapse-header-text {
+            font-size: 17px;
+        }
+
+        .ant-collapse-content-box {
+            p {
+                font-size: 15px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 455px) {
+    .faq {
+        h1 {
+            font-size: 27px;
+        }
+
+        .ant-collapse-header-text {
+            font-size: 16px;
+        }
+
+        .ant-collapse-content-box {
+            p {
+                font-size: 15px;
+            }
+        }
+    }
+}
