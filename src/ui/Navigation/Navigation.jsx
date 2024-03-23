@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, ConfigProvider, Dropdown, Menu, Select, theme } from "antd";
 import { LeftOutlined, UserOutlined } from "@ant-design/icons";
-import SubMenu from "antd/es/menu/SubMenu";
 
 import { useUser } from "../../features/authentication/useUser";
 import { useLogout } from "../../features/authentication/useLogout";

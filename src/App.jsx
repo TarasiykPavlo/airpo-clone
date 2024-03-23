@@ -18,6 +18,7 @@ import GroupsSettings from "./pages/GroupsSettings/GroupsSettings";
 import Templates from "./pages/Templates/Templates";
 import NewTemplate from "./pages/NewTemplate/NewTemplate";
 import FAQ from "./pages/FAQ/FAQ";
+import Payment from "./pages/Payment/Payment";
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
@@ -43,6 +44,7 @@ function App() {
 						<Route index element={<Navigate replace to="profile" />} />
 						<Route path="profile" element={<Profile />} />
 						<Route path="products" element={<Products />} />
+						<Route path="payment" element={<Payment />} />
 						<Route path="applications" element={<Applications />} />
 						<Route path="faq" element={<FAQ />} />
 						<Route path="applications/new" element={<NewApplication />} />
