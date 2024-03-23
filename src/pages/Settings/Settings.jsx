@@ -200,14 +200,14 @@ const Settings = () => {
 
 	const footerContent = (
 		<>
-			<Button
+			{/* {company?.ClientCompanysData.active && (<Button
 				block
 				type="primary"
 				size="large"
 				onClick={() => navigate("/applications")}
 			>
 				Start
-			</Button>
+			</Button>)} */}
 
 			<Button
 				block

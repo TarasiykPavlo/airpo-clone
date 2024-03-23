@@ -57,19 +57,19 @@ function Navigation() {
 			{matches ? (
 				<>
 					<Menu.Item key="3">
-						<Link to={"/products"}>All applications</Link>
+						<Link to={"/products"}>Shop</Link>
 					</Menu.Item>
 					<Menu.Item key="4">
-						<Link to={"/applications"}>My applications</Link>
+						<Link to={"/applications"}>Applications</Link>
 					</Menu.Item>
 				</>
 			) : (
 				<SubMenu key="3" title="Application">
 					<Menu.Item key="3-3">
-						<Link to={"/products"}>All applications</Link>
+						<Link to={"/products"}>Shop</Link>
 					</Menu.Item>
 					<Menu.Item key="3-4">
-						<Link to={"/applications"}>My applications</Link>
+						<Link to={"/applications"}>Applications</Link>
 					</Menu.Item>
 				</SubMenu>
 			)}
