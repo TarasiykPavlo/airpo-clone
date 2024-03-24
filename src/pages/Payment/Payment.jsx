@@ -50,6 +50,7 @@ export default function Payment() {
 
     const { status } = await postResponseToLink(codeData, link);
     console.log(status);
+    navigate('/products')
   }
 
   return (
