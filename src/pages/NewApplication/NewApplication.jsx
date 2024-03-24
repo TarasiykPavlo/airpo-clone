@@ -111,8 +111,8 @@ const NewApplication = () => {
 					<ExclamationCircleFilled className="application__tip-icon" />
 
 					<p className="application__tip-text">
-						Не використовуйте свій основний акаунт телеграм, оскільки завжди є
-						ризики бану акаунта!
+						Do not use your main Telegram account, as there is always a risk of
+						account banning!
 					</p>
 				</div>
 			</div>
