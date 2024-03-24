@@ -261,15 +261,49 @@ export const selectService = [
 		value: "Telegram",
 		label: "Telegram",
 	},
-	{
-		value: "Viber",
-		label: "Viber",
-	},
-	{
-		value: "Gmail",
-		label: "Gmail",
-	},
+	// {
+	// 	value: "Viber",
+	// 	label: "Viber",
+	// },
+	// {
+	// 	value: "Gmail",
+	// 	label: "Gmail",
+	// },
 ];
+
+export const allPeopleCount = [
+	{
+		value: "1-2",
+		label: "1-2",
+	},
+	{
+		value: "3-4",
+		label: "3-4",
+	},
+	{
+		value: "5-9",
+		label: "5-9",
+	},
+]
+
+export const allMouthCount = [
+	{
+		value: "1",
+		label: "1",
+	},
+	{
+		value: "3",
+		label: "3",
+	},
+	{
+		value: "6",
+		label: "6",
+	},
+	{
+		value: "12",
+		label: "12",
+	},
+]
 
 export const selectRegion = [
 	{
@@ -306,5 +340,7 @@ export const linksResponse = {
 	sendTelegramCode: domen + "api/send_telegram_code",
 	signInWithCodeInTelegram: domen + "api/sign_in_with_code_in_telegram",
 	startTelegramSending: domen + "api/start_telegram_sending",
-	stopTelegramSending: domen + "api/stop_telegram_sending"
+	stopTelegramSending: domen + "api/stop_telegram_sending",
+	activate_app: domen + "api/activate_app",
+	regenerate_bot_id: domen + "api/regenerate_bot_id",
 }

@@ -9,6 +9,8 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./BotSettings.scss";
 import { updateCompanyBotData } from "../../services/apiAuthClient";
+import { linksResponse } from "../../utils/constants";
+import { postResponseToLink } from "../../services/apiApplication";
 
 const BotSettings = () => {
 	const moveBack = useMoveBack();
@@ -19,10 +21,20 @@ const BotSettings = () => {
 	const [apiHash, setApiHash] = useState(location.state?.apiHash);
 	const [botId, setBotId] = useState(location.state?.botId);
 
-	function setNewApiIdAndApiHash() {
-		setBotId(null);
-		updateCompanyBotData(location?.state?.companyId, apiId, apiHash);
-	}
+	// function setNewApiIdAndApiHash() {
+	// 	setBotId(null);
+	// 	updateCompanyBotData(location?.state?.companyId, apiId, apiHash);
+	// }
+	async function setNewApiIdAndApiHash() {
+		const link = linksResponse.regenerate_bot_id;
+	
+		const codeData = {
+		  companyId: location?.state?.companyId
+		};
+	
+		const { status } = await postResponseToLink(codeData, link);
+		console.log(status);
+	  }
 
 	function saveNewApiIdAndApiHash() {
 		setBotId(null);

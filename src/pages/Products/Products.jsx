@@ -104,6 +104,7 @@ function Products() {
               key={index}
               productProgType={e}
               data={productCard[currency][checkedBtnMoonth]}
+              checkedBtnMoonth={checkedBtnMoonth}
               currency={currency}
               PermissionsData={PermissionsData}
             />

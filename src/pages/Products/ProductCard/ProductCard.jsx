@@ -6,8 +6,10 @@ import check from "./../../../assets/check.svg";
 import TeleramIcon from "./../../../assets/TelegramIcon.png";
 
 import "./ProductCard.scss";
+import { useNavigate } from "react-router-dom";
 
-function ProductCard({ productProgType, data, currency, PermissionsData }) {
+function ProductCard({ productProgType, data, currency, PermissionsData, checkedBtnMoonth }) {
+  const navigate = useNavigate();
   const onlySelectPermission = PermissionsData?.filter(
     (permission) => permission.progType === productProgType
   );
@@ -106,6 +108,15 @@ function ProductCard({ productProgType, data, currency, PermissionsData }) {
               className="product-card__btn-check-product"
               style={{ background: "#F98B25" }}
               block
+              onClick={() =>
+                navigate("/payment", {
+                  state: {
+                    progType: productProgType,
+                    monthCount: checkedBtnMoonth,
+                    peopleCount: peopleCount
+                  },
+                })
+              }
             >
               Buy now
             </Button>
@@ -223,6 +234,15 @@ function ProductCard({ productProgType, data, currency, PermissionsData }) {
               danger
               className="product-card__btn-check-product"
               style={{ background: "#F98B25" }}
+              onClick={() =>
+                navigate("/payment", {
+                  state: {
+                    progType: productProgType,
+                    monthCount: data,
+                    peopleCount: peopleCount
+                  },
+                })
+              }
               block
             >
               Buy now
