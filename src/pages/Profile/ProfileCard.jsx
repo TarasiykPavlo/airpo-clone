@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, message, Popover } from "antd";
-import { InfoCircleOutlined, CopyOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined, CopyOutlined, LockOutlined } from "@ant-design/icons";
 
 import { useUser } from "../../features/authentication/useUser";
 import { useAuthClient } from "../../features/authentication/useClientDataForProfile";
@@ -10,6 +10,7 @@ import ButtonForIcon from "../../ui/ButtonForIcon";
 import ProfilePaymentsHistoryItem from "./ProfilePaymentsHistoryItem";
 import ProfileReferalsHistoryItem from "./ProfileReferralHistoryItem";
 import { formatDate } from "../../utils/helpers";
+import { usePermissionsData } from "../../features/authentication/useClientPermissionsData";
 
 function ProfileCard() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function ProfileCard() {
   const { user } = useUser();
   const { aicoin, full_name: fullName } = user.user_metadata;
   const { data: clientData } = useAuthClient(user.id);
+  const { data: PermissionsData } = usePermissionsData(user.id);
   const [activeButton, setActiveButton] = useState("personalBtn");
   const [messageShow, messageContext] = message.useMessage();
 
@@ -120,7 +122,18 @@ function ProfileCard() {
                 </Popover>
               </div>
             </div>
-            <Button
+            {PermissionsData !== undefined && PermissionsData.length == 0?
+            (<Button
+              type="primary"
+              className="btn-check"
+              block
+              style={{ display: "block", marginBottom: "1rem" }}
+              onClick={() => navigate("/products")}
+            >
+              Shop
+            </Button>)
+            :
+            (<Button
               type="primary"
               className="btn-check"
               block
@@ -128,7 +141,7 @@ function ProfileCard() {
               onClick={() => navigate("/applications")}
             >
               My products
-            </Button>
+            </Button>)}
           </div>
           <div className="card__pay">
             <div className="title">
@@ -144,9 +157,13 @@ function ProfileCard() {
                   value={item.aicoin}
                 />
               ))}
-              <Button type="primary" block>
+              {true? 
+               <Button type="primary" block style={{backgroundColor:"rgb(80 80 80)"}}>
+               <LockOutlined />
+             </Button>
+               :<Button type="primary" block>
                 Pay out
-              </Button>
+              </Button>}
             </ul>
           </div>
         </div>
@@ -210,7 +227,7 @@ function ProfileCard() {
                   }}
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      "https://partners.ai-pro.company/" + user?.id
+                      "https://ai-pro.company/" + user?.id
                     );
                     messageShow.info("Copy link!");
                   }}
