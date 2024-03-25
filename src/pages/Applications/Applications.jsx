@@ -48,23 +48,22 @@ const Applications = () => {
   }
 
   const [timer, setTimer] = useState(5);
-	const [isTImerOver, setIsTimerOver] = useState(false);
+  const [isTImerOver, setIsTimerOver] = useState(false);
 
-	useEffect(() => {
-		const t = setInterval(() => {
-			if (timer > 1) {
-				setTimer((prevTimer) => prevTimer - 1);
-			} else {
-				setIsTimerOver(true);
-				clearInterval(t);
-			}
-		}, 1000);
+  useEffect(() => {
+    const t = setInterval(() => {
+      if (timer > 1) {
+        setTimer((prevTimer) => prevTimer - 1);
+      } else {
+        setIsTimerOver(true);
+        clearInterval(t);
+      }
+    }, 1000);
 
+    // const t = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
 
-		// const t = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
-
-		return () => clearInterval(t);
-	}, [timer]);
+    return () => clearInterval(t);
+  }, [timer]);
 
   const mainContent = (
     <>
@@ -94,6 +93,7 @@ const Applications = () => {
                 botId={item.botId}
                 apiId={item.apiId}
                 selectTemplateId={item.selectTemplateId}
+                created_at={item.created_at}
               />
             ))}
         </ul>
@@ -111,17 +111,21 @@ const Applications = () => {
       >
         Buy application
       </Button>
-    ) : isTImerOver? (
+    ) : 
+    // !isTImerOver ? (
+    //   <Button block type="primary" size="large">
+    //     {timer} s
+    //   </Button>
+    // ) : 
+    (
       <Button block type="primary" size="large" onClick={createСompanyButton}>
         Create company ({onlyCompanyWithThisType?.length}/
         {onlySelectPermission !== undefined
           ? onlySelectPermission[0]?.LimitOfСompanies
           : 0}
         )
-      </Button>) : 
-      (<Button block type="primary" size="large">
-      {timer} s
-    </Button>);
+      </Button>
+    );
 
   return (
     <ApplicationLayout

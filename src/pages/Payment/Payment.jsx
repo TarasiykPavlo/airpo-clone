@@ -39,11 +39,13 @@ export default function Payment() {
   const [monthCount, setMoonthCount] = useState(
     location?.state?.monthCount || 3
   );
+  const selectSItem = allShopItem
+    ?.filter((permission) => permission.progType == product)
+    .filter((permission) => permission.countMonths == monthCount)
+    .filter((permission) => permission.countPersons == peopleCount)[0];
+  
   const [selectShopItem, setSelectShopItem] = useState(
-    allShopItem
-      ?.filter((permission) => permission.progType === product)
-      .filter((permission) => permission.countMonths === monthCount)
-      .filter((permission) => permission.countPersons === peopleCount)[0] || 0
+    allShopItem === undefined ? 0 : selectSItem
   );
   const [useCard, setUseCard] = useState("Card");
   const [messageShow, messageContext] = message.useMessage();
@@ -59,7 +61,8 @@ export default function Payment() {
 
     const { status } = await postResponseToLink(codeData, link);
     console.log(status);
-    navigate('/products')
+
+    (status == "ok" || status == "success")? navigate("/applications"): "" // Модальне вікно (Виникла помилка)
   }
   function updatePrice(progType_f, countMonths_f, countPersons_f) {
     for (let i = 0; i <= allShopItem.length - 1; i++) {
@@ -180,7 +183,7 @@ export default function Payment() {
                   Wise
                 </button>
               </div>*/}
-            </div> 
+            </div>
             <div className="payment-product">
               <h1 className="title">PRODUCT SELECTION</h1>
               <div className="payment__product-info">
@@ -222,7 +225,8 @@ export default function Payment() {
                 </div>
                 <hr />
                 <div className="payment__product-card bottom">
-                  Amount payable <p>${selectShopItem?.price}</p>
+                  Amount payable{" "}
+                  <p>${selectShopItem?.price || selectSItem?.price}</p>
                 </div>
               </div>
 

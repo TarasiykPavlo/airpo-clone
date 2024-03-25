@@ -10,8 +10,8 @@ function ProfileReferalsHistoryItem({ value, RefId }) {
             ? `Withdrawal: `
             : +value == 0
             ? `You have registered`
-            : `Income: +`}
-          {+value == 0 ? null : value}
+            : `Income + ${+value == 0 ? null : value}%`}
+          
         </span>
       </td>
     </tr>
