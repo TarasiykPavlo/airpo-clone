@@ -36,7 +36,7 @@ const NewTemplate = () => {
 		location?.state?.initialDelay || 20
 	);
 	const [mailingDelay, setMailingDelay] = useState(
-		location?.state?.messageDelay / 60 || 60
+		location?.state?.messageDelay / 60 || 300
 	);
 	const [mailingStart, setMailingStart] = useState(
 		location?.state?.mailingInterval / 60 || 10

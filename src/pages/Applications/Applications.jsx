@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, message } from "antd";
 
@@ -47,6 +47,25 @@ const Applications = () => {
       : navigate("new");
   }
 
+  const [timer, setTimer] = useState(5);
+	const [isTImerOver, setIsTimerOver] = useState(false);
+
+	useEffect(() => {
+		const t = setInterval(() => {
+			if (timer > 1) {
+				setTimer((prevTimer) => prevTimer - 1);
+			} else {
+				setIsTimerOver(true);
+				clearInterval(t);
+			}
+		}, 1000);
+
+
+		// const t = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+
+		return () => clearInterval(t);
+	}, [timer]);
+
   const mainContent = (
     <>
       {messageContext}
@@ -92,15 +111,17 @@ const Applications = () => {
       >
         Buy application
       </Button>
-    ) : (
+    ) : isTImerOver? (
       <Button block type="primary" size="large" onClick={createСompanyButton}>
         Create company ({onlyCompanyWithThisType?.length}/
         {onlySelectPermission !== undefined
           ? onlySelectPermission[0]?.LimitOfСompanies
           : 0}
         )
-      </Button>
-    );
+      </Button>) : 
+      (<Button block type="primary" size="large">
+      {timer} s
+    </Button>);
 
   return (
     <ApplicationLayout
