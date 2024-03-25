@@ -34,7 +34,7 @@ function Profile() {
 	}, [aicoin]);
 
 	if (refLink !== undefined) {
-		//createRef(userId, refLink);
+		createRef(userId, refLink);
 	}
 
 	return (

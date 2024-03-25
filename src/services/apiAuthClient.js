@@ -1,5 +1,5 @@
 import supabase from "./supabase";
-import supabaseP from "./supabasePartner";
+//import supabaseP from "./supabasePartner";
 
 export async function getClientInfoForProfile(userId) {
   let ClientAicoinLogsData = await getData(
@@ -34,7 +34,7 @@ export async function getCompanies(userId) {
   let { data: ClientCompanysData } = await supabase
     .from("ClientsCompanyBase")
     .select(
-      "name, active, isRunning, id, progType, botId, apiId, selectTemplateId"
+      "name, active, isRunning, id, progType, botId, apiId, selectTemplateId, created_at"
     )
     .match({ authId: userId });
 
@@ -162,9 +162,9 @@ export async function saveNameCompany(companyId, nameValue) {
 }
 
 async function createRefForClient(authId, refLink){
-  const data = getData(authId, "ClientsReferralLogs", "refLink");
+  const {data} = await supabase.from("ClientsReferralLogs").select("authId").eq("authIdRegistered", authId);
   if (data.length == 0) {
-    await supabase.from("ClientsReferralLogs").insert({ authId: authId, refLink: refLink });
+    await supabase.from("ClientsReferralLogs").insert({ authIdRegistered: authId, authId: refLink });
   }
 }
 
@@ -209,8 +209,8 @@ async function updateOrInsertPartnersAnalytical(refLink) {
 
 export async function createRef(authId, refLink){
   await createRefForClient(authId, refLink);
-  await createRefForPartner(authId, refLink);
-  await updateOrInsertPartnersAnalytical(refLink)
+  //await createRefForPartner(authId, refLink);
+  //await updateOrInsertPartnersAnalytical(refLink)
   await supabase.auth.updateUser({
     data: { refLink: undefined }
   })

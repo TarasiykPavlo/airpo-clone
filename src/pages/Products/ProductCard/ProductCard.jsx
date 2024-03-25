@@ -227,7 +227,7 @@ function ProductCard({ productProgType, data, currency, PermissionsData, checked
             </li>
           </ul>
           <div className="line"></div>
-          {console.log(onlySelectPermission)}
+          
           {onlySelectPermission == 0 ? (
             <Button
               type="primary"
