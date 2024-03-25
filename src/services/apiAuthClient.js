@@ -228,6 +228,13 @@ export async function updateCurrentUserAicoin(aicoin) {
 }
 
 
+export async function selectShopItems() {
+  let { data: ShopItems } = await supabase
+    .from("OurShopBase")
+    .select("*");
+
+  return ShopItems;
+}
 
 async function getData(id, from, select) {
   const { data } = await supabase.from(from).select(select).eq("authId", id);

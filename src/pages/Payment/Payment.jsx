@@ -22,11 +22,14 @@ import {
 } from "../../utils/constants";
 import { useUser } from "../../features/authentication/useUser";
 import { postResponseToLink } from "../../services/apiApplication";
+import { useShopItems } from "../../features/authentication/useShopItems";
 
 export default function Payment() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useUser();
+  const { data: allShopItem } = useShopItems();
+
   const [product, setProduct] = useState(
     location?.state?.progType || "Telegram"
   );
@@ -36,7 +39,13 @@ export default function Payment() {
   const [monthCount, setMoonthCount] = useState(
     location?.state?.monthCount || 3
   );
-  const [useCard, setUseCard] = useState("");
+  const [selectShopItem, setSelectShopItem] = useState(
+    allShopItem
+      ?.filter((permission) => permission.progType === product)
+      .filter((permission) => permission.countMonths === monthCount)
+      .filter((permission) => permission.countPersons === peopleCount)[0] || 0
+  );
+  const [useCard, setUseCard] = useState("Card");
   const [messageShow, messageContext] = message.useMessage();
 
   async function addPermission() {
@@ -51,6 +60,17 @@ export default function Payment() {
     const { status } = await postResponseToLink(codeData, link);
     console.log(status);
     navigate('/products')
+  }
+  function updatePrice(progType_f, countMonths_f, countPersons_f) {
+    for (let i = 0; i <= allShopItem.length - 1; i++) {
+      if (
+        allShopItem[i].progType == progType_f &&
+        allShopItem[i].countMonths == countMonths_f &&
+        allShopItem[i].countPersons == countPersons_f
+      ) {
+        setSelectShopItem(allShopItem[i]);
+      }
+    }
   }
 
   return (
@@ -70,11 +90,7 @@ export default function Payment() {
               <h1 className="title">PAYMENT METHOD</h1>
               <button
                 className={"payment-card"}
-                style={
-                  useCard == "Card"
-                    ? { backgroundColor: "#3949a9"}
-                    : {}
-                }
+                style={useCard == "Card" ? { backgroundColor: "#3949a9" } : {}}
                 onClick={() => setUseCard("Card")}
               >
                 <div>
@@ -118,9 +134,7 @@ export default function Payment() {
               <button
                 className={"payment-card"}
                 style={
-                  useCard == "Bitcoin"
-                    ? { backgroundColor: "#3949a9" }
-                    : {}
+                  useCard == "Bitcoin" ? { backgroundColor: "#3949a9" } : {}
                 }
                 onClick={() => setUseCard("Bitcoin")}
               >
@@ -136,7 +150,7 @@ export default function Payment() {
                   ₿ Cryptocurrency
                 </div>
               </button>
-              <div className="group-banks">
+              {/* <div className="group-banks">
                 <button
                   className="btn-bank paypal"
                   style={
@@ -165,8 +179,8 @@ export default function Payment() {
                   />{" "}
                   Wise
                 </button>
-              </div>
-            </div>
+              </div>*/}
+            </div> 
             <div className="payment-product">
               <h1 className="title">PRODUCT SELECTION</h1>
               <div className="payment__product-info">
@@ -175,7 +189,10 @@ export default function Payment() {
                   <Select
                     defaultValue={product}
                     className="product-card__change-person"
-                    onChange={(e) => setProduct(e)}
+                    onChange={(e) => {
+                      setProduct(e);
+                      updatePrice(e, monthCount, peopleCount);
+                    }}
                     options={selectService}
                   />
                 </div>
@@ -184,7 +201,10 @@ export default function Payment() {
                   <Select
                     defaultValue={peopleCount}
                     className="product-card__change-person"
-                    onChange={(e) => setPeopleCount(e)}
+                    onChange={(e) => {
+                      setPeopleCount(e);
+                      updatePrice(product, monthCount, e);
+                    }}
                     options={allPeopleCount}
                   />
                 </div>
@@ -193,13 +213,16 @@ export default function Payment() {
                   <Select
                     defaultValue={monthCount}
                     className="product-card__change-person"
-                    onChange={(e) => setMoonthCount(e)}
+                    onChange={(e) => {
+                      setMoonthCount(e);
+                      updatePrice(product, e, peopleCount);
+                    }}
                     options={allMouthCount}
                   />
                 </div>
                 <hr />
                 <div className="payment__product-card bottom">
-                  Amount payable <p>$100.00</p>
+                  Amount payable <p>${selectShopItem?.price}</p>
                 </div>
               </div>
 
