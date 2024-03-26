@@ -30,8 +30,8 @@ const NewApplication = () => {
   const [companyName, setCompanyName] = useState(
     localData?.name || "CompanyName"
   );
-  const [region, setRegion] = useState(localData?.region || "EU");
-  const [category, setCategory] = useState(localData?.category || "IT");
+  const [region, setRegion] = useState(localData?.region || selectRegion[0].label);
+  const [category, setCategory] = useState(localData?.category || selectCategory[0].label);
   const [phone, setPhone] = useState("");
   const isPhoneValid = validatePhone(phone);
 

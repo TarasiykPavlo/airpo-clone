@@ -56,7 +56,7 @@ const PhoneValidation = () => {
 		);
 
 		if (status == "susuccess") setIsCodeApprove(true);
-		console.log(code);
+		(status == "ok" || status == "success")? navigate("/applications"): "" // Модальне вікно (Виникла помилка)
 	}
 
 	function handleCompaniesButton() {

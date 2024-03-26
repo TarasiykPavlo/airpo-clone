@@ -143,6 +143,11 @@ export async function updateCompanyBotData(companyId, apiId, apiHash) {
       .from("ClientsCompanyBase")
       .update({ botId: null, apiId: apiId, apiHash: apiHash })
       .eq("id", companyId);
+  } else {
+    await supabase
+      .from("ClientsCompanyBase")
+      .update({ botId: null, apiId: null, apiHash: null })
+      .eq("id", companyId);
   }
 }
 

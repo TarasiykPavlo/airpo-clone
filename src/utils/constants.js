@@ -307,32 +307,20 @@ export const allMouthCount = [
 
 export const selectRegion = [
 	{
-		value: "eu",
-		label: "EU",
-	},
-	{
-		value: "na",
-		label: "NA",
-	},
-	{
-		value: "sa",
-		label: "SA",
-	},
+		value: "UA",
+		label: "UA",
+	}
 ];
 
 export const selectCategory = [
 	{
-		value: "it",
-		label: "IT",
+		value: "Technologies",
+		label: "Technologies",
 	},
 	{
-		value: "automation",
-		label: "Automation",
-	},
-	{
-		value: "network",
-		label: "Network",
-	},
+		value: "NewsAndMedia",
+		label: "News and media",
+	}
 ];
 
 const domen = "https://api.ai-pro.company/"
