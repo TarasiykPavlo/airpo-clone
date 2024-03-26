@@ -18,8 +18,8 @@ const GroupsSettings = () => {
 	const moveBack = useMoveBack();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [region, setRegion] = useState("EU");
-	const [category, setCategory] = useState("IT");
+	const [region, setRegion] = useState(selectRegion[0].label);
+	const [category, setCategory] = useState(selectCategory[0].label);
 	const [
 		isModalOpenChangeCategoryOrRegion,
 		setIsModalOpenChangeCategoryOrRegion,

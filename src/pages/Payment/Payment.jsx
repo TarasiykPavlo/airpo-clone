@@ -60,7 +60,6 @@ export default function Payment() {
     };
 
     const { status } = await postResponseToLink(codeData, link);
-    console.log(status);
 
     (status == "ok" || status == "success")? navigate("/applications"): "" // Модальне вікно (Виникла помилка)
   }

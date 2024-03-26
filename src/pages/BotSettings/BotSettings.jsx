@@ -33,7 +33,13 @@ const BotSettings = () => {
 		};
 	
 		const { status } = await postResponseToLink(codeData, link);
-		console.log(status);
+		//console.log(status);
+		(status == "ok" || status == "success")? navigate("/applications/settings", {
+			state: {
+				companyId: location?.state?.companyId,
+				companyName: location?.state?.companyName,
+			},
+		}) : "" // Модальне вікно (Виникла помилка)
 	  }
 
 	function saveNewApiIdAndApiHash() {
@@ -43,8 +49,6 @@ const BotSettings = () => {
 			state: {
 				companyId: location?.state?.companyId,
 				companyName: location?.state?.companyName,
-				apiId: apiId,
-				apiHash: apiHash,
 			},
 		});
 	}
@@ -63,7 +67,8 @@ const BotSettings = () => {
 						type="number"
 						value={apiId}
 						placeholder={!!botId ? "OUR API ID" : "Empty  :("}
-						onChange={(e) => setApiId(e.target.value)}
+						onChange={(e) => setApiId(parseInt(e.target.value, 10))}
+						
 					/>
 				</div>
 
