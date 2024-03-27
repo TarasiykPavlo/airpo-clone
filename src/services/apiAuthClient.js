@@ -41,8 +41,12 @@ export async function getCompanies(userId) {
   return ClientCompanysData;
 }
 
-export async function selectClientsPermissions(userid){
-  return getData(userid, "ClientsPermissions", "progType,LimitOfСompanies,activatedUntil");
+export async function selectClientsPermissions(userid) {
+  return getData(
+    userid,
+    "ClientsPermissions",
+    "progType,LimitOfСompanies,activatedUntil"
+  );
 }
 
 export async function getCompanyDataForSettings(companyId) {
@@ -166,59 +170,95 @@ export async function saveNameCompany(companyId, nameValue) {
     .eq("id", companyId);
 }
 
-async function createRefForClient(authId, refLink){
-  const {data} = await supabase.from("ClientsReferralLogs").select("authId").eq("authIdRegistered", authId);
+export async function createGroupinCompany(
+  companyId,
+  name,
+  tag,
+  priority,
+  region,
+  сategories
+) {
+  //console.log({companyId, name, tag, priority, region, сategories});
+  await supabase
+    .from("ClientsCompanyGroupsBase")
+    .insert({ companyId, name, tag, priority, region, сategories });
+}
+
+async function createRefForClient(authId, refLink) {
+  const { data } = await supabase
+    .from("ClientsReferralLogs")
+    .select("authId")
+    .eq("authIdRegistered", authId);
   if (data.length == 0) {
-    await supabase.from("ClientsReferralLogs").insert({ authIdRegistered: authId, authId: refLink });
+    await supabase
+      .from("ClientsReferralLogs")
+      .insert({ authIdRegistered: authId, authId: refLink });
   }
 }
 
-async function createRefForPartner(authId, refLink){
-  const data = supabaseP.from("RefRegLogs").select("refLink").eq("authId", authId);
+async function createRefForPartner(authId, refLink) {
+  const data = supabaseP
+    .from("RefRegLogs")
+    .select("refLink")
+    .eq("authId", authId);
   if (data.length == 0) {
-    await supabase.from("RefRegLogs").insert({ clinetId: authId, refLink: refLink });
+    await supabase
+      .from("RefRegLogs")
+      .insert({ clinetId: authId, refLink: refLink });
   }
 }
 
 async function updateOrInsertPartnersAnalytical(refLink) {
   const nowDate = new Date();
-	const month =
-		nowDate.getMonth() + 1 < 10
-			? "0" + (nowDate.getMonth() + 1)
-			: nowDate.getMonth() + 1;
-	const correctFormatDate =
-		nowDate.getFullYear() + "-" + month + "-" + nowDate.getDate();
+  const month =
+    nowDate.getMonth() + 1 < 10
+      ? "0" + (nowDate.getMonth() + 1)
+      : nowDate.getMonth() + 1;
+  const correctFormatDate =
+    nowDate.getFullYear() + "-" + month + "-" + nowDate.getDate();
 
   const { data: selectPartnerId } = await supabaseP
-		.from("PartnersRefLinks")
-		.select("name")
-		.eq("refLink", refLink);
+    .from("PartnersRefLinks")
+    .select("name")
+    .eq("refLink", refLink);
 
-	const { data: selectUniqueFromAnalitica } = await supabaseP
-		.from("PartnersAnalyticalTable")
-		.select("getClients")
-		.match({ date: correctFormatDate, name: selectPartnerId[0].name, partnerId: refLink, refLink: refLink });
+  const { data: selectUniqueFromAnalitica } = await supabaseP
+    .from("PartnersAnalyticalTable")
+    .select("getClients")
+    .match({
+      date: correctFormatDate,
+      name: selectPartnerId[0].name,
+      partnerId: refLink,
+      refLink: refLink,
+    });
 
-	if (selectUniqueFromAnalitica.length === 0) {
-		await supabaseP
-			.from("PartnersAnalyticalTable")
-			.insert({ refLink: refLink, name: selectPartnerId[0].name, partnerId: refLink, getClients: 1 });
-	} else {
-		await supabaseP
-			.from("PartnersAnalyticalTable")
-			.update({ unique: selectUniqueFromAnalitica[0].getClients + 1 })
-			.match({ date: correctFormatDate, partnerId: refLink, name: selectPartnerId[0].name, refLink: refLink });
-	}
+  if (selectUniqueFromAnalitica.length === 0) {
+    await supabaseP.from("PartnersAnalyticalTable").insert({
+      refLink: refLink,
+      name: selectPartnerId[0].name,
+      partnerId: refLink,
+      getClients: 1,
+    });
+  } else {
+    await supabaseP
+      .from("PartnersAnalyticalTable")
+      .update({ unique: selectUniqueFromAnalitica[0].getClients + 1 })
+      .match({
+        date: correctFormatDate,
+        partnerId: refLink,
+        name: selectPartnerId[0].name,
+        refLink: refLink,
+      });
+  }
 }
 
-
-export async function createRef(authId, refLink){
+export async function createRef(authId, refLink) {
   await createRefForClient(authId, refLink);
   //await createRefForPartner(authId, refLink);
   //await updateOrInsertPartnersAnalytical(refLink)
   await supabase.auth.updateUser({
-    data: { refLink: undefined }
-  })
+    data: { refLink: undefined },
+  });
 }
 
 export async function updateCurrentUserAicoin(aicoin) {
@@ -232,11 +272,8 @@ export async function updateCurrentUserAicoin(aicoin) {
   }
 }
 
-
 export async function selectShopItems() {
-  let { data: ShopItems } = await supabase
-    .from("OurShopBase")
-    .select("*");
+  let { data: ShopItems } = await supabase.from("OurShopBase").select("*");
 
   return ShopItems;
 }
