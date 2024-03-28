@@ -61,7 +61,7 @@ export default function Payment() {
 
     const { status } = await postResponseToLink(codeData, link);
 
-    (status == "ok" || status == "success")? navigate("/applications"): "" // Модальне вікно (Виникла помилка)
+    (status == "ok" || status == "success")? navigate("/products"): "" // Модальне вікно (Виникла помилка)
   }
   function updatePrice(progType_f, countMonths_f, countPersons_f) {
     for (let i = 0; i <= allShopItem.length - 1; i++) {

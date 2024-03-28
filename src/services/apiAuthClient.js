@@ -52,9 +52,7 @@ export async function selectClientsPermissions(userid) {
 export async function getCompanyDataForSettings(companyId) {
   let { data: ClientsCompanysData } = await supabase
     .from("ClientsCompanyBase")
-    .select(
-      "progType, name, phone, active, isRunning, botId, region, сategories, id, selectTemplateId, apiId, apiHash"
-    )
+    .select("*")
     .eq("id", companyId);
   const ClientCompanysData = ClientsCompanysData[0];
   let ClientMessageTemplates = {};
@@ -147,12 +145,20 @@ export async function updateCompanyBotData(companyId, apiId, apiHash) {
       .from("ClientsCompanyBase")
       .update({ botId: null, apiId: apiId, apiHash: apiHash })
       .eq("id", companyId);
-  } else {
-    await supabase
+  } 
+  // else {
+  //   await supabase
+  //     .from("ClientsCompanyBase")
+  //     .update({ botId: null, apiId: null, apiHash: null })
+  //     .eq("id", companyId);
+  // }
+}
+
+export async function updateCompanyProxy(companyId, proxyType, proxy) {
+  await supabase
       .from("ClientsCompanyBase")
-      .update({ botId: null, apiId: null, apiHash: null })
+      .update({ proxyType, proxy })
       .eq("id", companyId);
-  }
 }
 
 export async function regenerateBotId(companyId) {
@@ -182,6 +188,10 @@ export async function createGroupinCompany(
   await supabase
     .from("ClientsCompanyGroupsBase")
     .insert({ companyId, name, tag, priority, region, сategories });
+}
+
+export async function delGroupinCompany(groupId) {
+  await supabase.from("ClientsCompanyGroupsBase").delete().eq("id", groupId);
 }
 
 async function createRefForClient(authId, refLink) {

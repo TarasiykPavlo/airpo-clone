@@ -51,7 +51,7 @@ function Navigation() {
 				<Link to="https://ai-pro.company/">AiPro</Link>
 			</Menu.Item>
 			<Menu.Item key="2">
-				<Link to={"/profile"}>My account</Link>
+				<Link to={"/profile"}>Profile</Link>
 			</Menu.Item>
 			<Menu.Item key="4">
 				<Link to={"/products"}>Shop</Link>
