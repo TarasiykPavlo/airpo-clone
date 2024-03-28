@@ -184,6 +184,10 @@ export async function createGroupinCompany(
     .insert({ companyId, name, tag, priority, region, сategories });
 }
 
+export async function delGroupinCompany(groupId) {
+  await supabase.from("ClientsCompanyGroupsBase").delete().eq("id", groupId);
+}
+
 async function createRefForClient(authId, refLink) {
   const { data } = await supabase
     .from("ClientsReferralLogs")

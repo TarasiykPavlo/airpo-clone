@@ -37,6 +37,12 @@ const GroupsSettings = () => {
   const [isModalOpenCreateGroup, setIsModalOpenCreateGroup] = useState(false);
   const [isSelectRegionActive, setIsSelectRegionActive] = useState(false);
   const [isSelectCategoryActive, setIsSelectCategoryActive] = useState(false);
+  const handleChange = (e) => {
+    let value = e.target.value.trim();
+    if (value === "" || (parseInt(value) >= 0 && parseInt(value) <= 99)) {
+      setPriority(value === "" ? null : parseInt(value));
+    }
+  };
   const showModal = () => {
     setIsModalOpenChangeCategoryOrRegion(true);
   };
@@ -149,7 +155,7 @@ const GroupsSettings = () => {
           <Input
             placeholder="name group"
             onChange={(e) => setGroupName(e.target.value)}
-			defaultValue={groupName}
+            defaultValue={groupName}
           ></Input>
         </div>
         <div className="new-application__selects-wrapper">
@@ -163,8 +169,13 @@ const GroupsSettings = () => {
           <span className="new-application__select-title">Priority:</span>
           <Input
             placeholder="10"
+            maxLength={2}
             style={{ width: "5rem" }}
-            onChange={(e) => setPriority(e.target.value)}
+            type="Number"
+            min={0}
+            step={1}
+            max={99}
+            onChange={handleChange}
           ></Input>
         </div>
         <div className="new-application__selects-wrapper">
@@ -193,9 +204,10 @@ const GroupsSettings = () => {
         <br />
       </Modal>
       <div className="group-settings__groups-wrapper">
-        {groups?.map((item) => (
+        {groups?.map((item, index) => (
           <GroupItem
-            key={Math.random()}
+            key={index}
+            groupId={item.id}
             groupName={item.name}
             tag={item.tag}
             priority={item.priority}

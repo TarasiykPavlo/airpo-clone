@@ -323,6 +323,21 @@ export const selectCategory = [
 	}
 ];
 
+export const proxyType = [
+	{
+		value: "http",
+		label: "http",
+	},
+	{
+		value: "socks4",
+		label: "socks4",
+	},
+	{
+		value: "socks5",
+		label: "socks5",
+	}
+]
+
 const domen = "https://api.ai-pro.company/"
 export const linksResponse = {
 	sendTelegramCode: domen + "api/send_telegram_code",
