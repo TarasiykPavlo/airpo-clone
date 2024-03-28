@@ -8,7 +8,10 @@ import Input from "../../ui/Input/Input";
 import { useMoveBack } from "../../hooks/useMoveBack";
 
 import "./BotSettings.scss";
-import { updateCompanyBotData } from "../../services/apiAuthClient";
+import {
+  updateCompanyBotData,
+  updateCompanyProxy,
+} from "../../services/apiAuthClient";
 import { linksResponse, proxyType } from "../../utils/constants";
 import { postResponseToLink } from "../../services/apiApplication";
 
@@ -21,9 +24,10 @@ const BotSettings = () => {
   const [apiHash, setApiHash] = useState(location.state?.apiHash);
   const [botId, setBotId] = useState(location.state?.botId);
 
-  const [selectProxyType, setSelectProxyType] = useState(proxyType[0].value);
-  const [proxy, setProxy] = useState(null);
-  const ourProxy = null;
+  const [selectProxyType, setSelectProxyType] = useState(
+    location.state?.proxyType || proxyType[0].value
+  );
+  const [proxy, setProxy] = useState(location.state?.proxy);
 
   // function setNewApiIdAndApiHash() {
   // 	setBotId(null);
@@ -48,7 +52,8 @@ const BotSettings = () => {
       : ""; // Модальне вікно (Виникла помилка)
   }
 
-  function saveNewApiIdAndApiHash() {
+  function saveButton() {
+	updateCompanyProxy(location?.state?.companyId, selectProxyType, proxy);
     setBotId(null);
     updateCompanyBotData(location?.state?.companyId, apiId, apiHash);
     navigate("/applications/settings", {
@@ -88,10 +93,12 @@ const BotSettings = () => {
           />
         </div>
       </div>
-      <p>{botId ? "Our bot was connected!" : "Our bot is not connected"}</p>
-      <p className="application__link" onClick={setNewApiIdAndApiHash}>
-        Regenerate API ID, API HASH
-      </p>
+      {/* <p>{botId ? "Our bot was connected!" : "Our bot is not connected"}</p> */}
+      {!botId && (
+        <p className="application__link" onClick={setNewApiIdAndApiHash}>
+          Get OUR API ID, API HASH
+        </p>
+      )}
 
       <br />
       <div className="bot-settings__inputs-wrapper">
@@ -110,7 +117,7 @@ const BotSettings = () => {
             type="string"
             className="change-proxyIPPORT"
             value={proxy}
-            placeholder={!!ourProxy ? "OUR PROXY" : "ip:port"}
+            placeholder={"ip:port"}
             onChange={(e) => setProxy(e.target.value)}
           />
         </div>
@@ -123,22 +130,19 @@ const BotSettings = () => {
           banned. To avoid this, create your own API ID and API HASH
         </p>
       </div>
-      {!!ourProxy&&(<div className="application__tip-wrapper">
-        <ExclamationCircleFilled className="application__tip-icon" />
+      {!location.state?.proxy && (
+        <div className="application__tip-wrapper">
+          <ExclamationCircleFilled className="application__tip-icon" />
 
-        <p className="application__tip-text">You use our proxy</p>
-      </div>)}
+          <p className="application__tip-text">You use our proxy</p>
+        </div>
+      )}
     </>
   );
 
   const footerContent = (
     <>
-      <Button
-        block
-        type="primary"
-        size="large"
-        onClick={saveNewApiIdAndApiHash}
-      >
+      <Button block type="primary" size="large" onClick={saveButton}>
         Save
       </Button>
 

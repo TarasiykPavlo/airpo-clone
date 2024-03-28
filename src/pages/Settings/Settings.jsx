@@ -232,6 +232,8 @@ const Settings = () => {
               apiId: company?.ClientCompanysData.apiId,
               apiHash: company?.ClientCompanysData.apiHash,
               botId: company?.ClientCompanysData.botId,
+              proxy: company?.ClientCompanysData.proxy,
+              proxyType: company?.ClientCompanysData.proxyType
             },
           })
         }
