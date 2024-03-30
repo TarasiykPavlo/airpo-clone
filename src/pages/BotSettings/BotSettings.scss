@@ -11,16 +11,23 @@
 		margin-bottom: 1rem;
 	}
 }
-.change-proxy {
-	color: #ffffff;
-	border: 1px solid #5c5c5c;
-	border-radius: 10px;
-	width: 30rem;
-	padding: 2rem;
-	margin-right: 1rem;
 
+.bot-settings__input-wrap {
+	display: flex;
+	align-items: center;
 }
-.change-proxyIPPORT{
+
+.change-proxy {
+	width: 30rem;
+	margin-right: 1rem;
+	height: 40px;
+
+	.ant-select-selection-item {
+		font-size: 18px;
+	}
+}
+
+.change-proxyIPPORT {
 	color: #ffffff;
 	width: 70rem;
 }
