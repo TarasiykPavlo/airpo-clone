@@ -346,4 +346,7 @@ export const linksResponse = {
 	stopTelegramSending: domen + "api/stop_telegram_sending",
 	activate_app: domen + "api/activate_app",
 	regenerate_bot_id: domen + "api/regenerate_bot_id",
+	delete_company: domen + "api/delete_company",
+	populate_company_groups: domen + "api/populate_company_groups",
+	set_company_region_and_category: domen + "api/set_company_region_and_category",
 }
