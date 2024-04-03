@@ -33,8 +33,12 @@ const GroupsSettings = () => {
   const location = useLocation();
   const [messageShow, messageContext] = message.useMessage();
 
-  const [region, setRegion] = useState(selectRegion[0].label);
-  const [category, setCategory] = useState(selectCategory[0].label);
+  const [region, setRegion] = useState(
+    location?.state?.region || selectRegion[0].label
+  );
+  const [category, setCategory] = useState(
+    location?.state?.сategories || selectCategory[0].label
+  );
   const [groupName, setGroupName] = useState("My group");
   const [groupTag, setGroupTag] = useState(null);
   const [priority, setPriority] = useState(10);
@@ -71,9 +75,13 @@ const GroupsSettings = () => {
       linksResponse.set_company_region_and_category
     );
     console.log(status);
-    if (status == "ok") {
+    if (status == "success") {
       messageShow.success("The group list is complete");
-    } else messageShow.error("error");
+      setIsLoading(false);
+    } else {
+      messageShow.error("error");
+      setIsLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -99,9 +107,13 @@ const GroupsSettings = () => {
       linksResponse.populate_company_groups
     );
     console.log(status);
-    if (status == "ok") {
+    if (status == "success") {
       messageShow.success("The group list is complete");
-    } else messageShow.error("error");
+      setIsLoading(false);
+    } else {
+      messageShow.error("error");
+      setIsLoading(false);
+    }
   }
 
   const mainContent = (
