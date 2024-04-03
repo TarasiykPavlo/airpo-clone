@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Button, Spin } from "antd";
+import { Button, Spin, message } from "antd";
 import { CloseCircleFilled, ExclamationCircleFilled } from "@ant-design/icons";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
@@ -12,6 +12,8 @@ import {
   delClientCompany,
   saveNameCompany,
 } from "../../services/apiAuthClient";
+import { linksResponse } from "../../utils/constants";
+import { postResponseToLink } from "../../services/apiApplication";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -19,10 +21,26 @@ const Settings = () => {
 
   const { data: company, refetch } = getCompanyData(location?.state?.companyId);
   const [companyName, setCompanyName] = useState(location?.state?.companyName);
+  const [messageShow, messageContext] = message.useMessage();
 
   async function delCompany() {
-    await delClientCompany(company?.ClientCompanysData.id);
-    navigate("/applications");
+    const codeData = {
+      companyId: location?.state?.companyId,
+      phone: company?.ClientCompanysData.phone,
+    };
+
+    const { status } = await postResponseToLink(
+      codeData,
+      linksResponse.delete_company
+    );
+    console.log(status);
+    if (status == "ok") {
+      messageShow.success("Deleted");
+      navigate("/applications");
+    } else messageShow.error("error");
+
+    // await delClientCompany(company?.ClientCompanysData.id);
+    // navigate("/applications");
   }
 
   async function saveName(value) {
@@ -45,6 +63,7 @@ const Settings = () => {
 
   const mainContent = (
     <>
+      {messageContext}
       <div className="application__input-wrapper">
         <Input
           maxLength={10}
@@ -233,7 +252,7 @@ const Settings = () => {
               apiHash: company?.ClientCompanysData.apiHash,
               botId: company?.ClientCompanysData.botId,
               proxy: company?.ClientCompanysData.proxy,
-              proxyType: company?.ClientCompanysData.proxyType
+              proxyType: company?.ClientCompanysData.proxyType,
             },
           })
         }

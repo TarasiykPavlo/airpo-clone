@@ -9,6 +9,7 @@ import {
   theme,
   Input,
   Typography,
+  message,
 } from "antd";
 
 import ApplicationLayout from "../../ui/ApplicationLayout";
@@ -18,13 +19,20 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import "./GroupsSettings.scss";
 import { useCompanyGroupsData } from "../../features/authentication/useCompanyGrupeData";
 import { useState } from "react";
-import { selectRegion, selectCategory } from "../../utils/constants";
+import {
+  selectRegion,
+  selectCategory,
+  linksResponse,
+} from "../../utils/constants";
 import { createGroupinCompany } from "../../services/apiAuthClient";
+import { postResponseToLink } from "../../services/apiApplication";
 
 const GroupsSettings = () => {
   const moveBack = useMoveBack();
   const navigate = useNavigate();
   const location = useLocation();
+  const [messageShow, messageContext] = message.useMessage();
+
   const [region, setRegion] = useState(selectRegion[0].label);
   const [category, setCategory] = useState(selectCategory[0].label);
   const [groupName, setGroupName] = useState("My group");
@@ -37,6 +45,9 @@ const GroupsSettings = () => {
   const [isModalOpenCreateGroup, setIsModalOpenCreateGroup] = useState(false);
   const [isSelectRegionActive, setIsSelectRegionActive] = useState(false);
   const [isSelectCategoryActive, setIsSelectCategoryActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { data: groups } = useCompanyGroupsData(location?.state?.companyId);
+
   const handleChange = (e) => {
     let value = e.target.value.trim();
     if (value === "" || (parseInt(value) >= 0 && parseInt(value) <= 99)) {
@@ -46,14 +57,28 @@ const GroupsSettings = () => {
   const showModal = () => {
     setIsModalOpenChangeCategoryOrRegion(true);
   };
-  const handleOk = () => {
+  const handleOk = async () => {
     setIsModalOpenChangeCategoryOrRegion(false);
+    setIsLoading(true);
+    const codeData = {
+      companyId: location?.state?.companyId,
+      region,
+      category,
+    };
+
+    const { status } = await postResponseToLink(
+      codeData,
+      linksResponse.set_company_region_and_category
+    );
+    console.log(status);
+    if (status == "ok") {
+      messageShow.success("The group list is complete");
+    } else messageShow.error("error");
   };
+
   const handleCancel = () => {
     setIsModalOpenChangeCategoryOrRegion(false);
   };
-
-  const { data: groups } = useCompanyGroupsData(location?.state?.companyId);
 
   function saveGroupsChange() {
     navigate("/applications/settings", {
@@ -62,6 +87,21 @@ const GroupsSettings = () => {
         companyName: location?.state?.companyName,
       },
     });
+  }
+  async function сopyPreparedGroups() {
+    setIsLoading(true);
+    const codeData = {
+      companyId: location?.state?.companyId,
+    };
+
+    const { status } = await postResponseToLink(
+      codeData,
+      linksResponse.populate_company_groups
+    );
+    console.log(status);
+    if (status == "ok") {
+      messageShow.success("The group list is complete");
+    } else messageShow.error("error");
   }
 
   const mainContent = (
@@ -74,6 +114,7 @@ const GroupsSettings = () => {
         className="application__info-wrapper"
         style={{ marginBottom: "1.5rem" }}
       >
+        {messageContext}
         <div className="application__info-item">
           Region: <span>{location?.state?.region}</span>
         </div>
@@ -87,10 +128,21 @@ const GroupsSettings = () => {
           <span>{groups === undefined ? <Spin /> : groups?.length}</span>
         </div>
       </div>
-
-      <div onClick={showModal} className="application__link">
-        Change region / category
-      </div>
+      {isLoading ? (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {" "}
+          <Spin className="application__link" />{" "}
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div onClick={сopyPreparedGroups} className="application__link">
+            Copy prepared groups
+          </div>
+          <div onClick={showModal} className="application__link">
+            Change region / category
+          </div>{" "}
+        </div>
+      )}
       <Modal
         title="Change region & category"
         open={isModalOpenChangeCategoryOrRegion}
