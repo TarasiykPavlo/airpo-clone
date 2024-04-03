@@ -34,7 +34,7 @@ const Settings = () => {
       linksResponse.delete_company
     );
     console.log(status);
-    if (status == "ok") {
+    if (status == "success") {
       messageShow.success("Deleted");
       navigate("/applications");
     } else messageShow.error("error");

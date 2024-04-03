@@ -264,11 +264,8 @@ async function updateOrInsertPartnersAnalytical(refLink) {
 
 export async function createRef(authId, refLink) {
   await createRefForClient(authId, refLink);
-  //await createRefForPartner(authId, refLink);
-  //await updateOrInsertPartnersAnalytical(refLink)
-  await supabase.auth.updateUser({
-    data: { refLink: undefined },
-  });
+  // await createRefForPartner(authId, refLink);
+  // await updateOrInsertPartnersAnalytical(refLink)
 }
 
 export async function updateCurrentUserAicoin(aicoin) {
