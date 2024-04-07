@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Select } from "antd";
+import { Button, Select, Modal } from "antd";
 import { InstagramOutlined } from "@ant-design/icons";
 
 import check from "./../../../assets/check.svg";
@@ -8,13 +8,21 @@ import TeleramIcon from "./../../../assets/TelegramIcon.png";
 import "./ProductCard.scss";
 import { useNavigate } from "react-router-dom";
 
-function ProductCard({ productProgType, data, currency, PermissionsData, checkedBtnMoonth }) {
+function ProductCard({
+  productProgType,
+  data,
+  currency,
+  PermissionsData,
+  checkedBtnMoonth,
+}) {
   const navigate = useNavigate();
   const onlySelectPermission = PermissionsData?.filter(
     (permission) => permission.progType === productProgType
   );
   const [changeCardSide, setChangeCardSide] = useState(false);
   const [peopleCount, setPeopleCount] = useState("1-2");
+
+  const [isModal, setIsModal] = useState(false);
 
   const currencyIcon =
     currency === "USD"
@@ -25,6 +33,7 @@ function ProductCard({ productProgType, data, currency, PermissionsData, checked
       ? "₴"
       : "";
 
+  function handleOk() {}
   return (
     <div
       className={`product-card-wrapper ${changeCardSide ? "is-flipped" : ""}`}
@@ -108,14 +117,15 @@ function ProductCard({ productProgType, data, currency, PermissionsData, checked
               className="product-card__btn-check-product"
               style={{ background: "#F98B25" }}
               block
-              onClick={() =>
-                navigate("/payment", {
-                  state: {
-                    progType: productProgType,
-                    monthCount: checkedBtnMoonth,
-                    peopleCount: peopleCount
-                  },
-                })
+              onClick={
+                () => setIsModal(true)
+                // navigate("/payment", {
+                //   state: {
+                //     progType: productProgType,
+                //     monthCount: checkedBtnMoonth,
+                //     peopleCount: peopleCount
+                //   },
+                // })
               }
             >
               Buy now
@@ -227,7 +237,7 @@ function ProductCard({ productProgType, data, currency, PermissionsData, checked
             </li>
           </ul>
           <div className="line"></div>
-          
+
           {onlySelectPermission == 0 ? (
             <Button
               type="primary"
@@ -239,7 +249,7 @@ function ProductCard({ productProgType, data, currency, PermissionsData, checked
                   state: {
                     progType: productProgType,
                     monthCount: data,
-                    peopleCount: peopleCount
+                    peopleCount: peopleCount,
                   },
                 })
               }
@@ -266,6 +276,30 @@ function ProductCard({ productProgType, data, currency, PermissionsData, checked
           </Button>
         </div>
       </div>
+      <Modal
+        title=""
+        open={isModal}
+        style={{padding: "5rem"}}
+        centered
+        footer={(_, {}) => (
+          <>
+            <Button
+              className="product-card__btn-check-product"
+              style={{ width: "100%", }}
+              onClick={() =>
+                window.open("https://t.me/aipro_manager", "_blank")
+                //window.location.replace("https://t.me/aipro_manager")
+              }
+            >
+              Go to telegram
+            </Button>
+          </>
+        )}
+        //onOk={handleOk}
+        onCancel={() => setIsModal(false)}
+      >
+        <h1>To make a purchase, contact our manager on Telegram💌</h1>
+      </Modal>
     </div>
   );
 }

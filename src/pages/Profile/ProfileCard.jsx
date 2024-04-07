@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, message, Popover } from "antd";
-import { InfoCircleOutlined, CopyOutlined, LockOutlined } from "@ant-design/icons";
+import {
+  InfoCircleOutlined,
+  CopyOutlined,
+  LockOutlined,
+} from "@ant-design/icons";
 
 import { useUser } from "../../features/authentication/useUser";
 import { useAuthClient } from "../../features/authentication/useClientDataForProfile";
@@ -51,13 +55,25 @@ function ProfileCard() {
             <div className="card__user-info">
               <div className="card__user-content">
                 <div className="title">Рersonal information</div>
-                <div id="name" className="card__text">
-                  Name: {fullName}
-                </div>
-                <div id="email" className="card__text">
-                  Email: {user?.email}
+                <div
+                  id="id"
+                  className="card__text"
+                  style={{ color: "#80D4FF" }}
+                  onClick={() => {
+                    navigator.clipboard.writeText(user?.id);
+                    messageShow.info("Copy ID!");
+                  }}
+                >
+                  ID: {user?.id}
                 </div>
               </div>
+              <div id="name" className="card__text">
+                Name: {fullName}
+              </div>
+              <div id="email" className="card__text">
+                Email: {user?.email}
+              </div>
+
               <div
                 style={{
                   display: "flex",
@@ -122,26 +138,27 @@ function ProfileCard() {
                 </Popover>
               </div>
             </div>
-            {PermissionsData !== undefined && PermissionsData.length == 0?
-            (<Button
-              type="primary"
-              className="btn-check"
-              block
-              style={{ display: "block", marginBottom: "1rem" }}
-              onClick={() => navigate("/products")}
-            >
-              Shop
-            </Button>)
-            :
-            (<Button
-              type="primary"
-              className="btn-check"
-              block
-              style={{ display: "block", marginBottom: "1rem" }}
-              onClick={() => navigate("/applications")}
-            >
-              My products
-            </Button>)}
+            {PermissionsData !== undefined && PermissionsData.length == 0 ? (
+              <Button
+                type="primary"
+                className="btn-check"
+                block
+                style={{ display: "block", marginBottom: "1rem" }}
+                onClick={() => navigate("/products")}
+              >
+                Shop
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                className="btn-check"
+                block
+                style={{ display: "block", marginBottom: "1rem" }}
+                onClick={() => navigate("/applications")}
+              >
+                My products
+              </Button>
+            )}
           </div>
           <div className="card__pay">
             <div className="title">
@@ -157,13 +174,19 @@ function ProfileCard() {
                   value={item.aicoin}
                 />
               ))}
-              {true? 
-               <Button type="primary" block style={{backgroundColor:"rgb(80 80 80)"}}>
-               <LockOutlined />
-             </Button>
-               :<Button type="primary" block>
-                Pay out
-              </Button>}
+              {true ? (
+                <Button
+                  type="primary"
+                  block
+                  style={{ backgroundColor: "rgb(80 80 80)" }}
+                >
+                  <LockOutlined />
+                </Button>
+              ) : (
+                <Button type="primary" block>
+                  Pay out
+                </Button>
+              )}
             </ul>
           </div>
         </div>
