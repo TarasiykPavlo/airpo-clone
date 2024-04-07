@@ -26,12 +26,15 @@ import {
 } from "../../utils/constants";
 import { createGroupinCompany } from "../../services/apiAuthClient";
 import { postResponseToLink } from "../../services/apiApplication";
+import { getCompanyData } from "../../features/authentication/useCompanyData";
 
 const GroupsSettings = () => {
   const moveBack = useMoveBack();
   const navigate = useNavigate();
   const location = useLocation();
   const [messageShow, messageContext] = message.useMessage();
+
+  const { data: company } = getCompanyData(location?.state?.companyId);
 
   const [region, setRegion] = useState(
     location?.state?.region || selectRegion[0].label
@@ -128,11 +131,18 @@ const GroupsSettings = () => {
       >
         {messageContext}
         <div className="application__info-item">
-          Region: <span>{location?.state?.region}</span>
+          Region:{" "}
+          <span>
+            {company?.ClientCompanysData.region || location?.state?.region}
+          </span>
         </div>
 
         <div className="application__info-item">
-          Category: <span>{location?.state?.сategories}</span>
+          Category:{" "}
+          <span>
+            {company?.ClientCompanysData.сategories ||
+              location?.state?.сategories}
+          </span>
         </div>
 
         <div className="application__info-item">

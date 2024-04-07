@@ -40,7 +40,7 @@ function CompanyItem({
 
     const { status } = await postResponseToLink(codeData, link);
     console.log(status);
-    if (status == "ok") {
+    if (status == "ok" || status == "success") {
       messageShow.success("API running");
     } else messageShow.error("error");
     navigate("/applications");
