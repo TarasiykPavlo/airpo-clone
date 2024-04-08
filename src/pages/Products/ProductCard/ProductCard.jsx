@@ -285,7 +285,7 @@ function ProductCard({
           <>
             <Button
               className="product-card__btn-check-product"
-              style={{ width: "100%", }}
+              style={{ width: "100%", height: "4rem", fontSize: "2rem"}}
               onClick={() =>
                 window.open("https://t.me/aipro_manager", "_blank")
                 //window.location.replace("https://t.me/aipro_manager")

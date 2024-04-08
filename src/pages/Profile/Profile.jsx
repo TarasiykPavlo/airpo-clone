@@ -20,7 +20,8 @@ function Profile() {
     aicoin,
     avatar,
     avatar_url,
-    full_name: fullName,
+    full_name,
+    fullName,
     refLink,
   } = user.user_metadata;
   const userId = user.id;
@@ -44,7 +45,7 @@ function Profile() {
         algorithm: theme.darkAlgorithm,
       }}
     >
-		{messageContext}
+      {messageContext}
       <div className="wrapper">
         <div className="profile">
           <div className="profile__head">
@@ -76,15 +77,14 @@ function Profile() {
                 </div>
               </div>
               <div className="user-info__name">
-			  <p
-					style={{color:"#80D4FF"}}
-                  onClick={() => {
-                    navigator.clipboard.writeText(user?.id);
-                    messageShow.info("Copy ID!");
-                  }}
-                >{fullName || "Empty"}{" "}
-                
-                  #
+                <p
+                  // style={{ color: "#80D4FF" }}
+                  // onClick={() => {
+                  //   navigator.clipboard.writeText(user?.id);
+                  //   messageShow.info("Copy ID!");
+                  // }}
+                >
+                  {fullName || full_name}
                 </p>
               </div>
               <div className="user-info__balance">
