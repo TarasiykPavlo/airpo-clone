@@ -7,9 +7,11 @@ import LoginForm from "../../features/authentication/LoginForm";
 import SignupForm from "../../features/authentication/SignupForm";
 
 import "./Auth.scss";
+import { useUser } from "../../features/authentication/useUser";
 
 function Auth() {
   const navigate = useNavigate();
+  const { user } = useUser();
   const { refid } = useParams();
   const refLink = refid !== undefined ? "/" + refid : "";
 
@@ -18,6 +20,7 @@ function Auth() {
     window.location.pathname === "/signup" + refLink
   );
 
+  user !== null? navigate("/profile", { replace: true }): ""
   const handleLoginClick = () => {
     setIsActive(false);
     navigate("/login" + refLink, { replace: true });

@@ -20,7 +20,7 @@ function ProfileCard() {
   const navigate = useNavigate();
 
   const { user } = useUser();
-  const { aicoin, full_name: fullName } = user.user_metadata;
+  const { aicoin, full_name, fullName } = user.user_metadata;
   const { data: clientData } = useAuthClient(user.id);
   const { data: PermissionsData } = usePermissionsData(user.id);
   const [activeButton, setActiveButton] = useState("personalBtn");
@@ -58,7 +58,7 @@ function ProfileCard() {
                 <div
                   id="id"
                   className="card__text"
-                  style={{ color: "#80D4FF" }}
+                  style={{ color: "#80D4FF", padding:"0.2rem"}}
                   onClick={() => {
                     navigator.clipboard.writeText(user?.id);
                     messageShow.info("Copy ID!");
@@ -67,10 +67,10 @@ function ProfileCard() {
                   ID: {user?.id}
                 </div>
               </div>
-              <div id="name" className="card__text">
-                Name: {fullName}
+              <div id="name" className="card__text" style={{padding:"0.2rem"}}>
+                Name: {full_name || fullName}
               </div>
-              <div id="email" className="card__text">
+              <div id="email" className="card__text" style={{padding:"0.2rem",paddingBottom: "1rem"}}>
                 Email: {user?.email}
               </div>
 
