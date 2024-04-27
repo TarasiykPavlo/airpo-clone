@@ -349,4 +349,5 @@ export const linksResponse = {
 	delete_company: domen + "api/delete_company",
 	populate_company_groups: domen + "api/populate_company_groups",
 	set_company_region_and_category: domen + "api/set_company_region_and_category",
+	create_partner_to_client_ref: domen + "api/create_partner_to_client_ref"
 }

@@ -12,7 +12,6 @@ import ButtonForIcon from "../../ui/ButtonForIcon";
 
 import "./Profile.scss";
 import { useEffect } from "react";
-import { createRef } from "../../services/apiAuthClient";
 
 function Profile() {
   const { user } = useUser();
@@ -34,10 +33,6 @@ function Profile() {
       updateUserAicoin(aicoin);
     }
   }, [aicoin]);
-
-  if (refLink !== undefined) {
-    createRef(userId, refLink);
-  }
 
   return (
     <ConfigProvider
