@@ -1,5 +1,16 @@
+import { linksResponse } from "../utils/constants";
+import { postResponseToLink } from "./apiApplication";
 import supabase from "./supabase";
 //import supabaseP from "./supabasePartner";
+
+async function createRef(authId, refLink) {
+  await createRefForClient(authId, refLink);
+  const data = {authId, refLink} 
+  const { status } = await postResponseToLink(data, linksResponse.create_partner_to_client_ref)
+  console.log(status);
+  // await createRefForPartner(authId, refLink);
+  // await updateOrInsertPartnersAnalytical(refLink)
+}
 
 export async function getClientInfoForProfile(userId) {
   let ClientAicoinLogsData = await getData(
@@ -14,6 +25,7 @@ export async function getClientInfoForProfile(userId) {
   );
 
   if (!ClientAicoinLogsData.length) {
+    createRef()
     await supabase.from("ClientsAicoinLogs").insert({ authId: userId });
     ClientAicoinLogsData = await getData(
       userId,
@@ -206,67 +218,63 @@ async function createRefForClient(authId, refLink) {
   }
 }
 
-async function createRefForPartner(authId, refLink) {
-  const data = supabaseP
-    .from("RefRegLogs")
-    .select("refLink")
-    .eq("authId", authId);
-  if (data.length == 0) {
-    await supabase
-      .from("RefRegLogs")
-      .insert({ clinetId: authId, refLink: refLink });
-  }
-}
+// async function createRefForPartner(authId, refLink) {
+//   const data = supabaseP
+//     .from("RefRegLogs")
+//     .select("refLink")
+//     .eq("authId", authId);
+//   if (data.length == 0) {
+//     await supabase
+//       .from("RefRegLogs")
+//       .insert({ clinetId: authId, refLink: refLink });
+//   }
+// }
 
-async function updateOrInsertPartnersAnalytical(refLink) {
-  const nowDate = new Date();
-  const month =
-    nowDate.getMonth() + 1 < 10
-      ? "0" + (nowDate.getMonth() + 1)
-      : nowDate.getMonth() + 1;
-  const correctFormatDate =
-    nowDate.getFullYear() + "-" + month + "-" + nowDate.getDate();
+// async function updateOrInsertPartnersAnalytical(refLink) {
+//   const nowDate = new Date();
+//   const month =
+//     nowDate.getMonth() + 1 < 10
+//       ? "0" + (nowDate.getMonth() + 1)
+//       : nowDate.getMonth() + 1;
+//   const correctFormatDate =
+//     nowDate.getFullYear() + "-" + month + "-" + nowDate.getDate();
 
-  const { data: selectPartnerId } = await supabaseP
-    .from("PartnersRefLinks")
-    .select("name")
-    .eq("refLink", refLink);
+//   const { data: selectPartnerId } = await supabaseP
+//     .from("PartnersRefLinks")
+//     .select("name")
+//     .eq("refLink", refLink);
 
-  const { data: selectUniqueFromAnalitica } = await supabaseP
-    .from("PartnersAnalyticalTable")
-    .select("getClients")
-    .match({
-      date: correctFormatDate,
-      name: selectPartnerId[0].name,
-      partnerId: refLink,
-      refLink: refLink,
-    });
+//   const { data: selectUniqueFromAnalitica } = await supabaseP
+//     .from("PartnersAnalyticalTable")
+//     .select("getClients")
+//     .match({
+//       date: correctFormatDate,
+//       name: selectPartnerId[0].name,
+//       partnerId: refLink,
+//       refLink: refLink,
+//     });
 
-  if (selectUniqueFromAnalitica.length === 0) {
-    await supabaseP.from("PartnersAnalyticalTable").insert({
-      refLink: refLink,
-      name: selectPartnerId[0].name,
-      partnerId: refLink,
-      getClients: 1,
-    });
-  } else {
-    await supabaseP
-      .from("PartnersAnalyticalTable")
-      .update({ unique: selectUniqueFromAnalitica[0].getClients + 1 })
-      .match({
-        date: correctFormatDate,
-        partnerId: refLink,
-        name: selectPartnerId[0].name,
-        refLink: refLink,
-      });
-  }
-}
+//   if (selectUniqueFromAnalitica.length === 0) {
+//     await supabaseP.from("PartnersAnalyticalTable").insert({
+//       refLink: refLink,
+//       name: selectPartnerId[0].name,
+//       partnerId: refLink,
+//       getClients: 1,
+//     });
+//   } else {
+//     await supabaseP
+//       .from("PartnersAnalyticalTable")
+//       .update({ unique: selectUniqueFromAnalitica[0].getClients + 1 })
+//       .match({
+//         date: correctFormatDate,
+//         partnerId: refLink,
+//         name: selectPartnerId[0].name,
+//         refLink: refLink,
+//       });
+//   }
+// }
 
-export async function createRef(authId, refLink) {
-  await createRefForClient(authId, refLink);
-  // await createRefForPartner(authId, refLink);
-  // await updateOrInsertPartnersAnalytical(refLink)
-}
+
 
 export async function updateCurrentUserAicoin(aicoin) {
   if (typeof aicoin != Number) {
