@@ -21,7 +21,7 @@ const ApplicationLayout = ({ title, mainContent, footerContent, showSpin }) => {
 	return (
 		<main className="application">
 			<div>
-				<h1 className="application__title">{title}</h1>
+				<h1 className="application__title" style={{marginBottom:"1rem"}}>{title}</h1>
 
 				{mainContent}
 			</div>
