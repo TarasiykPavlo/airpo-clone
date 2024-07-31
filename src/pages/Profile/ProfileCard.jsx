@@ -15,13 +15,14 @@ import ProfilePaymentsHistoryItem from "./ProfilePaymentsHistoryItem";
 import ProfileReferalsHistoryItem from "./ProfileReferralHistoryItem";
 import { formatDate } from "../../utils/helpers";
 import { usePermissionsData } from "../../features/authentication/useClientPermissionsData";
+import { createRef } from "../../services/apiAuthClient";
 
 function ProfileCard() {
   const navigate = useNavigate();
 
   const { user } = useUser();
-  const { aicoin, full_name, fullName } = user.user_metadata;
-  const { data: clientData } = useAuthClient(user.id);
+  const { aicoin, full_name, fullName, refLink } = user.user_metadata;
+  const { data: clientData } = useAuthClient(user?.id, refLink);
   const { data: PermissionsData } = usePermissionsData(user.id);
   const [activeButton, setActiveButton] = useState("personalBtn");
   const [messageShow, messageContext] = message.useMessage();
@@ -29,6 +30,8 @@ function ProfileCard() {
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 1140px)").matches
   );
+
+ 
 
   useEffect(() => {
     window
@@ -62,6 +65,7 @@ function ProfileCard() {
                   onClick={() => {
                     navigator.clipboard.writeText(user?.id);
                     messageShow.info("Copy ID!");
+                    //createRef(user.id, refLink)
                   }}
                 >
                   ID: {user?.id}

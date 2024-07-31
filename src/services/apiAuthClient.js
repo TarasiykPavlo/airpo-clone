@@ -1,21 +1,23 @@
+import { message } from "antd";
 import { linksResponse } from "../utils/constants";
 import { postResponseToLink } from "./apiApplication";
 import supabase from "./supabase";
 //import supabaseP from "./supabasePartner";
 
-async function createRef(authId, refLink) {
+export async function createRef(authId, refLink) {
   await createRefForClient(authId, refLink);
-  const data = { authId, refLink };
-  const { status } = await postResponseToLink(
+  const data = { userId: authId, refLink };
+  //const { status } = 
+  console.log(await postResponseToLink(
     data,
     linksResponse.create_partner_to_client_ref
-  );
-  console.log(status);
+  ))
+
   // await createRefForPartner(authId, refLink);
   // await updateOrInsertPartnersAnalytical(refLink)
 }
 
-export async function getClientInfoForProfile(userId) {
+export async function getClientInfoForProfile(userId, refLink) {
   let ClientAicoinLogsData = await getData(
     userId,
     "ClientsAicoinLogs",
@@ -28,7 +30,7 @@ export async function getClientInfoForProfile(userId) {
   );
 
   if (!ClientAicoinLogsData.length) {
-    createRef();
+    createRef(userId, refLink);
     await supabase.from("ClientsAicoinLogs").insert({ authId: userId });
     ClientAicoinLogsData = await getData(
       userId,
@@ -210,6 +212,7 @@ export async function delGroupinCompany(groupId) {
 }
 
 async function createRefForClient(authId, refLink) {
+  console.log(authId + "!!!" + refLink)
   const { data } = await supabase
     .from("ClientsReferralLogs")
     .select("authId")
