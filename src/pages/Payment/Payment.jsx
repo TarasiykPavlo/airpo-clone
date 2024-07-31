@@ -7,6 +7,7 @@ import bank from "../../assets/bank.svg";
 import paypal from "../../assets/paypal.svg";
 import wise from "../../assets/wise.svg";
 import bitcoin from "../../assets/bitcoin.svg";
+
 import {
   ArrowLeftOutlined,
   CaretDownOutlined,
@@ -23,6 +24,8 @@ import {
 import { useUser } from "../../features/authentication/useUser";
 import { postResponseToLink } from "../../services/apiApplication";
 import { useShopItems } from "../../features/authentication/useShopItems";
+
+
 
 export default function Payment() {
   const navigate = useNavigate();
@@ -49,6 +52,7 @@ export default function Payment() {
   );
   const [useCard, setUseCard] = useState("Card");
   const [messageShow, messageContext] = message.useMessage();
+  
 
   async function addPermission() {
     const link = linksResponse.activate_app;
@@ -133,7 +137,7 @@ export default function Payment() {
                   },
                 ]}
               /> */}
-              <button
+              {/* <button
                 className={"payment-card"}
                 style={
                   useCard == "Bitcoin" ? { backgroundColor: "#3949a9" } : {}
@@ -151,7 +155,7 @@ export default function Payment() {
                 >
                   ₿ Cryptocurrency
                 </div>
-              </button>
+              </button> */}
               {/* <div className="group-banks">
                 <button
                   className="btn-bank paypal"
@@ -230,7 +234,7 @@ export default function Payment() {
               </div>
 
               {(useCard == "Card" || useCard == "Bitcoin") && (
-                <button className="buy-product" onClick={addPermission}>
+                <button className="buy-product" onClick={postToWayforpay}>
                   Pay
                 </button>
               )}
@@ -264,7 +268,29 @@ export default function Payment() {
       </div>
     </ConfigProvider>
   );
-  function handleChange(value) {
-    console.log(`selected ${value}`);
+  async function postToWayforpay () {
+    updatePrice(product, monthCount, peopleCount);
+
+    // const productName = "Продукт " + product + ", на кількість людей - " + peopleCount + ", на кількість місяців" + String(monthCount)
+    // const date = new Date();
+
+    // const allData = Object.assign({
+      
+    //   orderDate: date.getTime(), //ЦЕ
+    //   amount: selectShopItem?.price || selectSItem?.price, //ЦЕ
+    //   currency: "USD", //ЦЕ
+    //   //orderTimeout: 86400,
+    //   productName: [productName], //ЦЕ
+    //   productPrice: [selectShopItem?.price || selectSItem?.price], //ЦЕ
+    //   productCount: [1], //ЦЕ
+    // }, defaultWayforpayPost);
+    const allData = {
+      item_id: selectShopItem?.id || selectSItem?.id,
+      auth_id: user.id
+    }
+
+    const status  = await postResponseToLink(allData, linksResponse.create_invoice_payment);
+    //console.log(status);
+    window.location.href = status.invoiceUrl
   }
 }

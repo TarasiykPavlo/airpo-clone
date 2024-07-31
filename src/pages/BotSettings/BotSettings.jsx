@@ -135,19 +135,38 @@ const BotSettings = () => {
               options={proxyType}
             />
             <Input
-              maxLength={25}
+              maxLength={40}
               type="text"
               className="change-proxyIPPORT"
-			  style={{width:"100%"}}
+              style={{ width: "100%" }}
               value={proxy}
-              placeholder={"ip:port (0.0.0.0:8000)"}
+              placeholder={"ip:port:username:password (0.0.0.0:8000)"}
               onChange={(e) => {
-				if(!isNaN(Number(e.target.value.replace('.', '').replace(':', '')))){
-					setProxy(e.target.value)
-				}
+                const value = e.target.value;
+                const parts = value.split(':');
+
+                const ipPartRegex = /^(\d{1,3}\.){0,3}\d{0,3}$/;
+                const portPartRegex = /^\d*$/;
+
+                if (
+                  parts.length === 1 && ipPartRegex.test(parts[0]) ||
+                  parts.length === 2 && ipPartRegex.test(parts[0]) && portPartRegex.test(parts[1]) ||
+                  parts.length > 2
+                ) {
+                  setProxy(value);
+                }
               }}
             />
+
           </div>
+        </div>
+        <br />
+        <div className="application__tip-wrapper">
+          <ExclamationCircleFilled className="application__tip-icon" />
+
+          <p className="application__tip-text">
+          If your proxy does not have a login and password, leave the fields blank( example ip:port )
+          </p>
         </div>
         <br />
         <div className="application__tip-wrapper">
