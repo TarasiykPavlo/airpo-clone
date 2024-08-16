@@ -117,16 +117,16 @@ function ProductCard({
               className="product-card__btn-check-product"
               style={{ background: "#F98B25" }}
               block
-              onClick={
-                () => setIsModal(true)
-                // navigate("/payment", {
-                //   state: {
-                //     progType: productProgType,
-                //     monthCount: checkedBtnMoonth,
-                //     peopleCount: peopleCount
-                //   },
-                // })
-              }
+              onClick={ () => {
+                //() => setIsModal(true)
+                navigate("/payment", {
+                  state: {
+                    progType: productProgType,
+                    monthCount: checkedBtnMoonth,
+                    peopleCount: peopleCount
+                  },
+                })
+              }}
             >
               Buy now
             </Button>
@@ -244,14 +244,15 @@ function ProductCard({
               danger
               className="product-card__btn-check-product"
               style={{ background: "#F98B25" }}
-              onClick={() =>
+              onClick={() => {
                 navigate("/payment", {
+                  replace: true,
                   state: {
                     progType: productProgType,
                     monthCount: data,
                     peopleCount: peopleCount,
                   },
-                })
+                })}
               }
               block
             >

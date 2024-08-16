@@ -1,18 +1,23 @@
+import { message } from "antd";
 import { linksResponse } from "../utils/constants";
 import { postResponseToLink } from "./apiApplication";
 import supabase from "./supabase";
 //import supabaseP from "./supabasePartner";
 
-async function createRef(authId, refLink) {
+export async function createRef(authId, refLink) {
   await createRefForClient(authId, refLink);
-  const data = {authId, refLink} 
-  const { status } = await postResponseToLink(data, linksResponse.create_partner_to_client_ref)
-  console.log(status);
+  const data = { userId: authId, refLink };
+  //const { status } = 
+  console.log(await postResponseToLink(
+    data,
+    linksResponse.create_partner_to_client_ref
+  ))
+
   // await createRefForPartner(authId, refLink);
   // await updateOrInsertPartnersAnalytical(refLink)
 }
 
-export async function getClientInfoForProfile(userId) {
+export async function getClientInfoForProfile(userId, refLink) {
   let ClientAicoinLogsData = await getData(
     userId,
     "ClientsAicoinLogs",
@@ -25,7 +30,7 @@ export async function getClientInfoForProfile(userId) {
   );
 
   if (!ClientAicoinLogsData.length) {
-    createRef()
+    createRef(userId, refLink);
     await supabase.from("ClientsAicoinLogs").insert({ authId: userId });
     ClientAicoinLogsData = await getData(
       userId,
@@ -54,11 +59,11 @@ export async function getCompanies(userId) {
 }
 
 export async function selectClientsPermissions(userid) {
-  return getData(
-    userid,
-    "ClientsPermissions",
-    "progType,LimitOfСompanies,activatedUntil"
-  );
+  const { data } = await supabase
+    .from("ClientsPermissions")
+    .select("progType,LimitOfСompanies,activatedUntil")
+    .match({ authId: userid, active: true });
+  return data;
 }
 
 export async function getCompanyDataForSettings(companyId) {
@@ -157,7 +162,7 @@ export async function updateCompanyBotData(companyId, apiId, apiHash) {
       .from("ClientsCompanyBase")
       .update({ botId: null, apiId: apiId, apiHash: apiHash })
       .eq("id", companyId);
-  } 
+  }
   // else {
   //   await supabase
   //     .from("ClientsCompanyBase")
@@ -168,9 +173,9 @@ export async function updateCompanyBotData(companyId, apiId, apiHash) {
 
 export async function updateCompanyProxy(companyId, proxyType, proxy) {
   await supabase
-      .from("ClientsCompanyBase")
-      .update({ proxyType, proxy })
-      .eq("id", companyId);
+    .from("ClientsCompanyBase")
+    .update({ proxyType, proxy })
+    .eq("id", companyId);
 }
 
 export async function regenerateBotId(companyId) {
@@ -207,6 +212,7 @@ export async function delGroupinCompany(groupId) {
 }
 
 async function createRefForClient(authId, refLink) {
+  console.log(authId + "!!!" + refLink)
   const { data } = await supabase
     .from("ClientsReferralLogs")
     .select("authId")
@@ -273,8 +279,6 @@ async function createRefForClient(authId, refLink) {
 //       });
 //   }
 // }
-
-
 
 export async function updateCurrentUserAicoin(aicoin) {
   if (typeof aicoin != Number) {
