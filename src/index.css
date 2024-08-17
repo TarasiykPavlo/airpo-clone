@@ -1,32 +1,32 @@
 :root {
-	--color-main: #24a1e0;
-	--color-bg: #1c1c1c;
+  --color-main: #24a1e0;
+  --color-bg: #1c1c1c;
 }
 
 html {
-	/* default fz: 16px | 16px * 62.5 / 100 = 10px */
-	font-size: 62.5%;
+  /* default fz: 16px | 16px * 62.5 / 100 = 10px */
+  font-size: 62.5%;
 }
 
 body {
-	font-family: "Poppins", sans-serif;
-	color: #f9fafb;
-	font-size: 1.6rem;
-	background-color: var(--color-bg);
+  font-family: "Poppins", sans-serif;
+  color: #f9fafb;
+  font-size: 1.6rem;
+  background-color: var(--color-bg);
 }
 .loader-spin {
-	animation: fade 0.5s ease;
+  animation: fade 0.5s ease;
 }
 @keyframes fade {
-	0% {
-		width: 200px;
-	}
-	50% {
-		width: 250px;
-	}
-	100% {
-		width: 200px;
-	}
+  0% {
+    width: 200px;
+  }
+  50% {
+    width: 250px;
+  }
+  100% {
+    width: 200px;
+  }
 }
 
 h1,
@@ -34,27 +34,37 @@ h2,
 h3,
 h4,
 h5,
-h6{
-	margin: 0;
+h6 {
+  margin: 0;
 }
 
 ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+p {
+  padding-top: 5px;
+}
+li {
+  padding: 0.5rem;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
-	html {
-		/* 16px * 50 / 100 = 8px */
-		font-size: 50%;
-	}
+  html {
+    /* 16px * 50 / 100 = 8px */
+    font-size: 50%;
+  }
 }
-.ant-spin {transform: translate(5px, -1px) !important;}
-.ant-spin-dot-item { background-color: #ffffff !important;}
+.ant-spin {
+  transform: translate(5px, -1px) !important;
+}
+.ant-spin-dot-item {
+  background-color: #ffffff !important;
+}
