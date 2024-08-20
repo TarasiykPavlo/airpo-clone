@@ -3,7 +3,965 @@ import { Link } from "react-router-dom";
 export default function UserAgeement() {
   return (
     <div className="faq">
-      <h1>УСЛОВИЯ ЭКСПЛУАТАЦИИ</h1>
+      <h1>TERMS OF USE</h1>
+      <p>Last Updated: August 20, 2024</p>
+      <h2>AGREEMENT TO TERMS</h2>
+      <p>
+        These Terms of Use constitute a legally binding agreement made between
+        you, whether personally or on behalf of an entity (“you”), and AiPro
+        (“AiPro,” “we,” “us,” or “our”), concerning your access to and use of
+        the AiPro platform (https://ai-pro.company/) as well as any other media
+        form, media channel, mobile website, or mobile application related,
+        linked, or otherwise connected thereto (collectively, the “Platform”).
+        You agree that by accessing the Platform, you have read, understood, and
+        agreed to be bound by all of these Terms of Use. IF YOU DO NOT AGREE
+        WITH ALL OF THESE TERMS OF USE, YOU ARE EXPRESSLY PROHIBITED FROM USING
+        THE PLATFORM AND YOU MUST DISCONTINUE USE IMMEDIATELY.
+      </p>
+      <p>
+        Supplemental terms and conditions or documents that may be posted on the
+        Platform from time to time are hereby expressly incorporated herein by
+        reference. We reserve the right, in our sole discretion, to make changes
+        or modifications to these Terms of Use at any time and for any reason.
+        We will alert you about any changes by updating the “Last Updated” date
+        of these Terms of Use, and you waive any right to receive specific
+        notice of each such change. It is your responsibility to periodically
+        review these Terms of Use to stay informed of updates. You will be
+        subject to and will be deemed to have been made aware of and to have
+        accepted the changes in any revised Terms of Use by your continued use
+        of the Platform after the date such revised Terms of Use are posted.
+      </p>
+      <p>
+        The information provided on the Platform is not intended for
+        distribution to or use by any person or entity in any jurisdiction or
+        country where such distribution or use would be contrary to law or
+        regulation or which would subject us to any registration requirement
+        within such jurisdiction or country. Accordingly, those persons who
+        choose to access the Platform from other locations do so on their own
+        initiative and are solely responsible for compliance with local laws, if
+        and to the extent local laws are applicable.
+      </p>
+      <p>
+        The Platform is not tailored to comply with industry-specific
+        regulations (such as the Health Insurance Portability and Accountability
+        Act (HIPAA) or the Federal Information Security Management Act (FISMA)),
+        so if your interactions would be subjected to such laws, you may not use
+        this Platform. You are also prohibited from using the Platform in a way
+        that would violate the Gramm-Leach-Bliley Act (GLBA).
+      </p>
+      <p>
+        The Platform is intended for users who are at least 18 years old.
+        Persons under the age of 18 are not permitted to use or register for the
+        Platform.
+      </p>
+      <h1>INTELLECTUAL PROPERTY RIGHTS</h1>
+      <p>
+        Unless otherwise indicated, the Site is our proprietary property and all
+        source code, databases, functionality, software, website designs, audio,
+        video, text, photographs, and graphics on the Site (collectively, the
+        “Content”), as well as the trademarks, service marks, and logos
+        contained therein (the “Marks”), are owned or controlled by us or
+        licensed to us, and are protected by copyright and trademark laws and
+        various other intellectual property rights and unfair competition laws
+        of the United States, international copyright laws, and international
+        conventions. The Content and the Marks are provided on the Site “AS IS”
+        for your information and personal use only. Except as expressly provided
+        in these Terms of Use, no part of the Site and no Content or Marks may
+        be copied, reproduced, aggregated, republished, uploaded, posted,
+        publicly displayed, encoded, translated, transmitted, distributed, sold,
+        licensed, or otherwise exploited for any commercial purpose whatsoever,
+        without our express prior written permission.
+      </p>
+      <p>
+        Provided that you are eligible to use the Site, you are granted a
+        limited license to access and use the Site and to download or print a
+        copy of any portion of the Content to which you have properly gained
+        access solely for your personal, non-commercial use. We reserve all
+        rights not expressly granted to you in and to the Site, the Content, and
+        the Marks.
+      </p>
+      <h1>USER REPRESENTATIONS</h1>
+      <p>
+        By using the Site, you represent and warrant that: (1) all registration
+        information you submit will be true, accurate, current, and complete;
+        (2) you will maintain the accuracy of such information and promptly
+        update such information as necessary; (3) you have the legal capacity
+        and you agree to comply with these Terms of Use; (4) you are not a minor
+        in the jurisdiction in which you reside; (5) you will not access the
+        Site through automated or non-human means, whether through a bot,
+        script, or otherwise; (6) you will not use the Site for any illegal or
+        unauthorized purpose; and (7) your use of the Site will not violate any
+        applicable law or regulation.
+      </p>
+      <p>
+        You acknowledge that the login may only be used by one (1) person, and
+        that you will not share a single login with multiple people. You are
+        responsible for maintaining the confidentiality of your login and
+        account and are fully responsible for all activities that occur under
+        your login or account or as a result of your failure to protect such
+        information.
+      </p>
+      <p>
+        If you provide any information that is untrue, inaccurate, not current,
+        or incomplete, we have the right to suspend or terminate your account
+        and refuse any and all current or future use of the Site (or any portion
+        thereof).
+      </p>
+      <h1>USER REGISTRATION</h1>
+      <p>
+        You may be required to register with the Site. You agree to keep your
+        password confidential and will be responsible for all use of your
+        account and password. We reserve the right to remove, reclaim, or change
+        a username you select if we determine, in our sole discretion, that such
+        username is inappropriate, obscene, or otherwise objectionable.
+      </p>
+      ```html
+      <h1>FEES AND PAYMENT</h1>
+      <ul style={{ listStyle: "initial" }}>
+        We accept the following forms of payment:
+        <li>Credit cards</li>
+        <li>Google Pay</li>
+        <li>Apple Pay</li>
+        <li>Masterpass</li>
+        <li>Visa Checkout</li>
+        <li>Bot Pay</li>
+        <li>
+          Cryptocurrencies (Bitcoin, Ethereum, USDT, and other supported
+          cryptocurrencies on the platform)
+        </li>
+      </ul>
+      <p>
+        You may be required to purchase or pay a fee to access some of our
+        services. You agree to provide current, complete, and accurate purchase
+        and account information for all purchases made via the Platform. You
+        also agree to promptly update account and payment information, including
+        email address, payment method, and payment card or cryptocurrency wallet
+        expiration date, so that we can complete your transactions and contact
+        you as needed. We bill you through an online billing account for
+        purchases made via the Platform. Sales tax will be added to the price of
+        purchases as deemed required by us. We may change prices at any time.
+        All payments shall be in U.S. dollars, hryvnias, euros, or the
+        cryptocurrency equivalent based on the current exchange rate at the time
+        of payment.
+      </p>
+      <p>
+        You agree to pay all charges or fees at the prices then in effect for
+        your purchases, and you authorize us to charge your chosen payment
+        provider or cryptocurrency wallet for any such amounts upon making your
+        purchase. If your purchase is subject to recurring charges, then you
+        consent to us charging your payment method or cryptocurrency wallet on a
+        recurring basis without requiring your prior approval for each recurring
+        charge until you notify us of your cancellation.
+      </p>
+      <p>
+        We reserve the right to correct any errors or mistakes in pricing, even
+        if we have already requested or received payment. We also reserve the
+        right to refuse any order placed through the Platform.
+      </p>
+      <h1>AiPro Self-Service Services</h1>
+      <p>
+        Subject to these Terms, we allow you and your authorized users to access
+        and use our Self-Service Services under the subscription plan you have
+        selected. You may not use or access the Self-Service Services in any
+        other manner, such as by robots, spiders, crawlers, or scraping
+        technologies.
+      </p>
+      <p>
+        Our Self-Service Services are constantly evolving. We may modify them,
+        including adding or removing features, at any time and for any reason.
+        We may notify you of these changes, but we are not obligated to do so.
+        We are not liable to you or any third party for any modification, price
+        change, suspension, or discontinuation of any of our Self-Service
+        Services.
+      </p>
+      <p>
+        Our Self-Service Services may interact with social networks and depend
+        on their availability and the features and capabilities they provide to
+        us. These features and capabilities are beyond our control and may
+        change without notice. If at any time a social network ceases to provide
+        us with some or all of its features or capabilities, or changes the
+        terms of its provision (each, a “API Change”), we may cease providing
+        access to such features or capabilities without any liability to you or
+        any third party for such changes.
+      </p>
+      <h1>Disclaimer of Warranties and Limitation of Liability</h1>
+      <ol>
+        <li>
+          We offer our Self-Service Services “as is” and make no warranties,
+          conditions, representations, or guarantees of any kind, whether
+          express, implied, statutory, or otherwise, including all implied
+          warranties or conditions of design, merchantability, fitness for a
+          particular purpose, title, quality, and non-infringement. We do not
+          warrant that our Self-Service Services will meet your requirements or
+          that they will always be available, uninterrupted, timely, secure,
+          accurate, complete, or error-free. Use our Self-Service Services at
+          your own risk. You hereby release us and our affiliates, as well as
+          AiPro's directors, officers, employees, agents, licensors, and service
+          providers (“AiPro Parties”) from any claims, known or unknown, that
+          you have against them.
+        </li>
+        ```html
+        <li>
+          We shall not be liable for any indirect, punitive, incidental,
+          special, consequential, or exemplary damages, including loss of
+          profits, goodwill, data, or other intangible losses, arising from the
+          use or inability to use our Self-Service Services or any other aspect
+          of this Agreement. Under no circumstances shall we be liable for any
+          third-party services, social networks, or third-party actions, for any
+          Internet connection or data transmission over the Internet, or for any
+          damage, loss, or injury resulting from hacking, tampering, theft, or
+          other unauthorized access or use of our Self-Service Services, your
+          account, or the information contained in your account, including
+          client content.
+        </li>
+        <li>
+          Our aggregate liability to you for all damages or losses arising from
+          this Agreement or your use of our Self-Service Services, even if we
+          have been advised of the possibility of such damages, shall not exceed
+          the greater of the following amounts: the amount received by us from
+          you for our Self-Service Services that are the subject of the claim
+          during the three-month period immediately preceding the date the
+          damage occurred, or $100 USD. The liability limitations in this
+          section also apply to the AiPro Parties and to claims made based on
+          any cause of action, including breach of contract, tort (including
+          negligence), statute, or other legal or equitable theory. If the law
+          limits how these liability limitations apply to you, our liability
+          will be limited to the maximum extent permitted by law.
+        </li>
+        <li>
+          No advice or information, whether oral or written, obtained from us or
+          elsewhere, creates any warranty or condition not expressly stated in
+          this Agreement.
+        </li>
+        <li>
+          Our prices are based on the liability limitations and warranty
+          disclaimers in this section. You acknowledge that they will remain in
+          effect and apply even if it is found that they have failed in their
+          essential purpose.
+        </li>
+        <li>
+          If you are dissatisfied with our Self-Service Services or believe you
+          have been harmed as a result of using our Self-Service Services or
+          this Agreement, you may discontinue using our Self-Service Services.
+          Such discontinuation is your sole and exclusive remedy (and our sole
+          and exclusive liability) under this Agreement.
+        </li>
+      </ol>
+      <h1>Refund Policy and Cancellation</h1>
+      <p>
+        All purchases on the AiPro platform are non-refundable, except as
+        described below. You may cancel your subscription at any time in your
+        account settings or by contacting us using the contact information
+        provided below. Your cancellation will take effect at the end of the
+        current paid term.
+      </p>
+      <p>
+        You may cancel your plan or close your account at any time without
+        providing a reason. However, pre-paid and unused payments are
+        non-refundable. Any unpaid fees under your plan for the applicable
+        subscription term are due immediately.
+      </p>
+      <p>
+        AiPro is willing to consider your refund request if it is submitted
+        within 14 days of the purchase and the app has been used no more than
+        three times. Refunds are possible for Visa and MasterCard payments. If a
+        refund to the original payment method is not possible, we will offer
+        alternative solutions.
+      </p>
+      <p>
+        Refunds for additional content such as group lists and other options, as
+        well as gifts, are not available. If there are significant technical
+        issues that prevent the use of the app, a refund may be granted within
+        14 days of purchase. Refunds for automatically renewed subscriptions are
+        possible within 48 hours of the charge, provided that the subscription
+        services have not been used during the current billing period.
+      </p>
+      <p>
+        AiPro may limit platform functionality or temporarily suspend your
+        account if we reasonably believe you have violated these Terms. If the
+        need to limit or suspend access does not require urgent action without
+        notice, we will make commercially reasonable efforts to notify you by
+        email prior to such suspension. We may terminate your account and use of
+        the platform for any of the following reasons: non-compliance with the
+        Terms, non-payment of fees, expiration of the subscription term,
+        bankruptcy, reputational damage to AiPro, or suspicion of fraud. In
+        these cases, pre-paid and unused fees are non-refundable.
+      </p>
+      <p>
+        If your account is terminated, you must cease using the platform, and
+        AiPro reserves the right to delete your account settings and content
+        within thirty (30) days of such cancellation or termination.
+      </p>
+      <p>
+        If you are not satisfied with our services or wish to request a refund,
+        please contact our manager on Telegram at @aipro_manager or email us at
+        support@ai-pro.company. Please provide your username and payment date to
+        process your request.
+      </p>
+      <h1>PROHIBITED ACTIVITIES</h1>
+      <p>
+        You may not access or use the Site for any purpose other than that for
+        which we make the Site available. The Site may not be used in connection
+        with any commercial endeavors except those that are specifically
+        endorsed or approved by us.
+      </p>
+      <ol>
+        As a user of the Site, you agree not to:
+        <li>
+          Systematically retrieve data or other content from the Site to create
+          or compile, directly or indirectly, a collection, compilation,
+          database, or directory without our written permission.
+        </li>
+        <li>
+          Engage in any unauthorized use of the Site, including collecting
+          usernames and/or email addresses of users by electronic or other means
+          for the purpose of sending unsolicited emails or creating user
+          accounts by automated means or under false pretenses.
+        </li>
+        ```html
+        <li>
+          Make purchases on the Site using a purchasing agent or sales
+          representative.
+        </li>
+        <li>
+          Circumvent, disable, or otherwise interfere with security-related
+          features of the Site, including features that prevent or restrict the
+          use or copying of any Content or enforce limitations on the use of the
+          Site and/or the Content contained therein.
+        </li>
+        <li>Engage in unauthorized framing of or linking to the Site.</li>
+        <li>
+          Deceive, defraud, or mislead us and other users, especially in any
+          attempt to learn sensitive account information such as user passwords.
+        </li>
+        <li>
+          Misuse our support services or submit false reports of abuse or
+          misconduct.
+        </li>
+        <li>
+          Use the system in an automated manner, such as using scripts to send
+          comments or messages, or using data mining, robots, or similar data
+          gathering and extraction tools.
+        </li>
+        <li>
+          Interfere with, disrupt, or create an undue burden on the Site or the
+          networks or services connected to the Site.
+        </li>
+        <li>
+          Attempt to impersonate another user or person or use the username of
+          another user.
+        </li>
+        <li>Sell or otherwise transfer your profile.</li>
+        <li>
+          Use any information obtained from the Site in order to harass, abuse,
+          or harm another person.
+        </li>
+        <li>
+          Use the Site in a manner inconsistent with any applicable laws or
+          regulations.
+        </li>
+        <li>
+          Use the Site for any commercial purpose without our explicit approval.
+        </li>
+        <li>
+          Attempt to bypass any measures of the Site designed to prevent or
+          restrict access to the Site or any portion of the Site.
+        </li>
+        <li>
+          Harass, annoy, intimidate, or threaten any of our employees or agents
+          engaged in providing any portion of the Site to you.
+        </li>
+        <li>
+          Delete the copyright or other proprietary rights notice from any
+          Content.
+        </li>
+        <li>
+          Copy or adapt the Site's software, including but not limited to Flash,
+          PHP, HTML, JavaScript, or other code.
+        </li>
+        <li>
+          Upload or transmit (or attempt to upload or transmit) viruses, Trojan
+          horses, or other material, including excessive use of capital letters
+          and spamming (continuous posting of repetitive text), that interferes
+          with any party's uninterrupted use and enjoyment of the Site or
+          modifies, impairs, disrupts, alters, or interferes with the use,
+          features, functions, operation, or maintenance of the Site.
+        </li>
+        <li>
+          Upload or transmit (or attempt to upload or to transmit) any material
+          that acts as a passive or active information collection or
+          transmission mechanism, including without limitation, clear graphics
+          interchange formats (“gifs”), 1×1 pixels, web bugs, cookies, or other
+          similar devices (sometimes referred to as “spyware” or “passive
+          collection mechanisms” or “pcms”).
+        </li>
+        <li>
+          Except as may be the result of standard search engine or Internet
+          browser usage, use, launch, develop, or distribute any automated
+          system, including without limitation, any spider, robot, cheat
+          utility, scraper, or offline reader that accesses the Site, or use or
+          launch any unauthorized script or other software.
+        </li>
+        <li>
+          Disparage, tarnish, or otherwise harm, in our opinion, us and/or the
+          Site.
+        </li>
+        <li>
+          Use the Site in a manner inconsistent with any applicable laws or
+          regulations.
+        </li>
+        <li>Use the Site to advertise or offer to sell goods and services.</li>
+      </ol>
+      <h1>USER CONTRIBUTIONS</h1>
+      <p>
+        The Site may invite you to chat, contribute to, or participate in blogs,
+        message boards, online forums, and other functionality, and may provide
+        you with the opportunity to create, submit, post, display, transmit,
+        perform, publish, distribute, or broadcast content and materials to us
+        or on the Site, including but not limited to text, writings, video,
+        audio, photographs, graphics, comments, suggestions, or personal
+        information or other material (collectively, "Contributions").
+        Contributions may be viewable by other users of the Site and through
+        third-party websites. As such, any Contributions you transmit may be
+        treated as non-confidential and non-proprietary. When you create or make
+        available any Contributions, you thereby represent and warrant that:
+      </p>
+      <ol>
+        <li>
+          The creation, distribution, transmission, public display, or
+          performance, as well as the accessing, downloading, or copying of your
+          Contributions, do not and will not infringe the proprietary rights,
+          including but not limited to copyright, patent, trademark, trade
+          secret, or moral rights of any third party.
+        </li>
+        <li>
+          You are the creator and owner of or have the necessary licenses,
+          rights, consents, releases, and permissions to use and to authorize
+          us, the Site, and other users of the Site to use your Contributions in
+          any manner contemplated by the Site and these Terms of Use.
+        </li>
+        <li>
+          You have the written consent, release, and/or permission of each and
+          every identifiable individual person in your Contributions to use the
+          name or likeness of each and every such identifiable individual person
+          to enable inclusion and use of your Contributions in any manner
+          contemplated by the Site and these Terms of Use.
+        </li>
+        <li>Your Contributions are not false, inaccurate, or misleading.</li>
+        <li>
+          Your Contributions are not unsolicited or unauthorized advertising,
+          promotional materials, pyramid schemes, chain letters, spam, mass
+          mailings, or other forms of solicitation.
+        </li>
+        <li>
+          Your Contributions are not obscene, lewd, lascivious, filthy, violent,
+          harassing, libelous, slanderous, or otherwise objectionable (as
+          determined by us).
+        </li>
+        <li>
+          Your Contributions do not ridicule, mock, disparage, intimidate, or
+          abuse anyone.
+        </li>
+        <li>
+          Your Contributions are not used to harass or threaten (in the legal
+          sense of those terms) any other person and to promote violence against
+          a specific person or class of people.
+        </li>
+        <li>
+          Your Contributions do not violate any applicable law, regulation, or
+          rule.
+        </li>
+        <li>
+          Your Contributions do not violate the privacy or publicity rights of
+          any third party.
+        </li>
+        <li>
+          Your Contributions do not violate any applicable law concerning child
+          pornography, or otherwise intended to protect the health or well-being
+          of minors.
+        </li>
+        <li>
+          Your Contributions do not include any offensive comments that are
+          connected to race, national origin, gender, sexual preference, or
+          physical handicap.
+        </li>
+        <li>
+          Your Contributions do not otherwise violate or link to material that
+          violates any provision of these Terms of Use or any applicable law or
+          regulation.
+        </li>
+      </ol>
+      <p>
+        Any use of the Site in violation of the foregoing violates these Terms
+        of Use and may result in, among other things, termination or suspension
+        of your rights to use the Site.
+      </p>
+      <h1>LICENSE TO YOUR CONTRIBUTIONS</h1>
+      <p>
+        By posting your Contributions to any part of the Site or making
+        Contributions accessible to the Site by linking your account from the
+        Site to any of your social networking accounts, you automatically grant,
+        and you represent and warrant that you have the right to grant, to us an
+        unrestricted, unlimited, irrevocable, perpetual, non-exclusive,
+        transferable, royalty-free, fully paid, worldwide right, and license to
+        host, use, copy, reproduce, disclose, sell, resell, publish, broadcast,
+        retitle, archive, store, cache, publicly perform, publicly display,
+        reformat, translate, transmit, excerpt (in whole or in part), and
+        distribute such Contributions (including, without limitation, your image
+        and voice) for any purpose, commercial, advertising, or otherwise, and
+        to prepare derivative works of, or incorporate into other works, such
+        Contributions, and grant and authorize sublicenses of the foregoing. The
+        use and distribution may occur in any media formats and through any
+        media channels.
+      </p>
+      <p>
+        This license will apply to any form, media, or technology now known or
+        hereafter developed, and includes our use of your name, company name,
+        and franchise name, as applicable, and any of the trademarks, service
+        marks, trade names, logos, and personal and commercial images you
+        provide. You waive all moral rights in your Contributions, and you
+        warrant that moral rights have not otherwise been asserted in your
+        Contributions.
+      </p>
+      <p>
+        We do not assert any ownership over your Contributions. You retain full
+        ownership of all of your Contributions and any intellectual property
+        rights or other proprietary rights associated with your Contributions.
+        We are not liable for any statements or representations in your
+        Contributions provided by you in any area on the Site. You are solely
+        responsible for your Contributions to the Site, and you expressly agree
+        to exonerate us from any and all responsibility and to refrain from any
+        legal action against us regarding your Contributions.
+      </p>
+      <p>
+        We reserve the right, in our sole and absolute discretion, to (1) edit,
+        redact, or otherwise change any Contributions; (2) re-categorize any
+        Contributions to place them in more appropriate locations on the Site;
+        and (3) pre-screen or delete any Contributions at any time and for any
+        reason, without notice. We have no obligation to monitor your
+        Contributions.
+      </p>
+      <h1>MOBILE APPLICATION LICENSE</h1>
+      <p style={{ fontWeight: "bold" }}>Use License</p>
+      <p>
+        If you access the Site via a mobile application, then we grant you a
+        revocable, non-exclusive, non-transferable, limited right to install and
+        use the mobile application on wireless electronic devices owned or
+        controlled by you, and to access and use the mobile application on such
+        devices strictly in accordance with the terms and conditions of this
+        mobile application license contained in these Terms of Use. You shall
+        not: (1) decompile, reverse engineer, disassemble, attempt to derive the
+        source code of, or decrypt the application; (2) make any modification,
+        adaptation, improvement, enhancement, translation, or derivative work
+        from the application; (3) violate any applicable laws, rules, or
+        regulations in connection with your access or use of the application;
+        (4) remove, alter, or obscure any proprietary notice (including any
+        notice of copyright or trademark) posted by us or the licensors of the
+        application; (5) use the application for any revenue-generating
+        endeavor, commercial enterprise, or other purpose for which it is not
+        designed or intended; (6) make the application available over a network
+        or other environment permitting access or use by multiple devices or
+        users at the same time; (7) use the application for creating a product,
+        service, or software that is, directly or indirectly, competitive with
+        or in any way a substitute for the application; (8) use the application
+        to send automated queries to any website or to send any unsolicited
+        commercial email; or (9) use any proprietary information or any of our
+        interfaces or our other intellectual property in the design,
+        development, manufacture, licensing, or distribution of any
+        applications, accessories, or devices for use with the application.
+      </p>
+      <p style={{ fontWeight: "bold" }}>Apple and Android Devices</p>
+      <p>
+        The following terms apply when you use a mobile application obtained
+        from either the Apple Store or Google Play (each an “App Distributor”)
+        to access the Site: (1) the license granted to you for our mobile
+        application is limited to a non-transferable license to use the
+        application on a device that utilizes the Apple iOS or Android operating
+        systems, as applicable, and in accordance with the usage rules set forth
+        in the applicable App Distributor's terms of service; (2) we are
+        responsible for providing any maintenance and support services with
+        respect to the mobile application as specified in the terms and
+        conditions of this mobile application license contained in these Terms
+        of Use or as otherwise required under applicable law, and you
+        acknowledge that each App Distributor has no obligation whatsoever to
+        furnish any maintenance and support services with respect to the mobile
+        application; (3) in the event of any failure of the mobile application
+        to conform to any applicable warranty, you may notify the applicable App
+        Distributor, and the App Distributor, in accordance with its terms and
+        policies, may refund the purchase price, if any, paid for the mobile
+        application, and to the maximum extent permitted by applicable law, the
+        App Distributor will have no other warranty obligation whatsoever with
+        respect to the mobile application; (4) you represent and warrant that
+        (i) you are not located in a country that is subject to a U.S.
+        government embargo, or that has been designated by the U.S. government
+        as a "terrorist supporting" country, and (ii) you are not listed on any
+        U.S. government list of prohibited or restricted parties; (5) you must
+        comply with applicable third-party terms of agreement when using the
+        mobile application, e.g., if you have a VoIP application, then you must
+        not be in violation of their wireless data service agreement when using
+        the mobile application; and (6) you acknowledge and agree that the App
+        Distributors are third-party beneficiaries of the terms and conditions
+        in this mobile application license contained in these Terms of Use, and
+        that each App Distributor will have the right (and will be deemed to
+        have accepted the right) to enforce the terms and conditions in this
+        mobile application license contained in these Terms of Use against you
+        as a third-party beneficiary thereof.
+      </p>
+      <h1>SOCIAL MEDIA</h1>
+      <p>
+        As part of the functionality of the Site, you may link your account with
+        online accounts you have with third-party service providers (each such
+        account, a "Third-Party Account") by either: (1) providing your
+        Third-Party Account login information through the Site; or (2) allowing
+        us access to your Third-Party Account, as is permitted under the
+        applicable terms and conditions that govern your use of each Third-Party
+        Account. You represent and warrant that you are entitled to disclose
+        your Third-Party Account login information to us and/or grant us access
+        to your Third-Party Account without breach by you of any of the terms
+        and conditions that govern your use of the applicable Third-Party
+        Account, and without obligating us to pay any fees or making us subject
+        to any usage limitations imposed by the third-party service provider of
+        the Third-Party Account. By granting us access to any Third-Party
+        Accounts, you understand that (1) we may access, make available, and
+        store (if applicable) any content that you have provided to and stored
+        in your Third-Party Account ("Social Network Content") so that it is
+        available on and through the Site via your account, including without
+        limitation any friend lists, and (2) we may submit to and receive from
+        your Third-Party Account additional information to the extent you are
+        notified when you link your account with the Third-Party Account.
+        Depending on the Third-Party Accounts you choose and subject to the
+        privacy settings that you have set in such Third-Party Accounts,
+        personally identifiable information that you post to your Third-Party
+        Accounts may be available on and through your account on the Site.
+        Please note that if a Third-Party Account or associated service becomes
+        unavailable or our access to such Third-Party Account is terminated by
+        the third-party service provider, then Social Network Content may no
+        longer be available on and through the Site. You will have the ability
+        to disable the connection between your account on the Site and your
+        Third-Party Accounts at any time. PLEASE NOTE THAT YOUR RELATIONSHIP
+        WITH THE THIRD-PARTY SERVICE PROVIDERS ASSOCIATED WITH YOUR THIRD-PARTY
+        ACCOUNTS IS GOVERNED SOLELY BY YOUR AGREEMENT(S) WITH SUCH THIRD-PARTY
+        SERVICE PROVIDERS. We make no effort to review any Social Network
+        Content for any purpose, including but not limited to accuracy,
+        legality, or non-infringement, and we are not responsible for any Social
+        Network Content. You acknowledge and agree that we may access your email
+        address book associated with a Third-Party Account and your contacts
+        list stored on your mobile device or tablet computer solely for purposes
+        of identifying and informing you of those contacts who have also
+        registered to use the Site. You can deactivate the connection between
+        the Site and your Third-Party Account by contacting us using the contact
+        information below or through your account settings (if applicable). We
+        will attempt to delete any information stored on our servers that was
+        obtained through such Third-Party Account, except the username and
+        profile picture that become associated with your account.
+      </p>
+      <h1>SUBMISSIONS</h1>
+      <p>
+        You acknowledge and agree that any questions, comments, suggestions,
+        ideas, feedback, or other information regarding the Site ("Submissions")
+        provided by you to us are non-confidential and shall become our sole
+        property. We shall own exclusive rights, including all intellectual
+        property rights, and shall be entitled to the unrestricted use and
+        dissemination of these Submissions for any lawful purpose, commercial or
+        otherwise, without acknowledgment or compensation to you. You hereby
+        waive all moral rights to any such Submissions, and you hereby warrant
+        that any such Submissions are original with you or that you have the
+        right to submit such Submissions. You agree there shall be no recourse
+        against us for any alleged or actual infringement or misappropriation of
+        any proprietary right in your Submissions.
+      </p>
+      <h1>Government Rights</h1>
+      <p>
+        AiPro strictly adheres to all applicable laws and regulations regarding
+        the provision of its services and products to government organizations.
+        All services and products are provided in accordance with the terms of
+        these Terms of Use and do not violate the laws of any country, including
+        Ukraine, the United States, and other jurisdictions where we operate.
+      </p>
+      <h1>WEBSITE MANAGEMENT</h1>
+      <p>
+        We reserve the right, but not the obligation, to: (1) monitor the Site
+        for violations of these Terms of Use; (2) take appropriate legal action
+        against any person who, in our sole discretion, violates the law or
+        these Terms of Use, including, but not limited to, reporting such user
+        to law enforcement authorities; (3) at our sole discretion and without
+        limitation, refuse, restrict access, limit accessibility, or disable (to
+        the extent technically feasible) any of your Contributions or any part
+        thereof; (4) at our sole discretion and without limitation, with or
+        without notice, remove from the Site or otherwise disable all files and
+        content that are excessively large or in any way burdensome to our
+        systems; and (5) otherwise manage the Site in a manner that protects our
+        rights and property and promotes the proper functioning of the Site.
+      </p>
+      <h1>PRIVACY POLICY</h1>
+      <p>
+        We care about the confidentiality and security of your data. Please
+        review our Privacy Policy at the following address:
+        <Link to="/policy"> Privacy Policy</Link>. By using the AiPro platform,
+        you agree to comply with our Privacy Policy, which is an integral part
+        of these Terms of Use.
+      </p>
+      <p>
+        Please note that our platform is registered in Ukraine and serves users
+        worldwide. If you access the platform from another region where the laws
+        or requirements regarding the collection, use, or disclosure of personal
+        data differ from those applicable in Ukraine, you consent to the
+        transfer of your data to Ukraine and its processing in accordance with
+        our privacy standards and Ukrainian law.
+      </p>
+      <h1>COPYRIGHT INFRINGEMENT</h1>
+      <p>
+        We respect the intellectual property rights of others. If you believe
+        that any material available on or through the Site infringes any
+        copyrights you own or control, please notify us immediately using the
+        contact information provided below ("Notice"). A copy of your Notice
+        will be sent to the person who posted or stored the material identified
+        in the Notice. Please note that under applicable law, you may be liable
+        for damages if you make material misrepresentations in the Notice.
+        Therefore, if you are not sure whether material on the Site or linked to
+        it infringes your copyrights, you should first consult a lawyer.
+      </p>
+      <h1>TERM AND TERMINATION</h1>
+      <p>
+        These Terms of Use remain in full force and effect while you use the
+        Site. WITHOUT LIMITING ANY OTHER PROVISIONS OF THESE TERMS OF USE, WE
+        RESERVE THE RIGHT AT OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY
+        TO DENY ACCESS TO THE SITE AND USE OF THE SITE (INCLUDING BLOCKING
+        CERTAIN IP ADDRESSES) TO ANY PERSON FOR ANY REASON OR NO REASON,
+        INCLUDING, WITHOUT LIMITATION, FOR BREACH OF ANY REPRESENTATION,
+        WARRANTY OR COVENANT CONTAINED IN THESE TERMS OF USE OR ANY APPLICABLE
+        LAW OR REGULATION. WE MAY TERMINATE YOUR USE OR PARTICIPATION IN THE
+        SITE OR REMOVE YOUR ACCOUNT AND ANY CONTENT OR INFORMATION THAT YOU
+        POSTED AT ANY TIME, WITHOUT WARNING, IN OUR SOLE DISCRETION.
+      </p>
+      <p>
+        If we terminate or suspend your account for any reason, you are
+        prohibited from registering and creating a new account under your name,
+        a false or borrowed name, or the name of a third party, even if you are
+        acting on behalf of a third party. In addition to terminating or
+        suspending your account, we reserve the right to take appropriate legal
+        action, including, without limitation, civil, criminal, and equitable
+        relief.
+      </p>
+      <h1>MODIFICATIONS AND INTERRUPTIONS</h1>
+      <p>
+        We reserve the right to change, modify, or remove the content of the
+        Site at any time and for any reason at our sole discretion without prior
+        notice. However, we are under no obligation to update any information on
+        our Site. We also reserve the right to modify or discontinue the entire
+        Site or any part thereof without prior notice at any time. We will not
+        be liable to you or any third party for any modification, price change,
+        suspension, or discontinuance of the Site.
+      </p>
+      <p>
+        We cannot guarantee that the Site will be available at all times. We may
+        experience hardware, software, or other problems, or need to perform
+        maintenance related to the Site, resulting in interruptions, delays, or
+        errors. We reserve the right to change, revise, update, suspend,
+        discontinue, or otherwise modify the Site at any time and for any reason
+        without prior notice. You agree that we have no liability for any loss,
+        damage, or inconvenience caused by your inability to access or use the
+        Site during any downtime or discontinuance of the Site. Nothing in these
+        Terms of Use will be construed as obligating us to maintain the Site or
+        to provide any corrections, updates, or releases in connection with it.
+      </p>
+      <h1>GOVERNING LAW</h1>
+      <p>
+        These Terms of Use and your use of the AiPro platform are governed by
+        and construed in accordance with the laws of Ukraine, applicable to
+        agreements made and to be fully performed within Ukraine, without regard
+        to conflict of law principles.
+      </p>
+      <h1>DISPUTE RESOLUTION</h1>
+      <p style={{ fontWeight: "bold" }}>Mandatory Arbitration</p>
+      <p>
+        If the parties cannot resolve a dispute through informal negotiations,
+        the dispute (except for disputes expressly excluded below) will be
+        finally and exclusively resolved by mandatory arbitration. You
+        understand that without this provision, you would have the right to file
+        a lawsuit in court and have the case heard by a jury. The arbitration
+        proceeding will be initiated and conducted in accordance with the laws
+        of Ukraine and, where appropriate, in accordance with the arbitration
+        rules established by the International Arbitration Court or other
+        authorized body. Arbitration may be conducted in person, by submission
+        of documents, by telephone, or online. The arbitrator will issue a
+        written decision but is not required to provide a reasoned opinion
+        unless requested by either party. The arbitrator must follow the
+        applicable law, and any award may be challenged if the arbitrator fails
+        to do so.
+      </p>
+      <p>
+        If for any reason a dispute is being adjudicated in court rather than
+        arbitration, the dispute must be brought or heard in state or federal
+        courts located in Ukraine, and the parties hereby agree and waive all
+        objections to the lack of personal jurisdiction and forum non conveniens
+        with respect to venue and jurisdiction in such courts. The application
+        of the United Nations Convention on Contracts for the International Sale
+        of Goods and other international norms is excluded from these Terms of
+        Use.
+      </p>
+      <p>
+        Under no circumstances shall any dispute brought by either party related
+        to the platform be commenced later than one (1) year after the cause of
+        action arose. If this provision is found to be unlawful or
+        unenforceable, then neither party will elect to arbitrate any dispute
+        falling within that portion of this provision that is found to be
+        unlawful or unenforceable, and such dispute will be resolved in a court
+        of competent jurisdiction located in Ukraine, and the parties agree to
+        submit to the personal jurisdiction of that court.
+      </p>
+      <p style={{ fontWeight: "bold" }}>Limitations</p>
+      <p>
+        The parties agree that any arbitration must be limited to the dispute
+        between the parties individually. To the fullest extent permitted by
+        law: (a) no arbitration may be joined with any other proceeding; (b) no
+        right or authority for any dispute to be adjudicated in arbitration on a
+        class action basis or to use class action procedures; and (c) no right
+        or authority for any dispute to be brought in a purported representative
+        capacity on behalf of the general public or any other persons.
+      </p>
+      <p style={{ fontWeight: "bold" }}>Exceptions from Arbitration</p>
+      <p>
+        The parties agree that the following disputes are not subject to the
+        mandatory arbitration provisions mentioned above: (a) any disputes aimed
+        at enforcing or protecting, or relating to the validity of, any party's
+        intellectual property rights; (b) any dispute related to or arising from
+        allegations of theft, piracy, invasion of privacy, or unauthorized use;
+        and (c) any claim for injunctive relief. If this provision is found to
+        be illegal or unenforceable, neither party will opt for arbitration of
+        any dispute falling under the part of this provision deemed illegal or
+        unenforceable, and such dispute shall be resolved by a court of
+        competent jurisdiction located in Ukraine, and the parties agree to
+        submit to the personal jurisdiction of that court.
+      </p>
+      <h1>Corrections</h1>
+      <p>
+        The Site may contain information with typographical errors,
+        inaccuracies, or omissions, including descriptions, prices,
+        availability, and various other information. We reserve the right to
+        correct any errors, inaccuracies, or omissions and to change or update
+        information on the Site at any time without prior notice.
+      </p>
+      <h1>Disclaimer of Liability</h1>
+      <p>
+        THE SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. YOU AGREE
+        THAT YOUR USE OF THE SITE AND OUR SERVICES WILL BE AT YOUR OWN RISK. TO
+        THE MAXIMUM EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS
+        OR IMPLIED, IN CONNECTION WITH THE SITE AND YOUR USE OF IT, INCLUDING,
+        BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+        PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR
+        REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE SITE'S CONTENT
+        OR THE CONTENT OF ANY WEBSITES LINKED TO THE SITE, AND WE WILL NOT BE
+        LIABLE FOR ANY (1) ERRORS, INACCURACIES IN CONTENT AND MATERIALS, (2)
+        INJURIES OR PROPERTY DAMAGE OF ANY KIND RESULTING FROM YOUR ACCESS TO
+        AND USE OF THE SITE, (3) ANY UNAUTHORIZED ACCESS TO OR USE OF OUR SECURE
+        SERVERS AND/OR ANY PERSONAL AND/OR FINANCIAL INFORMATION STORED THEREIN,
+        (4) ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE SITE,
+        (5) ANY ERRORS, VIRUSES, TROJANS, OR THE LIKE THAT MAY BE TRANSMITTED TO
+        OR THROUGH THE SITE BY ANY THIRD PARTY, AND/OR (6) ANY ERRORS OR
+        OMISSIONS IN ANY CONTENT AND MATERIALS OR ANY LOSS OR DAMAGE OF ANY KIND
+        INCURRED AS A RESULT OF YOUR USE OF ANY CONTENT POSTED, TRANSMITTED, OR
+        OTHERWISE MADE AVAILABLE THROUGH THE SITE. WE DO NOT WARRANT, ENDORSE,
+        GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE
+        ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE SITE, ANY HYPERLINKED
+        WEBSITE, OR ANY WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER OR
+        OTHER ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE
+        RESPONSIBLE FOR MONITORING ANY TRANSACTIONS BETWEEN YOU AND ANY
+        THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE OF A
+        PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT, YOU SHOULD
+        USE YOUR BEST JUDGMENT AND EXERCISE CAUTION WHERE APPROPRIATE.
+      </p>
+      <h1>Limitation of Liability</h1>
+      <p>
+        IN NO EVENT SHALL WE OR OUR DIRECTORS, OFFICERS, EMPLOYEES, OR AGENTS BE
+        LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+        CONSEQUENTIAL, EXEMPLARY, SPECIAL, OR PUNITIVE DAMAGES, INCLUDING LOST
+        PROFITS, LOST REVENUE, DATA LOSS, OR OTHER DAMAGES ARISING OUT OF YOUR
+        USE OF THE SITE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH
+        DAMAGES.
+      </p>
+      <h1>Indemnification</h1>
+      <p>
+        You agree to defend, indemnify, and hold us harmless, including our
+        subsidiaries, affiliates, and all of our respective officers, directors,
+        agents, partners, and employees, from and against any losses, damages,
+        liabilities, claims, or demands, including reasonable attorneys' fees
+        and costs, made by any third party due to or arising out of: (1) your
+        Contributions; (2) your use of the Site; (3) your breach of these Terms
+        of Use; (4) any breach of your representations and warranties set forth
+        in these Terms of Use; (5) your violation of the rights of a third
+        party, including, but not limited to, intellectual property rights; or
+        (6) any harmful action toward any other user of the Site with whom you
+        connected through the Site. Notwithstanding the foregoing, we reserve
+        the right, at your expense, to assume the exclusive defense and control
+        of any matter for which you are required to indemnify us, and you agree
+        to cooperate with our defense of such claims. We will use reasonable
+        efforts to notify you of any such claims, suits, or proceedings subject
+        to this indemnification upon becoming aware of it.
+      </p>
+      <h1>User Data</h1>
+      <p>
+        We will retain certain data you submit to the Site for the purpose of
+        managing the Site's performance, as well as data regarding your use of
+        the Site. While we perform regular backups of data, you are solely
+        responsible for all data you transmit or that relates to any activity
+        you have undertaken using the Site. You agree that we will have no
+        liability to you for any loss or damage to any such data, and you hereby
+        waive any right to bring a claim against us arising out of any such loss
+        or damage to such data.
+      </p>
+      <h1>Electronic Communications, Transactions, and Signatures</h1>
+      <p>
+        Visiting the Site, sending us emails, and completing online forms
+        constitute electronic communications. You consent to receive electronic
+        communications and agree that all agreements, notices, disclosures, and
+        other communications that we provide to you electronically, via email,
+        and on the Site, satisfy any legal requirement that such communications
+        be in writing. YOU HEREBY AGREE TO THE USE OF ELECTRONIC SIGNATURES,
+        CONTRACTS, ORDERS, AND OTHER RECORDS, AND TO ELECTRONIC DELIVERY OF
+        NOTICES, POLICIES, AND RECORDS OF TRANSACTIONS INITIATED OR COMPLETED BY
+        US OR THROUGH THE SITE. You hereby waive any rights or requirements
+        under any laws, regulations, rules, ordinances, or other laws in any
+        jurisdiction that require an original signature or delivery or retention
+        of non-electronic records, or with payments or provision of credits by
+        other than electronic means.
+      </p>
+      <h1>Miscellaneous</h1>
+      <p>
+        These Terms of Use, together with any policies or rules posted by us on
+        the Site or in connection with its use, constitute the entire agreement
+        and understanding between you and us. Our failure to enforce or
+        implement any right or provision of these Terms of Use will not be
+        deemed a waiver of such right or provision. These Terms of Use will be
+        enforced to the fullest extent permitted by law. We may assign any or
+        all of our rights and obligations to others at any time. We will not be
+        liable for any loss, damage, delay, or failure to act resulting from any
+        cause beyond our reasonable control.
+      </p>
+      <p>
+        If any provision or part of a provision of these Terms of Use is found
+        to be illegal, invalid, or unenforceable, that provision or part thereof
+        will be deemed severable from these Terms of Use and will not affect the
+        validity and enforceability of the remaining provisions. No joint
+        venture, partnership, employment, or agency relationship is intended or
+        created by these Terms of Use or your use of the Site. You agree that
+        these Terms of Use will not be construed against us by virtue of having
+        drafted them. You also waive any defenses you may have based on the
+        electronic form of these Terms of Use and the lack of signatures by the
+        parties hereto to execute these Terms of Use.
+      </p>
+      <p>
+        Contact Us To resolve a complaint regarding the use of the Site or to
+        obtain further information, contact us at:{" "}
+        <a href="mailto:support@ai-pro.company">support@ai-pro.company</a>
+      </p>
+      <p>
+        These Terms of Use were created with the help of the Generator
+        <span style={{ color: "transparent" }}>
+          Termly Terms and Conditions
+        </span>
+      </p>
+      {/* <h1>УСЛОВИЯ ЭКСПЛУАТАЦИИ</h1>
       <p>Последнее обновление: 20 августа 2024 г.</p>
       <h2>СОГЛАСИЕ С УСЛОВИЯМИ</h2>
       <p>
@@ -1105,8 +2063,8 @@ export default function UserAgeement() {
       </p>
       <p>
         Настоящие условия использования были созданы с помощью генератора{" "}
-        <span style={{ color: "#1c1c1c" }}>условий и положений Termly</span>{" "}
-      </p>
+        <span style={{ color: "transparent" }}>условий и положений Termly</span>{" "}
+      </p> */}
     </div>
   );
 }
