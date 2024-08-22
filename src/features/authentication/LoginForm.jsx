@@ -140,7 +140,7 @@ function LoginForm({ children }) {
         onOk={handleClose}
         onCancel={handleClose}
       >
-        <UserAgreement handlePolicy={handleLink} />
+        <UserAgreement />
       </Modal>
     </>
   );

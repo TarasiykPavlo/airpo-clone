@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Checkbox, Form, Input, Spin, Modal, message } from "antd";
 
 import { useSignup } from "./useSignup";
@@ -14,7 +14,11 @@ function SignupForm({ children }) {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [policyModal, setPolicyModal] = useState(false);
+  const [agreementModal, setAgeementsModal] = useState(false);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [agreementAccepted, setAgreementAccepted] = useState(false);
 
   const onFinish = (values) => {
     if (!isTermsAccepted) {
@@ -48,15 +52,32 @@ function SignupForm({ children }) {
     });
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-    setIsTermsAccepted(true);
+  const handleOkPolicy = () => {
+    setPolicyAccepted(true);
+
+    setPolicyModal(false);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const handleCancelPolicy = () => {
+    setPolicyModal(false);
     setIsTermsAccepted(false);
   };
+  const handleOkAgreement = () => {
+    setAgreementAccepted(true);
+
+    setAgeementsModal(false);
+  };
+
+  const handleCancelAgreement = () => {
+    setAgeementsModal(false);
+    setIsTermsAccepted(false);
+  };
+  useEffect(() => {
+    if (agreementAccepted && policyAccepted) {
+      setIsTermsAccepted(true);
+      console.log("accept");
+    }
+  }, [agreementAccepted, policyAccepted]);
 
   return (
     <>
@@ -162,22 +183,46 @@ function SignupForm({ children }) {
           style={{
             width: "100%",
             display: "grid",
-            placeItems: "center",
+            placeItems: "start",
             marginBottom: "5px",
           }}
         >
           <Checkbox
             disabled={isLoading}
-            checked={isTermsAccepted}
-            onChange={() => setIsTermsAccepted((state) => !state)}
+            checked={agreementAccepted}
+            onChange={() => setAgreementAccepted(!agreementAccepted)}
           />
           <span className="auth__checkbox">
             I accept all terms of the{" "}
             <span
               className="auth__link"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => setAgeementsModal(true)}
             >
-              user agreement and privacy policy
+              user agreement
+            </span>
+          </span>
+        </Form.Item>
+        <Form.Item
+          valuePropName="checked"
+          style={{
+            width: "100%",
+            display: "grid",
+            placeItems: "start",
+            marginBottom: "5px",
+          }}
+        >
+          <Checkbox
+            disabled={isLoading}
+            checked={policyAccepted}
+            onChange={() => setPolicyAccepted(!policyAccepted)}
+          />
+          <span className="auth__checkbox">
+            I accept all of the{" "}
+            <span
+              className="auth__link"
+              onClick={() => setPolicyModal(true)}
+            >
+              privacy policy
             </span>
           </span>
         </Form.Item>
@@ -205,15 +250,18 @@ function SignupForm({ children }) {
       </Form>
 
       <Modal
-        title="User agreement"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        // style={{ textAlign: "center" }}
+        open={policyModal}
+        onOk={handleOkPolicy}
+        onCancel={handleCancelPolicy}
       >
-        {" "}
-        <UserAgreement></UserAgreement>
-        <PrivacyPolicy></PrivacyPolicy>
+        <PrivacyPolicy />
+      </Modal>
+      <Modal
+        open={agreementModal}
+        onOk={handleOkAgreement}
+        onCancel={handleCancelAgreement}
+      >
+        <UserAgreement />
       </Modal>
     </>
   );
