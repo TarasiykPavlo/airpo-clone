@@ -11,7 +11,8 @@ function LoginForm({ children }) {
 
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [policyModal, setPolicyModal] = useState(false);
+  const [agreementModal, setAgeementsModal] = useState(false);
   const onFinish = ({ email, password }) => {
     login(
       { email, password },
@@ -26,13 +27,15 @@ function LoginForm({ children }) {
       }
     );
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const handleClose = () => {
+    setAgeementsModal(false);
+    setPolicyModal(false);
+  };
+  const handleLink = () => {
+    setAgeementsModal(false);
+    setPolicyModal(true);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   return (
     <>
       {contextHolder}
@@ -112,22 +115,32 @@ function LoginForm({ children }) {
           I accept all terms of the{" "}
           <span
             className="auth__link"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setPolicyModal(true)}
           >
-            user agreement and privacy policy
+            Privacy Policy
+          </span>
+          <span> and </span>
+          <span
+            className="auth__link"
+            onClick={() => setAgeementsModal(true)}
+          >
+            User Agreements
           </span>
         </span>
       </Form>
       <Modal
-        title="User agreement"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        // style={{ textAlign: "center" }}
+        open={policyModal}
+        onOk={handleClose}
+        onCancel={handleClose}
       >
-        {" "}
-        <UserAgreement></UserAgreement>
-        <PrivacyPolicy></PrivacyPolicy>
+        <PrivacyPolicy />
+      </Modal>
+      <Modal
+        open={agreementModal}
+        onOk={handleClose}
+        onCancel={handleClose}
+      >
+        <UserAgreement handlePolicy={handleLink} />
       </Modal>
     </>
   );
